@@ -1,0 +1,202 @@
+---
+title: An Analysis of HP's Quarterly Stock Return
+author: Zachary Dyne, Roxanne Adams, Matt Stone
+date: '2019-12-16'
+slug: hp-stock
+categories:
+  - MBA
+  - R
+tags:
+  - Forecasting
+  - Time Series
+  - Finance
+subtitle: ''
+summary: "This time series forecasting exercise analyzes HP's stock return from 2000:Q1 - 2017:Q4. The data is sourced via the *tidyquant* R package. This post is a repackaged version of a final project I worked on with Roxanne Adams and Matt Stone for the *GSM6216: Business/Economic Forecasting* course at Atkinson."
+authors: []
+lastmod: '2020-05-24T08:32:18-07:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+output:
+  blogdown::html_page:
+    toc: yes
+    df_print: kable
+    toc_depth: 2
+---
+
+## Project Background
+
+I had the opportunity to take a course on time series economic forecasting during my MBA program. This was certainly one of the more challenging data-related courses given how many moving parts are invovled in time series analysis and how much it deviates from my quantitative social science background. All the new content made it all the more valuable. I also appreciated that each of the course's assignments were done in groups and I was fortunate to work with Roxanne Adams and Matt Stone throughout the semester. The course's final project involved finding a time series dataset and identifying which forecasting methods work best at predicting future events. 
+
+As a big fan of the [*tidyquant*](https://business-science.github.io/tidyquant/) package and its ability to fetch data directly from Yahoo! Finance without having to dowload a .csv from the internet, I persuaded our group to use it to analyze HP's stock return. This also solved a classic student problem of having to switch file directories when sharing the file among our group (this was before I really knew how to use Github). 
+
+Why HP and why stock retrun? As a consumer it would appear as if a large part of the company's sales come from printers, ink, and tonor, which are items that are generally being replaced by cloud services (Google Drive for indivdiuals and AWS for enterprises) in the "information sharing" market. Of course, they also sell computers and a large suite of enterprise technology services. Based on that admitidely unresearched assumption it would seem at first that HP's attractiveness as an investment would change quite a bit over time. While neither I nor my teammates would call ourselves financial market gurus, we were curious to see how these changing market trends would be refleceted in HP's quarterly return over time. Plus, HP is a big employer in the Oregon tech community with offices in Corvallis and just across the boarder in Vancouver, Washington. We already used Intel's in a class example and we had to choose something. After we started working on this project we discovered that Xerox was working on a bid for a hostile takeover of HP, [which was recently secured](https://www.forbes.com/sites/sergeiklebnikov/2020/01/06/xerox-secures-24-billion-for-hostile-takeover-bid-of-hp/#6c80dd81b4d6). 
+
+### Package and Data Setup
+
+```{r message = F, warning = F}
+## Package Setup
+
+library(tidyverse) # for data wrangling and analysis
+library(fpp2) # for forecasting functions
+library(tidyquant) # for stock price data
+library(ggthemes) # for plot themes
+library(ggplot2); theme_set(theme_economist_white()) # set plot theme to resemble the Economist
+
+## Data Setup
+# Fetch HP and S&P500 Quartely Return from 2000 - 2017
+
+Rb <- "^GSPC" %>% # fetch S&P500
+    tq_get(get  = "stock.prices",
+           from = "2000-01-01", to = "2018-01-01") %>%
+    tq_transmute(select     = adjusted, 
+                 mutate_fun = periodReturn, 
+                 period     = "quarterly", 
+                 col_rename = "SP500")
+
+Ra <- "HPQ" %>% # fetch HP's stock price  
+    tq_get(get  = "stock.prices",
+           from = "2000-01-01", to = "2018-01-01") %>%
+    tq_transmute(select     = adjusted, 
+                 mutate_fun = periodReturn, 
+                 period     = "quarterly", 
+                 col_rename = "HPQ")
+
+RaRb <- left_join(Ra, Rb, by = c("date" = "date")) # bind HP and S&P500 by date
+
+RaRb <- RaRb %>% # paste quarterly and yearly labels together for plotting
+  mutate(Year = substr(date, 1, 4)) %>%
+  mutate(Quarter = rep(rep(1:4), 72/4)) %>%
+  mutate(QuarterLab = paste("Q", Quarter, sep = "")) %>%
+  mutate(Period = paste(Year, QuarterLab, sep = ":"))
+
+RaRb1 <- RaRb %>% # create training dataset, extracting years 2015-2017. 
+  mutate(QuarterID = (1:length(HPQ))) %>% #We will test the model with those years at the end
+  filter(QuarterID < (length(HPQ)-11))
+tail(RaRb1)
+```
+
+## Data Understanding
+
+```{r}
+RaRb1 %>%
+  ggplot(aes(x=date, y = HPQ)) + 
+  geom_line(size = 1.1) +
+  scale_x_date(labels = RaRb$Period, breaks = RaRb$date) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, size = 6)) +
+  ggtitle("Hewlett-Packard Quarterly Stock Return", subtitle = "2000:Q1 - 2014:Q4") + 
+  ylab("Quarterly Percent Return")
+```
+
+We see no consistent seasonality and no consistant upward or downard trend. At first glance there does appear to be a dip in returns in each Q3, but there are a few counterexamples. There is a cyclical pattern in return wiht an upward trend from 2002-2005, downard from 2006-2011, and up again from 2011-2015. 
+
+### Which forecasting methods might work?
+
+While there is no harm in trying everything and seeing what sticks, the patterns in the data can provide insights into what forecasting methods are most likely to work. Becasue there is no strong ternd or seasonality, a linear forecasting method wouldn't make much sense. An Error-Trend-Seasonal (ETS) method wouldn't work because they work best for seaonal forecasting. For consistency, we did try these methods to see what would happen, and indeed they violated model assumptions and/or performed poorly. I won't include them here to save space. 
+
+This lead us to two possible leads: Holt Exponential Smoothing to measure trend and level and ARIMA (autoregresssive integrating moving average, best for nonseasonal data).
+
+## Holt Linear Smoothing
+
+```{r}
+h <- holt(RaRb1$HPQ)
+hd <- holt(RaRb1$HPQ, damped = T, phi = 0.95)
+hd2 <- holt(RaRb1$HPQ, damped = T, phi = 0.8)
+autoplot(ts(RaRb1$HPQ)) +
+  autolayer(h, PI = F, series = " Regular Holt") +
+  autolayer(hd, PI = F, series = "Damped Holt (high phi)") +
+  autolayer(hd2, PI = F, series = "Damped Holt (low phi)") +
+  ggtitle("Holt and Damped Holt Forecasts",
+          subtitle = "Hewlett-Packard Quarterly Stock Return") +
+  theme(legend.title = element_blank())
+```
+
+The damped methods produce fairly similar results. This is likely becasue there is no trend to really dampen, wich is the idea behind the dampening parameter. To simplify things, we just used the regular Holt method for our analysis. 
+
+```{r}
+summary(h)
+checkresiduals(h)
+```
+
+Accuracy Metrics
+
+ - RMSE = 0.204
+ - MAE 0.1529
+
+Quality Metrics
+
+ - No autocorrelation
+ - Residual mean is roughly zero
+ - Residuals seem indepenent with constant variance
+ - Residuals are mostly normally distriuted
+ - However the p-value is farily high at 0.5046
+
+Maybe an ARIMA will perform better.
+
+## ARIMA
+
+Let's try an ARIMA method
+
+```{r}
+HPQArima1 <- RaRb1 %>%
+  select(HPQ) %>%
+  auto.arima(lambda = BoxCox.lambda(RaRb1$HPQ)) # auto.arima() selects the optimal constant values
+
+summary(HPQArima1)
+```
+
+
+```{r}
+HPQArima1Fcast <- HPQArima1 %>%
+  forecast(h=10) # forecast 10 periods
+HPQArima1Fcast
+```
+
+
+```{r}
+## autoplot forecast
+HPQArima1 %>%
+  forecast(h=11) %>%
+  autoplot()
+```
+
+```{r}
+checkresiduals(HPQArima1)
+```
+
+Accuracy Metrics
+
+- RMSE = 0.1974573 
+- MAE = 0.1497182 
+
+Quality Metrics
+
+ - Residuals appear to have a mean of zero
+ - Residuals vary independently and constantly
+ - REsiduals are mostly normally distributed
+ - No evidence of autocorrelation
+ - p-value = 0.9167
+
+ARIMA(0,0,0) essentially predicts that the return will be roughly zero over a long enough perido of time. 
+
+## Method Comparison to actual results
+
+- Both models preseted satisfy all residual assumptions
+- Holt's method has a lower RMSE and MAE, meaning it generally performs bettere at predicting actual events, and is easier to interpret. Here is the Holt forecast plotted on top of the actaul values for 2014:Q1-2017:Q4.
+
+```{r}
+autoplot(ts(RaRb$HPQ)) +
+  autolayer(h, PI = F) +
+  ggtitle("Hewlett-Packard Quarterly Stock Return", 
+          subtitle = "2000:Q1 - 2017:Q4 | Actual vs Holt Forecasted") +
+  ylab("Quarterly Percent Return")
+```
+
+## What did we learn? 
+
+If you're interested in long term trends, this isn't too bad. HP has remained a somewhat attractive investment with a return just above zero. Of course, this is a fairly simplistic method of forecsating the stock market. Did we find anything remarkably insightful in our data? Not really. However, for a final project in an introduction to time series modeling course, it was fun way to practice some of our newfound skills. With more time, I'm looking forwrd to playing around more with *tidyquant* and time series methods. 
+
+
