@@ -41,14 +41,14 @@ While I can't share the content of many tables due to privacy reasons, I can sha
 [![ERD Model](/post\AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/ERDModel.PNG)](/post\AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/ERDModel.PNG)
 
 #### Access Relational Diagram
-[![Access Relational](/post\AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/AccessRelation.PNG)](/post\AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/AccessRelation.PNG)
+[![Access Relational](/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/AccessRelation.PNG)](/post\AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/AccessRelation.PNG)
 
 #### Hey, it works!
 Sample problem: *List the organization name, project name, description, and amount recieved for each project operated by an organization who has operate more than on project. Provide the list in descending order by amount.*
 
 ![Sample Code](/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/SampleCode.PNG)
 
-![Sample Q](/post\AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/SampleQ.PNG)
+![Sample Q](/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/SampleQ.PNG)
 
 ### Final Thoughts
 
