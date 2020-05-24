@@ -27,11 +27,9 @@
 &lt;a href=&#34;https://drive.google.com/file/d/1rOdZmnAYQa-UH4V_KDCOjGDaF2aHaYjl/view?usp=sharing&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;full project description&lt;/a&gt; for all of the database requirements.&lt;/p&gt;
 &lt;p&gt;While I can&amp;rsquo;t share the content of many tables due to privacy reasons, I can share the database&amp;rsquo;s relationship diagrams as a proof of concept.&lt;/p&gt;
 &lt;h5 id=&#34;entity-relation-model&#34;&gt;Entity Relation Model&lt;/h5&gt;
-&lt;p&gt;
-&lt;a href=&#34;/post%5cAGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/ERDModel.PNG&#34;&gt;&lt;img src=&#34;/post%5CAGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/ERDModel.PNG&#34; alt=&#34;ERD Model&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/ERDModel.PNG&#34; alt=&#34;ERD Model&#34;&gt;&lt;/p&gt;
 &lt;h4 id=&#34;access-relational-diagram&#34;&gt;Access Relational Diagram&lt;/h4&gt;
-&lt;p&gt;
-&lt;a href=&#34;/post%5cAGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/AccessRelation.PNG&#34;&gt;&lt;img src=&#34;/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/AccessRelation.PNG&#34; alt=&#34;Access Relational&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/AccessRelation.PNG&#34; alt=&#34;Access Relational&#34;&gt;&lt;/p&gt;
 &lt;h4 id=&#34;hey-it-works&#34;&gt;Hey, it works!&lt;/h4&gt;
 &lt;p&gt;Sample problem: &lt;em&gt;List the organization name, project name, description, and amount recieved for each project operated by an organization who has operate more than on project. Provide the list in descending order by amount.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/SampleCode.PNG&#34; alt=&#34;Sample Code&#34;&gt;&lt;/p&gt;
