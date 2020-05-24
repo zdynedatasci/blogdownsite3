@@ -1,0 +1,2311 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Zachary Dyne</title>
+    <link>/</link>
+      <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <description>Zachary Dyne</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Zachary Dyne</copyright><lastBuildDate>Thu, 28 Jun 2018 00:00:00 +0100</lastBuildDate>
+    <image>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>Zachary Dyne</title>
+      <link>/</link>
+    </image>
+    
+    <item>
+      <title>Example Page 1</title>
+      <link>/courses/example/example1/</link>
+      <pubDate>Sun, 05 May 2019 00:00:00 +0100</pubDate>
+      <guid>/courses/example/example1/</guid>
+      <description>&lt;p&gt;In this tutorial, I&amp;rsquo;ll share my top 10 tips for getting started with Academic:&lt;/p&gt;
+&lt;h2 id=&#34;tip-1&#34;&gt;Tip 1&lt;/h2&gt;
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
+&lt;p&gt;Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p&gt;
+&lt;p&gt;Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p&gt;
+&lt;p&gt;Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p&gt;
+&lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
+&lt;h2 id=&#34;tip-2&#34;&gt;Tip 2&lt;/h2&gt;
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
+&lt;p&gt;Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p&gt;
+&lt;p&gt;Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p&gt;
+&lt;p&gt;Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p&gt;
+&lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Example Page 2</title>
+      <link>/courses/example/example2/</link>
+      <pubDate>Sun, 05 May 2019 00:00:00 +0100</pubDate>
+      <guid>/courses/example/example2/</guid>
+      <description>&lt;p&gt;Here are some more tips for getting started with Academic:&lt;/p&gt;
+&lt;h2 id=&#34;tip-3&#34;&gt;Tip 3&lt;/h2&gt;
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
+&lt;p&gt;Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p&gt;
+&lt;p&gt;Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p&gt;
+&lt;p&gt;Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p&gt;
+&lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
+&lt;h2 id=&#34;tip-4&#34;&gt;Tip 4&lt;/h2&gt;
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
+&lt;p&gt;Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p&gt;
+&lt;p&gt;Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p&gt;
+&lt;p&gt;Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p&gt;
+&lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Example Talk</title>
+      <link>/talk/example/</link>
+      <pubDate>Sat, 01 Jun 2030 13:00:00 +0000</pubDate>
+      <guid>/talk/example/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click on the &lt;strong&gt;Slides&lt;/strong&gt; button above to view the built-in slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Slides can be added in a few ways:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Create&lt;/strong&gt; slides using Academic&amp;rsquo;s 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/managing-content/#create-slides&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;em&gt;Slides&lt;/em&gt;&lt;/a&gt; feature and link using &lt;code&gt;slides&lt;/code&gt; parameter in the front matter of the talk file&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Upload&lt;/strong&gt; an existing slide deck to &lt;code&gt;static/&lt;/code&gt; and link using &lt;code&gt;url_slides&lt;/code&gt; parameter in the front matter of the talk file&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Embed&lt;/strong&gt; your slides (e.g. Google Slides) or presentation video on this page using 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;shortcodes&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Further talk details can easily be added to this page using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>An Overview of the Willamette MBA Community Grant Program SQL Database</title>
+      <link>/post/agsmgrantsql/agsmgrantssql/</link>
+      <pubDate>Sat, 23 May 2020 00:00:00 +0000</pubDate>
+      <guid>/post/agsmgrantsql/agsmgrantssql/</guid>
+      <description>&lt;p&gt;One of my favorite courses I took during my time at Atkinson was &lt;em&gt;GSMDS5003: Data Engineering&lt;/em&gt;, taught by the one and only Prof. Henry Bi. We not only learned how to write SQL code but also about the fundamentals of database design, including entity relational (ER) modeling, standardization, and normalization. Learning the structure of well designed databases made learning to retrieve data via SQL a fairly straitforward extension. The course&amp;rsquo;s final project was to create a database of our own using Microsoft Access, so I decided to use this opportunity to solve a different problem I was dealing with: the information scattered throughout the Google Drive of the Willamette MBA Community Grant Program.&lt;/p&gt;
+&lt;h3 id=&#34;willamette-mba-community-grant-program&#34;&gt;Willamette MBA Community Grant Program&lt;/h3&gt;
+&lt;p&gt;The 
+&lt;a href=&#34;https://www.agsmgrants.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Willamette MBA Community Grant Program&lt;/a&gt; is the only 100% student-administered grantmaking program in the US and provides funding opportunities for nonprofit or social service organizations serving Oregon&amp;rsquo;s 
+&lt;a href=&#34;https://geology.com/county-map/oregon.shtml&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Marion, Polk, and/or Yamhill counties&lt;/a&gt;. As students facilitating multiple rounds of grantee applications bt reviewing organizational and operational metrics while following up on the results of projects from previous funding cycles, it was getting difficult to keep track of all of the information we needed. As the project manager and lead financial data analyst, the disorganization made creating tools for internal communication, financial statement analysis, and risk modeling particularly tedious. Additionally, because it is completely student-run, the program experiences 100% annual turnover, with the exception of the two faculty instructors. This makes organizing institutional knowledge all the more difficult yet essential. Seems like a problem an Access SQL database could solve!&lt;/p&gt;
+&lt;h3 id=&#34;database-overview&#34;&gt;Database Overview&lt;/h3&gt;
+&lt;p&gt;My goal in creating this database was to make it as flexable as possible to adapt to future itrations of the program. The Grant Program only just finished its fourth year and there are many things that could hypothetically happen that haven&amp;rsquo;t yet. As such, the database seems a bit redundant (in SQL-talk: it has more many-to-many relationships than initally seems necessary). For example, an &lt;em&gt;EnrollIn&lt;/em&gt; relationship needs its own table since it is hypothetically possible for a student to enroll in the course more than once (they coud be a JD/MBA or an MBA-for-Life student). If we just assumed that each student will enroll in the course only once, &lt;em&gt;EnrollIn&lt;/em&gt; could just be a column in the &lt;em&gt;Student&lt;/em&gt;  table. Feel free to check out the 
+&lt;a href=&#34;https://drive.google.com/file/d/1rOdZmnAYQa-UH4V_KDCOjGDaF2aHaYjl/view?usp=sharing&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;full project description&lt;/a&gt; for all of the database requirements.&lt;/p&gt;
+&lt;p&gt;While I can&amp;rsquo;t share the content of many tables due to privacy reasons, I can share the database&amp;rsquo;s relationship diagrams as a proof of concept.&lt;/p&gt;
+&lt;h5 id=&#34;entity-relation-model&#34;&gt;Entity Relation Model&lt;/h5&gt;
+&lt;p&gt;
+&lt;a href=&#34;/post%5cAGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/ERDModel.PNG&#34;&gt;&lt;img src=&#34;/post%5CAGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/ERDModel.PNG&#34; alt=&#34;ERD Model&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;access-relational-diagram&#34;&gt;Access Relational Diagram&lt;/h4&gt;
+&lt;p&gt;
+&lt;a href=&#34;/post%5cAGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/AccessRelation.PNG&#34;&gt;&lt;img src=&#34;/post%5CAGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/AccessRelation.PNG&#34; alt=&#34;Access Relational&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;hey-it-works&#34;&gt;Hey, it works!&lt;/h4&gt;
+&lt;p&gt;Sample problem: &lt;em&gt;List the organization name, project name, description, and amount recieved for each project operated by an organization who has operate more than on project. Provide the list in descending order by amount.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/SampleCode.PNG&#34; alt=&#34;Sample Code&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post%5CAGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/SampleQ.PNG&#34; alt=&#34;Sample Q&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;final-thoughts&#34;&gt;Final Thoughts&lt;/h3&gt;
+&lt;p&gt;I had a lot of fun working on this project since it combines two of my primary interests: data science and nonprofit management. Thank you to Prof. Henry Bi for your guidance and encouragement along the way! If you&amp;rsquo;re interested to learn more about the Willamette MBA Community Grant Program, check out the recently published 
+&lt;a href=&#34;https://static1.squarespace.com/static/5d96678c577c9008fd68696b/t/5eb30597c5e14117f3481700/1588790698192/WUMBA_PICI_Y4_AnnualReport2020.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;2019-2020 Annual Report&lt;/a&gt;!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>An Exploration of Hospice Care Expenses in the US</title>
+      <link>/post/hospice/an-exploration-of-hospice-care-expenses-in-the-us/</link>
+      <pubDate>Sat, 14 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>/post/hospice/an-exploration-of-hospice-care-expenses-in-the-us/</guid>
+      <description>
+
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#introduction&#34;&gt;Introduction&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#project-overview-medicare-hospice-care-expenditures&#34;&gt;Project Overview: Medicare Hospice Care Expenditures&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#data-preparation&#34;&gt;Data Preparation:&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#merge-with-region-and-division-dataset&#34;&gt;Merge with “Region and Division” dataset&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#exploratory-data-analysis-and-regression-modeling&#34;&gt;Exploratory Data Analysis and Regression Modeling&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#outcome-variable-medicare-payments&#34;&gt;Outcome Variable: Medicare Payments&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#predictor-variables-data-exploration-and-liner-models-by-variable-type&#34;&gt;Predictor Variables: Data Exploration and Liner Models by Variable Type&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#numeric-predictors-of-interest&#34;&gt;Numeric Predictors of Interest&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#final-conclusions-and-takeaways&#34;&gt;Final Conclusions and Takeaways&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;introduction&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Introduction&lt;/h1&gt;
+&lt;div id=&#34;project-overview-medicare-hospice-care-expenditures&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Project Overview: Medicare Hospice Care Expenditures&lt;/h2&gt;
+&lt;p&gt;This project explores the nature of Medicare hospice care expenditures across the United States. I found these &lt;a href=&#34;https://www.kaggle.com/cms/medicare-hospice-use-spending-aggregate-reports&#34;&gt;datasets&lt;/a&gt; on Kaggle, uploaded by the Center for Medicare and Medicaid Research.&lt;/p&gt;
+&lt;div id=&#34;what-is-hospice-care&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;What is Hospice Care?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Hospice care, otherwise known as end-of-life care, is a type of care typically used by patients who feel their treatment of a terminal illness is not helping them improve.&lt;/li&gt;
+&lt;li&gt;Using hospice is not a signal of “giving up”. Hospice care focuses on quaility of life rather than directly treating the illness.
+&lt;ul&gt;
+&lt;li&gt;It focuses on “relief from pain, shortness of breath, and other symptoms so that you can focus on the people and things you care about the most” &lt;a href=&#34;https://www.webmd.com/healthy-aging/hospice-care#1&#34;&gt;(WebMD)&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;research-questions&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Research Questions&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;What factors predict Medicare payments to providers by diagnosis, length of stay, site of service, hours per week, and number of beneficiaries?&lt;/li&gt;
+&lt;li&gt;With three years of data, I aim to learn how these factors change overtime by themselves while also seeing whether their interactions do as well.&lt;/li&gt;
+&lt;li&gt;What is considered “typical” for payments to hospice care providers? What causes atypical payments to providers?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;data-preparation&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Data Preparation:&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#load required packages
+library(tidyverse)
+library(ggthemes)
+library(ggplot2); theme_set(theme_tufte())
+library(data.table)
+library(GGally)
+library(cowplot)
+library(mosaic)
+library(scales)
+library(broom)
+library(purrr)
+library(moderndive)
+
+#read datsets for each year, add a &amp;#39;year&amp;#39; factor variable to each dataset, and bind together
+setwd(&amp;quot;C:/Users/Lenovo/Desktop/AGSM/Fall2019/RCertificate/Medicare Data/&amp;quot;)
+Provider2016 &amp;lt;- read_csv(&amp;quot;medicare-hospice-use-and-spending-by-provider-aggregate-report-cy-2016.csv&amp;quot;)
+Provider2016$Year &amp;lt;- as.factor(2016)
+
+Provider2015 &amp;lt;- read_csv(&amp;quot;medicare-hospice-use-and-spending-by-provider-aggregate-report-cy-2015.csv&amp;quot;)
+Provider2015$Year &amp;lt;- as.factor(2015)
+
+Provider2014 &amp;lt;- read_csv(&amp;quot;medicare-hospice-use-and-spending-by-provider-aggregate-report-cy-2014.csv&amp;quot;)
+Provider2014$Year &amp;lt;- as.factor(2014)
+
+D &amp;lt;- rbind(Provider2016, Provider2015)
+D &amp;lt;- rbind(D, setnames(Provider2014, names(D)))&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;merge-with-region-and-division-dataset&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Merge with “Region and Division” dataset&lt;/h2&gt;
+&lt;p&gt;The original datasets do not include region, which may be a more useful metric than analyzing by state. I found this &lt;a href=&#34;https://www.kaggle.com/omer2040/usa-states-to-region&#34;&gt;dataset&lt;/a&gt; on Kaggle, and it includes state names, state codes, region, and division. Classifications are as determined by the &lt;a href=&#34;https://www2.census.gov/geo/pdfs/maps-data/maps/reference/us_regdiv.pdf&#34;&gt;US Census Bureau&lt;/a&gt;. Let’s merge it with the Medicare master dataset to be able to analyze payments by region.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;states &amp;lt;- read_csv(&amp;quot;C:/Users/Lenovo/Desktop/AGSM/Fall2019/RCertificate/Medicare Data/states.csv&amp;quot;) %&amp;gt;%
+  rename(&amp;quot;StateName&amp;quot; = &amp;quot;State&amp;quot;, &amp;quot;State&amp;quot; = &amp;quot;State Code&amp;quot;) %&amp;gt;% 
+  # rename to merge with master dataset
+  add_row(&amp;quot;StateName&amp;quot; = &amp;quot;Puerto Rico&amp;quot;, &amp;quot;State&amp;quot; = &amp;quot;PR&amp;quot;, &amp;quot;Region&amp;quot; = &amp;quot;Caribbean &amp;quot;, &amp;quot;Division&amp;quot; = &amp;quot;Caribbean &amp;quot;) 
+  #Puerto Rico was not listed in the original Region dataset
+D &amp;lt;- D %&amp;gt;%
+  merge(states, by = &amp;quot;State&amp;quot;, all.x = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;exploratory-data-analysis-and-regression-modeling&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Exploratory Data Analysis and Regression Modeling&lt;/h1&gt;
+&lt;p&gt;The objective of this exploratory data analysis is to understand the nature of our individual variables. I&lt;/p&gt;
+&lt;div id=&#34;outcome-variable-medicare-payments&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Outcome Variable: Medicare Payments&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Total amount that Medicare paid for hospice care: Hospice services do not have any cost-sharing requirements and the Medicare payment amount will equal the allowed amount.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;While this dataset provides a metric for total absolute payments, it also provides a standardized payment amont which adjust for geographic differences in payment rates. Here are overall summary statistics for Total Standardized Medicare Payment Amounts.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Total Medicare Standard Payment Amount: Total amount that Medicare paid for hospice care adjusted for geographic differences in payment rates.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;favstats(D$`Total Medicare Standard Payment Amount`)&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;min&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Q1&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;median&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Q3&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;max&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;mean&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;sd&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;n&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;missing&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;12533.5&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;841358.2&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2025179&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4398192&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;508882642&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4028648&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;9584881&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;12049&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;p&gt;The mean Standard Payment Amount is 4.028648310^{6}, which is notably higher than the median of 2.025179410^{6}. This fact, along with a large standard deviation of 9.584880810^{6} points towards either a high skew or the presence of some extreme outliers.&lt;/p&gt;
+&lt;p&gt;Let’s view Total Medicare Standardized Payment Amount&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plt1 &amp;lt;- D %&amp;gt;%
+    ggplot(aes(x = Year, y=`Total Medicare Standard Payment Amount`, fill = Year)) + 
+    geom_boxplot() + 
+    labs(title = &amp;quot;Total Medicare \nStandared Payment \nAmount&amp;quot;, fill = &amp;quot;Year&amp;quot;) + 
+    ylab(&amp;quot; &amp;quot;) +
+    theme(legend.position=&amp;quot;none&amp;quot;, axis.title = element_text()) + 
+    scale_y_continuous(label = dollar) + scale_fill_brewer()
+
+plt2 &amp;lt;- D %&amp;gt;%
+    mutate(rank = rank(desc(`Total Medicare Standard Payment Amount`))) %&amp;gt;%
+    arrange(rank) %&amp;gt;%
+    filter(rank &amp;gt; 3) %&amp;gt;%
+    ggplot(aes(x = Year, y=`Total Medicare Standard Payment Amount`, fill = Year)) + 
+    geom_boxplot() + 
+    labs(title = &amp;quot;Total Medicare \nStandared Payment Amount&amp;quot;, 
+        subtitle = &amp;quot;Three highest values filtered out&amp;quot;) + 
+    ylab(&amp;quot; &amp;quot;) +
+    theme(legend.position=&amp;quot;none&amp;quot;, axis.title = element_text()) +
+     scale_y_continuous(label = dollar) + scale_fill_brewer()
+#plot each boxplot series side-by-side using cowplot
+plot_grid(plt1, plt2, align = &amp;quot;h&amp;quot;, rel_widths = c(1, 1.3), axis = &amp;quot;t&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;If we remove all outliers, though, Total Medicare Standard Payment Amout mostly resembles a normal distriution.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plt3 &amp;lt;- D %&amp;gt;%
+    mutate(rank = rank(desc(`Total Medicare Standard Payment Amount`))) %&amp;gt;%
+    arrange(rank) %&amp;gt;%
+    filter(rank &amp;gt; 3) %&amp;gt;%
+    ggplot(aes(x = Year, y=`Total Medicare Standard Payment Amount`, fill = Year)) + 
+    geom_boxplot(outlier.shape = NA) +
+    labs(title = &amp;quot;Total Medicare \nStandared Payment Amount&amp;quot;, 
+        subtitle = &amp;quot;Three highest values filtered out&amp;quot;) + 
+    ylab(&amp;quot; &amp;quot;)  +
+    theme(legend.position=&amp;quot;none&amp;quot;, axis.title = element_text()) +
+    scale_y_continuous(label = dollar, limits = c(0, 7600000)) +
+    scale_fill_brewer()
+
+plt4 &amp;lt;- D %&amp;gt;%
+  mutate(logStandardPaymentAmount = log(`Total Medicare Standard Payment Amount`)) %&amp;gt;%
+  ggplot(aes(x = Year, y=logStandardPaymentAmount, fill = Year)) + 
+  geom_boxplot() + 
+  labs(title = &amp;quot;Total Medicare \nStandared Payment Amount&amp;quot;, 
+       subtitle = &amp;quot;Values are log transformed&amp;quot;) + ylab(&amp;quot; &amp;quot;) +
+  theme(legend.position=&amp;quot;none&amp;quot;, axis.title = element_text()) +
+  scale_fill_brewer()
+
+plot_grid(plt3, plt4, align = &amp;quot;h&amp;quot;, rel_widths = c(1, 1.3), axis = &amp;quot;t&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 1508 rows containing non-finite values (stat_boxplot).&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;After removing these extreme estreme outliers, Standard Medicare Payment Amount is still skewed.With a normal distribution, log transformed values may be a more useful predictor. It is It is worth noting that the distributions appear to remain farily consistant over the three years in our dataset.&lt;/p&gt;
+&lt;p&gt;Let’s see a correlation between our outcome variable and a variables that I would hypothesize would be positively correlated with Total Medicare Standard Payment.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;D &amp;lt;- D %&amp;gt;%
+  mutate(logStandardPaymentAmount = log(`Total Medicare Standard Payment Amount`))
+CorVarLabs &amp;lt;- c(&amp;quot;Standard Pmt&amp;quot;, &amp;quot;Hospice beneficiaries&amp;quot;, &amp;quot;Total Days&amp;quot;, &amp;quot;Average Age&amp;quot;, &amp;quot;# with Cancer&amp;quot;)
+D %&amp;gt;%
+  select(`Total Medicare Standard Payment Amount`, 
+         `Hospice beneficiaries`, 
+         `Total Days`, 
+         `Average Age`,
+         `Hospice beneficiaries with a primary diagnosis of cancer`) %&amp;gt;% 
+  ggpairs(title = &amp;quot;Correlation Matrix with Standard Payment&amp;quot;, 
+          columnLabels = CorVarLabs)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;How do these correlations with the Standard Payment Amount compare with correlations with Logged Standard Payment Amount?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;D %&amp;gt;%
+  select(`logStandardPaymentAmount`, 
+         `Hospice beneficiaries`, 
+         `Total Days`, 
+         `Average Age`,
+         `Hospice beneficiaries with a primary diagnosis of cancer`) %&amp;gt;% 
+  ggpairs(title = &amp;quot;Correlation Matrix with Logged Standard Payment&amp;quot;, 
+          columnLabels = CorVarLabs)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Logging Standard Payment Amount decreases the correlation these selected predictor variables. It still may be useful in regressoin analyses&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;predictor-variables-data-exploration-and-liner-models-by-variable-type&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Predictor Variables: Data Exploration and Liner Models by Variable Type&lt;/h2&gt;
+&lt;p&gt;Between the orignal datasets and merged ones, there are a variety of varialbes to anlayze. This section analyzes each variable of interest, grouped both by variable type (categorical and numeric) and by category (service hours, number of benificiaries by diagnosis, number of benificiaries by race, and number of benificiaries by gender).&lt;/p&gt;
+&lt;p&gt;I will analyze each variable individually and compare them to variables within their category using t-tests and/or linear regressions to test differenes within each category.&lt;/p&gt;
+&lt;div id=&#34;categorical-predictor-variables&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Categorical Predictor Variables&lt;/h3&gt;
+&lt;div id=&#34;data-exploration&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Data Exploration&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Region&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Summarize “Total Medicare Standard Payment Amount” and “Logged Total Medicare Standard Payment Amount” grouped by region and year&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;D %&amp;gt;%
+  group_by(Region) %&amp;gt;%
+  summarise(Min = min(`Total Medicare Standard Payment Amount`),
+            Q1 = quantile(`Total Medicare Standard Payment Amount`, .25),
+            median = median(`Total Medicare Standard Payment Amount`), 
+            Q3 = quantile(`Total Medicare Standard Payment Amount`, .75),
+            max = max(`Total Medicare Standard Payment Amount`),
+            mean = mean(`Total Medicare Standard Payment Amount`),
+            sd = sd(`Total Medicare Standard Payment Amount`),
+            n = n(),
+            missing = count(is.na(`Total Medicare Standard Payment Amount`))) %&amp;gt;%
+  arrange(desc(mean))&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;Region&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Min&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Q1&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;median&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Q3&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;max&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;mean&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;sd&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;n&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;missing&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Northeast&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;66370.61&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1130719.3&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2469996&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;5488644&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;55069310&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4701323&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;6381407&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1332&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;South&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;12533.50&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;997042.3&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2214590&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4494683&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;508882642&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4531637&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;13678330&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4750&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Caribbean&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;139677.62&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1643344.3&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2743352&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3791254&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;42399624&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4468607&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;7002663&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;115&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Midwest&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;21943.54&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;752023.8&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1873480&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4427457&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;72307285&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3828595&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;5702301&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2764&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;West&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;20066.94&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;609593.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1506441&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3709664&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;43524824&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3127468&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4562045&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3088&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;p&gt;The Northeast has the highest mean payment amounts and second highest median, behind the Caribbean. The South has the widest spread. This seems natural since it has the highest amount of providers as well. The West has the lowest amount mean.&lt;/p&gt;
+&lt;div id=&#34;linear-model-exploring-payment-by-region&#34; class=&#34;section level5&#34;&gt;
+&lt;h5&gt;Linear Model Exploring Payment by Region&lt;/h5&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lm(`Total Medicare Standard Payment Amount` ~ Region, data = D) %&amp;gt;%
+  get_regression_table()&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;term&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;estimate&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;std_error&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;statistic&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;p_value&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;lower_ci&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;upper_ci&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;intercept&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4468607.33&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;892146.3&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;5.009&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.000&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2719857&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;6217357.6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;RegionMidwest&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-640012.78&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;910516.6&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.703&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.482&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2424772&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1144746.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;RegionNortheast&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;232715.77&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;929861.4&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.250&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.802&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1589962&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2055393.8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;RegionSouth&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;63029.46&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;902881.4&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.070&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.944&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1706763&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1832822.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;RegionWest&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1341139.41&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;908606.6&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1.476&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.140&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-3122155&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;439875.8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Year&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;D %&amp;gt;%
+  group_by(Year) %&amp;gt;%
+  summarise(Min = min(`Total Medicare Standard Payment Amount`),
+            Q1 = quantile(`Total Medicare Standard Payment Amount`, .25),
+            median = median(`Total Medicare Standard Payment Amount`), 
+            Q3 = quantile(`Total Medicare Standard Payment Amount`, .75),
+            max = max(`Total Medicare Standard Payment Amount`),
+            mean = mean(`Total Medicare Standard Payment Amount`),
+            sd = sd(`Total Medicare Standard Payment Amount`),
+            n = n(),
+            missing = count(is.na(`Total Medicare Standard Payment Amount`))) %&amp;gt;%
+  arrange(desc(mean))&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;Year&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Min&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Q1&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;median&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Q3&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;max&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;mean&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;sd&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;n&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;missing&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;2016&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;21943.54&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;864861.5&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2081425&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4575784&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;508882642&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4159611&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;10133316&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4125&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;2015&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;12533.50&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;850154.8&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1998732&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4354607&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;473266501&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4028250&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;9650059&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4009&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;2014&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;12541.04&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;812344.8&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1977470&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4294485&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;416553977&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3891069&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;8899534&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3915&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;p&gt;The mean and median payment accross the board has increased incrementally each year.&lt;/p&gt;
+&lt;p&gt;Is this difference significant in a linear model?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lm(`Total Medicare Standard Payment Amount` ~ Year, data = D) %&amp;gt;%
+  get_regression_table()&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;term&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;estimate&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;std_error&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;statistic&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;p_value&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;lower_ci&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;upper_ci&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;intercept&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4159610.9&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;149239.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;27.872&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.000&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3867078.4&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4452143.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Year2015&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-131361.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;212577.1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.618&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.537&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-548046.3&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;285324.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Year2014&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-268541.9&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;213867.4&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1.256&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.209&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-687756.4&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;150672.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;p&gt;With insignificant p-vlaues for each of the years, there is not a significant difference by year.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;lets-break-down-average-payment-by-region-and-year&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Let’s break down Average Payment by Region and Year&lt;/h4&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;D %&amp;gt;%
+  group_by(Region, Year) %&amp;gt;%
+  summarise(Payment = mean(`Total Medicare Standard Payment Amount`)) %&amp;gt;%
+  ggplot(aes(x = as.numeric(as.character(Year)), y = Payment, color= Region)) +
+  geom_line(size = 0.9) + geom_point() + 
+  labs(title = &amp;quot;Mean Total Medicare Standard Payment Amount by Region&amp;quot;) + 
+  xlab(&amp;quot;Year&amp;quot;) + ylab(&amp;quot;Mean Payment&amp;quot;) +
+  scale_x_continuous(labels = 
+      c(&amp;quot;2014.0&amp;quot; = &amp;quot;2014&amp;quot;, &amp;quot;2014.5&amp;quot; = &amp;quot; &amp;quot;, 
+        &amp;quot;2015.0&amp;quot; = &amp;quot;2015&amp;quot;, &amp;quot;2015.5&amp;quot; = &amp;quot; &amp;quot;, &amp;quot;2016.0&amp;quot; = &amp;quot;2016&amp;quot;)) +
+  scale_y_continuous(label = dollar) +
+  scale_color_brewer()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;672&#34; /&gt;
+Payments are growing each year accross each region, except the West with a slight decline.&lt;/p&gt;
+&lt;div id=&#34;intertion-rregression-with-year-and-region&#34; class=&#34;section level5&#34;&gt;
+&lt;h5&gt;Intertion Rregression with Year and Region&lt;/h5&gt;
+&lt;p&gt;Let’s see if that gorwing progression holds up in an interaction linear model&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;lm(`Total Medicare Standard Payment Amount` ~ Year*Region, data = D) %&amp;gt;%
+  get_regression_table()&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;term&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;estimate&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;std_error&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;statistic&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;p_value&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;lower_ci&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;upper_ci&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;intercept&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4409769.18&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1532382&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2.878&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.004&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1406053&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;7413485&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Year2015&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;135412.27&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2167116&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.062&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.950&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-4112484&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4383308&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Year2014&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;40143.49&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2196206&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.018&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.985&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-4264774&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4345061&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;RegionMidwest&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-365963.59&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1564422&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.234&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.815&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-3432482&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2700555&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;RegionNortheast&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;637839.66&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1599300&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.399&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.690&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2497046&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3772725&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;RegionSouth&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;333632.32&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1551015&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.215&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.830&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2706607&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3373872&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;RegionWest&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1329208.91&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1558556&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.853&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.394&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-4384229&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1725812&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Year2015:RegionMidwest&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-380649.59&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2212426&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.172&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.863&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-4717361&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3956062&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Year2014:RegionMidwest&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-441547.91&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2241049&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.197&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.844&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-4834365&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3951269&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Year2015:RegionNortheast&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-524332.08&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2261021&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.232&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.817&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-4956297&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3907633&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Year2014:RegionNortheast&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-679993.19&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2288218&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.297&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.766&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-5165270&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3805284&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Year2015:RegionSouth&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-324338.27&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2193558&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.148&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.882&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-4624065&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3975388&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Year2014:RegionSouth&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-489483.91&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2222384&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.220&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.826&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-4845715&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3866748&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Year2015:RegionWest&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-90756.49&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2206145&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.041&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.967&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-4415156&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4233643&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Year2014:RegionWest&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;65948.32&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2236529&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.029&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.976&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-4318009&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4449906&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;p&gt;Neither levels themselves nor their interactions have statistically significant p-values, so alone these are not great predictors. This is actually something of positive sign for the industry. It would be concerning if amount paid varied drastically by year or region given the nature of the service hospice centers provide, so these are slightly encouraging findings.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;numeric-predictors-of-interest&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Numeric Predictors of Interest&lt;/h2&gt;
+&lt;div id=&#34;physician-services&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Physician Services&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Physician Services: “Total number of hospice care physician services provided”&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fav_stats(D$`Physician Services`)&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;min&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Q1&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;median&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Q3&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;max&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;mean&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;sd&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;n&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;missing&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;54&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;100641&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;306.6639&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1952.223&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;10803&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1246&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;p&gt;There appears to be a very wide range with a large standard deviation. This variable is very skewed since both Q1 and the median are 0 hours, but the mean is about 307 hours.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;D %&amp;gt;%
+  ggplot(aes(y=`Physician Services`)) + geom_boxplot() +
+  labs(title = &amp;quot;Physician Services&amp;quot;,
+       subtitle = &amp;quot;Total number of hospice care physician services provided&amp;quot;) +
+  ylab(&amp;quot;Physician Service Hours&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 1246 rows containing non-finite values (stat_boxplot).&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-15-1.png&#34; width=&#34;672&#34; /&gt;
+Indeed, there are several outliers present.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;care-hours-spent&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Care Hours Spent&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Home Health Visit Hours per Day&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fav_stats(D$`Home Health Visit Hours per Day`)&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;min&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Q1&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;median&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Q3&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;max&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;mean&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;sd&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;n&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;missing&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.19&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.27&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.37&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3.48&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.3133646&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.2269501&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;12049&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Home Health Visit Hours per Day During Week Prior to Death&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fav_stats(D$`Home Health Visit Hours per Day During Week Prior to Death`)&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;min&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Q1&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;median&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Q3&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;max&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;mean&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;sd&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;n&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;missing&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.19&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.28&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.42&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;8&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.3625512&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.3419532&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;12049&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;p&gt;It is known that overall visit hours and, thus payments, are higher in th last week of life. Is that supported in this data?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;t.test(D$`Home Health Visit Hours per Day`, 
+       D$`Home Health Visit Hours per Day During Week Prior to Death`) %&amp;gt;% 
+  list() %&amp;gt;% map_df(.,tidy)&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;right&#34;&gt;estimate&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;estimate1&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;estimate2&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;statistic&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;p.value&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;parameter&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;conf.low&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;conf.high&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;method&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;alternative&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;-0.0491867&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.3133646&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.3625512&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-13.15535&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;20937.13&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.0565152&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.0418581&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Welch Two Sample t-test&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;two.sided&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;p&gt;Yes, the expected amount of visit hours is significanlty higher in the last week prior to death than it is overal. There is an average increase in Home Health Visit Hours per day of 0.05 hours in the week prior to death. Given the circumstances, that is actually a bit less of an increase than I would have expected.
+Lets see if there is a greter increase in other types of care hours in the week prior to death.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;D %&amp;gt;%
+  select(`Provider ID`,
+         `Home Health Visit Hours per Day`, 
+         `Home Health Visit Hours per Day During Week Prior to Death`) %&amp;gt;%
+  gather(key = &amp;quot;Type&amp;quot;, value = &amp;quot;Values&amp;quot;, 2:3) %&amp;gt;%
+  ggplot(aes(x=Values, fill = Type)) + 
+  geom_density() +
+  ggtitle(&amp;quot;Home Health Visit Hours per Day&amp;quot;) +
+  theme(legend.position=&amp;quot;bottom&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-19-1.png&#34; width=&#34;672&#34; /&gt;
+The density plot of their logged values show that there is only a slight increase in hours per week in the week prior to death. This is likely due to a few outliers as well.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Skilled Nursing Visit Hours per Day&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fav_stats(D$`Skilled Nursing Visit Hours per Day`)&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;min&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Q1&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;median&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Q3&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;max&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;mean&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;sd&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;n&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;missing&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.21&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.26&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.33&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;5.39&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.2856171&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.1708162&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;12049&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Skilled Nursing Visit Hours per Day During Week Prior to Death&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fav_stats(D$`Skilled Nursing Visit Hours per Day During Week Prior to Death`)&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;min&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Q1&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;median&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Q3&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;max&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;mean&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;sd&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;n&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;missing&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.6&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.8&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.06&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;19.37&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.035322&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.042784&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;12049&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;p&gt;Does the hypothesized difference stand for Skilled Nursing Visits?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;t.test(D$`Skilled Nursing Visit Hours per Day`, 
+       D$`Skilled Nursing Visit Hours per Day During Week Prior to Death`) %&amp;gt;% 
+  list() %&amp;gt;% map_df(.,tidy) &lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;right&#34;&gt;estimate&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;estimate1&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;estimate2&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;statistic&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;p.value&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;parameter&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;conf.low&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;conf.high&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;method&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;alternative&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;-0.7497054&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.2856171&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.035322&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-77.87929&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;12694.1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.7685748&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.730836&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Welch Two Sample t-test&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;two.sided&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;p&gt;Yes, there is a statistically significant increase in average hours per day by skilled nurses in the week prior to death than there are overall by 0.75 hours. This continues our expected trend of a slight increase in care hours in the week prior to death.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Social Service Visit Hours per Day&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fav_stats(D$`Social Service Visit Hours per Day`)&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;min&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Q1&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;median&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Q3&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;max&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;mean&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;sd&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;n&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;missing&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.03&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.04&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.06&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.47&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.0432675&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.0255404&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;12049&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Social Service Visit Hours per Day During Week Prior to Death&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;fav_stats(D$`Social Service Visit Hours per Day During Week Prior to Death`)&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;min&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Q1&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;median&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Q3&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;max&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;mean&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;sd&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;n&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;missing&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.05&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.08&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.12&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.07&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.0933679&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.0665678&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;12049&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;p&gt;Does the difference hold for Social Service Hours per Day?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;t.test(D$`Social Service Visit Hours per Day`, 
+       D$`Social Service Visit Hours per Day During Week Prior to Death`) %&amp;gt;% 
+  list() %&amp;gt;% map_df(.,tidy)&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;right&#34;&gt;estimate&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;estimate1&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;estimate2&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;statistic&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;p.value&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;parameter&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;conf.low&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;conf.high&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;method&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;alternative&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;-0.0501004&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.0432675&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.0933679&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-77.13154&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;15519.86&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.0513736&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.0488272&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Welch Two Sample t-test&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;two.sided&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;p&gt;Yes. Continuing this trend, there is an average incraese in hours visited by social service representatives in the week prior to death.&lt;/p&gt;
+&lt;div id=&#34;linear-regression-by-type-of-hours-spent-with-patients&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Linear Regression by type of hours spent with patients&lt;/h4&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mVisits &amp;lt;- lm(`Total Medicare Standard Payment Amount` ~ 
+   `Home Health Visit Hours per Day` +
+   `Home Health Visit Hours per Day During Week Prior to Death` +
+   `Skilled Nursing Visit Hours per Day` +
+   `Skilled Nursing Visit Hours per Day During Week Prior to Death` +
+   `Social Service Visit Hours per Day` +
+   `Social Service Visit Hours per Day During Week Prior to Death`, 
+   data = D)
+get_regression_table(mVisits)&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;term&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;estimate&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;std_error&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;statistic&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;p_value&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;lower_ci&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;upper_ci&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;intercept&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;547225.3&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;215837.7&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2.535&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.011&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;124148.7&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;970301.9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;Home Health Visit Hours per Day&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2526305.4&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;526784.5&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-4.796&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.000&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-3558887.8&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1493723.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;Home Health Visit Hours per Day During Week Prior to Death&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;5282354.9&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;354670.5&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;14.894&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.000&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4587143.6&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;5977566.3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;Skilled Nursing Visit Hours per Day&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;832342.8&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;639300.5&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.302&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.193&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-420789.1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2085474.7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;Skilled Nursing Visit Hours per Day During Week Prior to Death&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1349556.5&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;99011.4&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;13.630&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.000&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1155478.2&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1543634.8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;Social Service Visit Hours per Day&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-9206518.6&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;5057542.3&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1.820&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.069&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-19120115.8&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;707078.6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;Social Service Visit Hours per Day During Week Prior to Death&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;12009895.1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1890417.2&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;6.353&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.000&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;8304373.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;15715417.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;p&gt;This linear model is quite interesting and suprising to me. Each of the types of hours are statistically significant except Skilled Nursing Visit Hours per day, and Social Service Visit Hous per Day. Suprisingly, the amount of Home Health Visit Hours per Day and Social Service Visit Hours per Day had significant negaitve coefficients. For Home Health Visit Hours per Day, for each increase hour visited, we expect a &lt;em&gt;decrease&lt;/em&gt; in standard payment amount by &lt;em&gt;2526305.4&lt;/em&gt;. However, this linear model alone has a low explanatory capacity, explaining only 6.62% of the overall variation in Total Medicare Standard Payment Amount. To assess if this is the result of very skewed data among all predictor and outcome variales, I will rerun the model using logged predictor and outcome values.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Regression with logged values&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# create new dataframe for regression analysis of logged values
+DbyVistLog &amp;lt;- D %&amp;gt;%
+#### select only needed variables
+  select(`Provider ID`,
+        `Total Medicare Standard Payment Amount`,
+        `Home Health Visit Hours per Day`,
+        `Home Health Visit Hours per Day During Week Prior to Death`,
+        `Skilled Nursing Visit Hours per Day`, 
+        `Skilled Nursing Visit Hours per Day During Week Prior to Death`, 
+        `Social Service Visit Hours per Day`, 
+        `Social Service Visit Hours per Day During Week Prior to Death`) %&amp;gt;%
+### filter out NAs
+  filter(!is.na(`Total Medicare Standard Payment Amount`) &amp;amp; 
+         !is.na(`Home Health Visit Hours per Day`) &amp;amp; 
+         !is.na(`Home Health Visit Hours per Day During Week Prior to Death`) &amp;amp;
+         !is.na(`Skilled Nursing Visit Hours per Day`) &amp;amp;
+         !is.na(`Skilled Nursing Visit Hours per Day During Week Prior to Death`) &amp;amp; 
+         !is.na(`Social Service Visit Hours per Day`) &amp;amp;
+         !is.na(`Social Service Visit Hours per Day During Week Prior to Death`)) %&amp;gt;%
+### mutate with logging each value plus 1 (since min of multiple variables is 0)
+  mutate(lpmt = (log((`Total Medicare Standard Payment Amount`)+1)),
+         lHHVisitHRs = (log((`Home Health Visit Hours per Day`)+1)),
+         lHHVisitHRsD = (log((`Home Health Visit Hours per Day During Week Prior to Death`)+1)),
+         lSNV = (log((`Skilled Nursing Visit Hours per Day`)+1)),
+         lSNVD = (log((`Skilled Nursing Visit Hours per Day During Week Prior to Death`)+1)),
+         lSSVH = (log((`Social Service Visit Hours per Day`)+1)),
+         lSSVHD = (log((`Social Service Visit Hours per Day During Week Prior to Death`)+1)))
+# create and output model
+mVisitsL &amp;lt;- lm(lpmt ~ lHHVisitHRs + lHHVisitHRsD + lHHVisitHRsD + lSNV + lSNVD  + lSSVH + lSSVHD, data = DbyVistLog)
+get_regression_table(mVisitsL)&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;term&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;estimate&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;std_error&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;statistic&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;p_value&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;lower_ci&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;upper_ci&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;intercept&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;13.789&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.034&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;410.747&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.000&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;13.723&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;13.855&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;lHHVisitHRs&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.222&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.120&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.851&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.064&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.013&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.457&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;lHHVisitHRsD&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.279&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.095&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;13.447&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.000&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.093&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.465&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;lSNV&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.705&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.149&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-4.716&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.000&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.997&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.412&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;lSNVD&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.413&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.047&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;8.867&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.000&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.321&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.504&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;lSSVH&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-6.403&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.723&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-8.859&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.000&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-7.820&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-4.986&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;lSSVHD&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4.767&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.291&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;16.394&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.000&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4.197&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;5.337&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;p&gt;Even after logging the values, a Social Service Visit Hours per Day still displays negative correlation with Total Medicare Standard Payment Amount. Interpreting the logged regression, each percent increase in Social Service Visit hours predicts a 6.403% &lt;em&gt;decrease&lt;/em&gt; in Total Medicare Standard Payment Amount. After logging variables, this model also shows a predicted slight percent &lt;em&gt;decrease&lt;/em&gt; in Total Medicare Standard Payment Amount with each percent increase in Skilled Nursing Visit Hours.&lt;/p&gt;
+&lt;p&gt;Model Diagnostics:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;get_regression_summaries(mVisitsL)&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;right&#34;&gt;r_squared&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;adj_r_squared&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;mse&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;rmse&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;sigma&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;statistic&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;p_value&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;df&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;0.097&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.097&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.414159&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.189184&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.19&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;216.597&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;get_regression_points(mVisitsL) %&amp;gt;%
+   ggplot(aes(x=residual)) + geom_density() +
+   ggtitle(&amp;quot;Residuals from mVisits Regression Model&amp;quot;) &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-28-1.png&#34; width=&#34;672&#34; /&gt;
+Even the logged model still has a low overall predicitve capacity with an R Squared of only 9.70%. The model as a whole is statistically significant and the residuals do appear to be normal.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;diagnosis-types&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Diagnosis Types&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Create tidy dataframe with number of beneficiaries by type for easier analysis
+DbyDiagnosis &amp;lt;- D %&amp;gt;%
+  select(`Provider ID`,
+         `Hospice beneficiaries with a primary diagnosis of cancer`, 
+         `Hospice beneficiaries with a primary diagnosis of dementia`,
+         `Hospice beneficiaries with a primary diagnosis of stroke`,
+         `Hospice beneficiaries with a primary diagnosis of circulatory/heart disease`,
+         `Hospice beneficiaries with a primary diagnosis of respiratory disease`) %&amp;gt;%
+  gather(key = &amp;quot;Type&amp;quot;, value = &amp;quot;Beneficiaries&amp;quot;, 2:6)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Summary Statistics by Diagnosis Type&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;DbyDiagnosis %&amp;gt;%  
+  group_by(Type) %&amp;gt;%
+  filter(!is.na(Beneficiaries)) %&amp;gt;%
+  summarise(Min = min(Beneficiaries),
+            Q1 = quantile(Beneficiaries, .25),
+            median = median(Beneficiaries), 
+            Q3 = quantile(Beneficiaries, .75),
+            max = max(Beneficiaries),
+            mean = mean(Beneficiaries),
+            sd = sd(Beneficiaries),
+            n = n()) %&amp;gt;%
+  arrange(desc(mean))&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;Type&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Min&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Q1&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;median&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Q3&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;max&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;mean&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;sd&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;n&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Hospice beneficiaries with a primary diagnosis of cancer&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;27&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;54&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;125&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;5426&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;117.23597&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;205.04688&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;10048&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Hospice beneficiaries with a primary diagnosis of dementia&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;24&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;46&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;94&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2078&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;83.31137&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;120.07482&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;9362&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Hospice beneficiaries with a primary diagnosis of circulatory/heart disease&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;24&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;44&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;88&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4993&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;78.73133&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;130.76801&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;9867&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Hospice beneficiaries with a primary diagnosis of respiratory disease&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;19&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;33&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;65&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2398&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;57.41664&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;83.78012&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;7546&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Hospice beneficiaries with a primary diagnosis of stroke&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;15&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;27&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;54&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;8336&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;52.11899&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;158.85912&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;6757&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;DbyDiagnosis %&amp;gt;%
+  ggplot(aes(x = Type, y = Beneficiaries, color = Type)) + 
+  geom_boxplot() + 
+  theme(legend.position=&amp;quot;none&amp;quot;) +
+  scale_x_discrete(labels = c(&amp;quot;Cancer&amp;quot;, &amp;quot;Dementia&amp;quot;, &amp;quot;Stroke&amp;quot;, &amp;quot;Circulatory/Heart&amp;quot;, &amp;quot;Respiratory&amp;quot;)) + 
+  labs(title = &amp;quot;Number of Benificiaries by Primary Diagnosis&amp;quot;) +
+  ylab(&amp;quot;Number of Distinct Beneficiaries&amp;quot;) +
+  scale_color_brewer()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-31-1.png&#34; width=&#34;672&#34; /&gt;
+There are some extreme outliers, especially in Cancer, Dementia, and Respiratory&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;DbyDiagnosis %&amp;gt;%
+  ggplot(aes(x = Type, y = log(Beneficiaries), fill = Type)) + 
+  geom_boxplot(outlier.shape = NA) + 
+  scale_x_discrete(labels = c(&amp;quot;Cancer&amp;quot;, &amp;quot;Dementia&amp;quot;, &amp;quot;Stroke&amp;quot;, &amp;quot;Circulatory/Heart&amp;quot;, &amp;quot;Respiratory&amp;quot;)) + 
+  labs(title = &amp;quot;Number of Benificiaries by Primary Diagnosis&amp;quot;,
+       subtitle = &amp;quot;Values are Logged&amp;quot;) +
+  ylab(&amp;quot;Number of Distinct Beneficiaries&amp;quot;) + 
+  theme(legend.position = &amp;quot;none&amp;quot;) +
+  scale_color_brewer()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-32-1.png&#34; width=&#34;672&#34; /&gt;
+After logging, the distribution acorss primary diagnosis type is both consistant and normal between diagnosies.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;regression-by-diagnosis&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Regression by Diagnosis&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;DiagMod &amp;lt;- lm(log((`Total Medicare Standard Payment Amount`)+1) ~ 
+   log((`Hospice beneficiaries with a primary diagnosis of cancer`)+1) + 
+   log((`Hospice beneficiaries with a primary diagnosis of dementia`)+1) +
+   log((`Hospice beneficiaries with a primary diagnosis of stroke`)+1) +
+   log((`Hospice beneficiaries with a primary diagnosis of circulatory/heart disease`)+1) +
+   log((`Hospice beneficiaries with a primary diagnosis of respiratory disease`)+1), 
+   data = D)
+get_regression_table(DiagMod) &lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;term&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;estimate&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;std_error&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;statistic&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;p_value&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;lower_ci&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;upper_ci&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;intercept&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;11.231&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.019&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;591.584&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;11.194&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;11.268&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;log((&lt;code&gt;Hospice beneficiaries with a primary diagnosis of cancer&lt;/code&gt;) + 1)&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.072&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.007&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-10.481&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.086&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.059&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;log((&lt;code&gt;Hospice beneficiaries with a primary diagnosis of dementia&lt;/code&gt;) + 1)&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.362&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.006&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;63.777&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.351&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.373&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;log((&lt;code&gt;Hospice beneficiaries with a primary diagnosis of stroke&lt;/code&gt;) + 1)&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.195&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.007&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;29.524&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.182&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.208&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;log((&lt;code&gt;Hospice beneficiaries with a primary diagnosis of circulatory/heart disease&lt;/code&gt;) + 1)&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.362&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.009&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;38.904&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.344&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.381&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;log((&lt;code&gt;Hospice beneficiaries with a primary diagnosis of respiratory disease&lt;/code&gt;) + 1)&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.162&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.009&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;18.099&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.145&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.180&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;p&gt;This logged model shows several diagnosies with minimal predictive power. Each coefficient is statistically significant at a 0.01 alpha level. Beneficiaries with primary diagnoses of cancer or circulatory/heart had the highest impact on Total Medicare Standard Payment Amount; with each percent increase in the number of benificiaries with either cancer or circulatory/heart disease, we would expect a 0.362 percent increase in Total Medicare Standard Payment Amount. While this may seem small, this impact adds up over time!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;gender-distribution&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Gender Distribution&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;DbyGender &amp;lt;- D %&amp;gt;%
+  select(`Provider ID`, `Female hospice beneficiaries`, `Male hospice beneficiaries`) %&amp;gt;%
+  gather(key = &amp;quot;Gender&amp;quot;, value = &amp;quot;Amount&amp;quot;, 2:3) %&amp;gt;%
+  filter(!is.na(Amount)) &lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;DbyGender %&amp;gt;%  
+  group_by(Gender) %&amp;gt;%
+  summarise(Min = min(Amount),
+            Q1 = quantile(Amount, .25),
+            median = median(Amount), 
+            Q3 = quantile(Amount, .75),
+            max = max(Amount),
+            mean = mean(Amount),
+            sd = sd(Amount),
+            n = n(),
+            missing = count(is.na(Amount))) %&amp;gt;%
+  arrange(desc(mean))&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;Gender&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Min&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Q1&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;median&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Q3&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;max&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;mean&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;sd&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;n&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;missing&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Female hospice beneficiaries&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;11&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;54&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;114&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;246&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;15554&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;224.6755&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;407.2776&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;11116&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Male hospice beneficiaries&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;11&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;37&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;79&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;172&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;10325&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;157.8419&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;287.6987&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;11116&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;DbyGender %&amp;gt;%
+  ggplot(aes(x=Gender, y = Amount, color = Gender)) +
+  geom_boxplot() + 
+  labs(title = &amp;quot;Number of Hospice Benificiaries by Gender&amp;quot;) +
+  theme(legend.position=&amp;quot;none&amp;quot;) +
+  scale_color_brewer()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-36-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# count outliers by gender
+library(grDevices)
+F &amp;lt;- DbyGender %&amp;gt;% 
+  filter(Gender == &amp;quot;Female hospice beneficiaries&amp;quot;)
+FL &amp;lt;- length(F$Amount[which(F$Amount %in% boxplot.stats(F$Amount)$out)])
+M &amp;lt;- DbyGender %&amp;gt;% 
+  filter(Gender == &amp;quot;Male hospice beneficiaries&amp;quot;)
+ML &amp;lt;- length(M$Amount[which(M$Amount %in% boxplot.stats(M$Amount)$out)])&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The distribution appears to be skewed, but we have 1004 outliers for the amount of female benificiaries and 1040 outliers for the amount of male benificiaries.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;DbyGender %&amp;gt;%
+  ggplot(aes(x=Gender, y = Amount, fill = Gender)) +
+  geom_boxplot(outlier.shape = NA) + 
+  ylim(c(0,400)) +
+  labs(title = &amp;quot;Number of Hospice Benificiaries by Gender&amp;quot;, 
+       subtitle = &amp;quot;Outliers Removed&amp;quot;) +
+  theme(legend.position=&amp;quot;none&amp;quot;) +
+  scale_fill_brewer()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 2471 rows containing non-finite values (stat_boxplot).&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-38-1.png&#34; width=&#34;672&#34; /&gt;
+Distribution is still somewhat skewed, but resembles closer to a normal distribution.&lt;/p&gt;
+&lt;div id=&#34;regression-model-by-gender&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Regression model by Gender&lt;/h4&gt;
+&lt;p&gt;Is there a difference in impact on Total Standard Payment by number of benificiaries by gender.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;GMod &amp;lt;- lm(log(`Total Medicare Standard Payment Amount`) ~ 
+   log(`Female hospice beneficiaries`) +
+   log(`Male hospice beneficiaries`), 
+   data = D)
+get_regression_table(GMod) &lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;term&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;estimate&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;std_error&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;statistic&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;p_value&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;lower_ci&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;upper_ci&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;intercept&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;10.046&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.015&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;652.148&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.000&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;10.016&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;10.076&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;log(&lt;code&gt;Female hospice beneficiaries&lt;/code&gt;)&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.922&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.013&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;72.061&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.000&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.897&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.947&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;log(&lt;code&gt;Male hospice beneficiaries&lt;/code&gt;)&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.042&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.013&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3.278&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.001&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.017&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.067&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;p&gt;In using log values, we see a 0.88% stronger impact of female beneficiaries on Total Medicare Standard Payment Amount than we do for male beneficiaries. Both factors are statistically significant, though. This model alone, though, has a very strong exlanatory capacity with an R squared at 89.7%. That is by far the strongest model within each category.&lt;/p&gt;
+&lt;p&gt;All told, this indicates that there are noteably more women than men in the US hospice system.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;racial-distributions&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Racial Distributions&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;DbyRace &amp;lt;- D %&amp;gt;%
+  select(`Provider ID`, 
+         `White hospice beneficiaries`, 
+         `Black hospice beneficiaries`, 
+         `Asian hospice beneficiaries`, 
+         `Hispanic hospice beneficiaries`, 
+         `Other/unknown race hospice beneficiaries`) %&amp;gt;%
+  gather(key = &amp;quot;Race&amp;quot;, value = &amp;quot;Amount&amp;quot;, 2:6) %&amp;gt;%
+  filter(!is.na(Amount))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;DbyRace %&amp;gt;%
+  group_by(Race) %&amp;gt;%
+  summarise(Min = min(Amount),
+            Q1 = quantile(Amount, .25),
+            median = median(Amount), 
+            Q3 = quantile(Amount, .75),
+            max = max(Amount),
+            mean = mean(Amount),
+            sd = sd(Amount),
+            n = n(),
+            missing = count(is.na(Amount))) %&amp;gt;%
+  arrange(desc(mean))&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;Race&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Min&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Q1&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;median&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Q3&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;max&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;mean&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;sd&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;n&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;missing&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;White hospice beneficiaries&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;63&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;147&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;335&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;16332&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;306.110458&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;539.10949&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;11570&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Black hospice beneficiaries&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;19&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;48&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2917&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;45.129267&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;98.52297&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;7295&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Hispanic hospice beneficiaries&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;13&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;37&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;6145&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;43.443305&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;171.20910&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;5556&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Asian hospice beneficiaries&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1230&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;7.722306&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;40.40040&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;5967&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Other/unknown race hospice beneficiaries&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;11&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;234&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;6.733256&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;15.77411&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3449&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;DbyRace$RaceLabel &amp;lt;- word(DbyRace$Race, 1) 
+#extract the first word in the varaible, caputring the only word needed for the boxplot label
+
+DbyRace %&amp;gt;%  
+  ggplot(aes(x=RaceLabel, y = Amount, color = Race)) +
+  geom_boxplot() + 
+  labs(title = &amp;quot;Number of Hospice Benificiaries by Race&amp;quot;) +
+  theme(legend.position=&amp;quot;none&amp;quot;) + 
+  xlab(&amp;quot;Race&amp;quot;) + ylab(&amp;quot;Amount of Beifiareis&amp;quot;) +
+  scale_color_brewer()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-42-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;DbyRace %&amp;gt;%  
+  ggplot(aes(x=RaceLabel, y = Amount, fill = Race)) +
+  geom_boxplot(outlier.shape = NA) + 
+  labs(title = &amp;quot;Number of Hospice Benificiaries by Race&amp;quot;,
+       subtitle = &amp;quot;Outliers Removed&amp;quot;) +
+  theme(legend.position=&amp;quot;none&amp;quot;) + 
+  ylim(c(0, 550)) +
+  xlab(&amp;quot;Race&amp;quot;) + ylab(&amp;quot;Amount of Beifiareis&amp;quot;) +
+  scale_fill_brewer()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 1766 rows containing non-finite values (stat_boxplot).&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-43-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;It is difficult to see the distribution of amount of benificiaries by race, particularly considering the range for amount of White identifying benificiaries is so much higher than it is for the each of the other Race categories.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;DbyRace %&amp;gt;%
+  group_by(Race) %&amp;gt;%  
+  summarise(total = sum(Amount)) %&amp;gt;%
+  mutate(percent = percent(total/sum(total)))&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;Race&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;total&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;percent&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Asian hospice beneficiaries&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;46079&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;1.1%&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Black hospice beneficiaries&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;329218&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;7.9%&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Hispanic hospice beneficiaries&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;241371&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;5.8%&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Other/unknown race hospice beneficiaries&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;23223&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.6%&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;White hospice beneficiaries&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3541698&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;84.7%&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;p&gt;For a clearer visualization of this descrepency, let’s see the difference just between White and White.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;DbyRace &amp;lt;- DbyRace %&amp;gt;%
+  mutate(White = RaceLabel == &amp;quot;White&amp;quot;)
+DbyRace %&amp;gt;%
+  group_by(White) %&amp;gt;%  
+  summarise(total = sum(Amount)) %&amp;gt;%
+  mutate(percent = percent(total/sum(total)))&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;White&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;total&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;percent&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;FALSE&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;639891&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;15.3%&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;TRUE&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3541698&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;84.7%&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;DbyRace %&amp;gt;%  
+  ggplot(aes(x=White, y = Amount, fill = White)) +
+  geom_boxplot(outlier.shape = NA) + 
+  labs(title = &amp;quot;Number of Hospice Benificiaries by Race&amp;quot;,
+       subtitle = &amp;quot;Outliers Removed, Non-White and White&amp;quot;) +
+  theme(legend.position=&amp;quot;none&amp;quot;) + 
+  ylim(c(0, 550)) +
+  xlab(&amp;quot;White&amp;quot;) + ylab(&amp;quot;Amount of Beifiareis&amp;quot;) +
+  scale_fill_brewer()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: Removed 1766 rows containing non-finite values (stat_boxplot).&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-46-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;It is interesting to note that 84.7% of the beneficiaries in the dataset are identified as white. This could be an anomolie or the result of several intersecting socioeconoimc and historical factors pertaining to access to healh care, especially end-of-life care. This is consistant &lt;a href=&#34;https://www.ncbi.nlm.nih.gov/pubmed/18588409&#34;&gt;Cohen’s 2008 systematic review&lt;/a&gt; of racial disparities in hospice care system.&lt;/p&gt;
+&lt;p&gt;Let’s see how this logic holds up in a regression model on Total Medicare Standard Payment Amount.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;RMod &amp;lt;- lm(`Total Medicare Standard Payment Amount` ~ 
+   `White hospice beneficiaries` +
+   `Black hospice beneficiaries` + 
+   `Asian hospice beneficiaries` +
+   `Hispanic hospice beneficiaries` + 
+   `Other/unknown race hospice beneficiaries`, data = D)
+get_regression_table(RMod)&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;term&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;estimate&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;std_error&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;statistic&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;p_value&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;lower_ci&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;upper_ci&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;intercept&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-999832.977&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;136345.786&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-7.333&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.000&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1267300.053&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-732365.90&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;White hospice beneficiaries&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;10677.084&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;202.108&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;52.829&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.000&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;10280.612&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;11073.56&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;Black hospice beneficiaries&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;11347.950&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1113.098&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;10.195&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.000&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;9164.406&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;13531.50&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;Asian hospice beneficiaries&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;5467.372&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3376.764&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.619&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.106&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1156.766&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;12091.51&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;Hispanic hospice beneficiaries&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;44770.962&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;618.849&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;72.345&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.000&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;43556.976&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;45984.95&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;&lt;code&gt;Other/unknown race hospice beneficiaries&lt;/code&gt;&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-76587.338&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;17497.609&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-4.377&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.000&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-110912.082&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-42262.59&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(RMod)$r.squared&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.9701032&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This model has a vey high predictive power with an R squared of 97.0% with each coefficient being statistically significant. According to this model, each added white beneficiary contributes an expected $10677.08 in standard medicare payments with a relatively low standard error of $202.11. Each added added Black beneficiary contributes an expected $11347.95 in standard medicare payments, but with a relatively high standard error of $1113.10. This variation is again likely due to the notably more white beneficiares in the dataset.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;final-conclusions-and-takeaways&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Final Conclusions and Takeaways&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Diagnosis Type, Gender, and Race all proved to be strong predictors of standard medicare payments&lt;/li&gt;
+&lt;li&gt;Year and Region did not prove to be strong predictors.&lt;/li&gt;
+&lt;li&gt;There are noteably more women then men recieving treatment in the hospice system.&lt;/li&gt;
+&lt;li&gt;Hospice payments are tend to be skewed with a small group of highlgy differentiated outliers. If one is interested in detecting fraud, identifying unique characteristics of those outliers is a useful starting point.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div id=&#34;next-steps-for-further-exploration&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Next steps for further exploration&lt;/h3&gt;
+&lt;p&gt;There is so much more to explore about the hospice system using this data set as a startin point. Some initial ideas to include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Analyze average age as a variable&lt;/li&gt;
+&lt;li&gt;Create regression analyses of within each variable grouping to find the stongest predictors.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>An example preprint / working paper</title>
+      <link>/publication/preprint/</link>
+      <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/preprint/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Slides&lt;/em&gt; button above to demo Academic&amp;rsquo;s Markdown slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Supplementary notes can be added here, including 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code and math&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Slides</title>
+      <link>/slides/example/</link>
+      <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
+      <guid>/slides/example/</guid>
+      <description>&lt;h1 id=&#34;create-slides-in-markdown-with-academic&#34;&gt;Create slides in Markdown with Academic&lt;/h1&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://sourcethemes.com/academic/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Academic&lt;/a&gt; | 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/managing-content/#create-slides&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;features&#34;&gt;Features&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Efficiently write slides in Markdown&lt;/li&gt;
+&lt;li&gt;3-in-1: Create, Present, and Publish your slides&lt;/li&gt;
+&lt;li&gt;Supports speaker notes&lt;/li&gt;
+&lt;li&gt;Mobile friendly slides&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;controls&#34;&gt;Controls&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Next: &lt;code&gt;Right Arrow&lt;/code&gt; or &lt;code&gt;Space&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Previous: &lt;code&gt;Left Arrow&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Start: &lt;code&gt;Home&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Finish: &lt;code&gt;End&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Overview: &lt;code&gt;Esc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Speaker notes: &lt;code&gt;S&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Fullscreen: &lt;code&gt;F&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Zoom: &lt;code&gt;Alt + Click&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://github.com/hakimel/reveal.js#pdf-export&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;PDF Export&lt;/a&gt;: &lt;code&gt;E&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;code-highlighting&#34;&gt;Code Highlighting&lt;/h2&gt;
+&lt;p&gt;Inline code: &lt;code&gt;variable&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Code block:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;porridge = &amp;quot;blueberry&amp;quot;
+if porridge == &amp;quot;blueberry&amp;quot;:
+    print(&amp;quot;Eating...&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;math&#34;&gt;Math&lt;/h2&gt;
+&lt;p&gt;In-line math: $x + y = z$&lt;/p&gt;
+&lt;p&gt;Block math:&lt;/p&gt;
+&lt;p&gt;$$
+f\left( x \right) = ;\frac{{2\left( {x + 4} \right)\left( {x - 4} \right)}}{{\left( {x + 4} \right)\left( {x + 1} \right)}}
+$$&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;fragments&#34;&gt;Fragments&lt;/h2&gt;
+&lt;p&gt;Make content appear incrementally&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{{% fragment %}} One {{% /fragment %}}
+{{% fragment %}} **Two** {{% /fragment %}}
+{{% fragment %}} Three {{% /fragment %}}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Press &lt;code&gt;Space&lt;/code&gt; to play!&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;fragment &#34; &gt;
+One
+&lt;/span&gt;
+&lt;span class=&#34;fragment &#34; &gt;
+&lt;strong&gt;Two&lt;/strong&gt;
+&lt;/span&gt;
+&lt;span class=&#34;fragment &#34; &gt;
+Three
+&lt;/span&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;A fragment can accept two optional parameters:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;class&lt;/code&gt;: use a custom style (requires definition in custom CSS)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;weight&lt;/code&gt;: sets the order in which a fragment appears&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;speaker-notes&#34;&gt;Speaker Notes&lt;/h2&gt;
+&lt;p&gt;Add speaker notes to your presentation&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{% speaker_note %}}
+- Only the speaker can read these notes
+- Press `S` key to view
+{{% /speaker_note %}}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Press the &lt;code&gt;S&lt;/code&gt; key to view the speaker notes!&lt;/p&gt;
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;Only the speaker can read these notes&lt;/li&gt;
+&lt;li&gt;Press &lt;code&gt;S&lt;/code&gt; key to view&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/aside&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;themes&#34;&gt;Themes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;black: Black background, white text, blue links (default)&lt;/li&gt;
+&lt;li&gt;white: White background, black text, blue links&lt;/li&gt;
+&lt;li&gt;league: Gray background, white text, blue links&lt;/li&gt;
+&lt;li&gt;beige: Beige background, dark text, brown links&lt;/li&gt;
+&lt;li&gt;sky: Blue background, thin dark text, blue links&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;night: Black background, thick white text, orange links&lt;/li&gt;
+&lt;li&gt;serif: Cappuccino background, gray text, brown links&lt;/li&gt;
+&lt;li&gt;simple: White background, black text, blue links&lt;/li&gt;
+&lt;li&gt;solarized: Cream-colored background, dark green text, blue links&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+
+&lt;section data-noprocess data-shortcode-slide
+  
+      
+      data-background-image=&#34;/img/boards.jpg&#34;
+  &gt;
+
+&lt;h2 id=&#34;custom-slide&#34;&gt;Custom Slide&lt;/h2&gt;
+&lt;p&gt;Customize the slide style and background&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{&amp;lt; slide background-image=&amp;quot;/img/boards.jpg&amp;quot; &amp;gt;}}
+{{&amp;lt; slide background-color=&amp;quot;#0000FF&amp;quot; &amp;gt;}}
+{{&amp;lt; slide class=&amp;quot;my-style&amp;quot; &amp;gt;}}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;custom-css-example&#34;&gt;Custom CSS Example&lt;/h2&gt;
+&lt;p&gt;Let&amp;rsquo;s make headers navy colored.&lt;/p&gt;
+&lt;p&gt;Create &lt;code&gt;assets/css/reveal_custom.css&lt;/code&gt; with:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.reveal section h1,
+.reveal section h2,
+.reveal section h3 {
+  color: navy;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;questions&#34;&gt;Questions?&lt;/h1&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://spectrum.chat/academic&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Ask&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/managing-content/#create-slides&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Privacy Policy</title>
+      <link>/privacy/</link>
+      <pubDate>Thu, 28 Jun 2018 00:00:00 +0100</pubDate>
+      <guid>/privacy/</guid>
+      <description>&lt;p&gt;&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Terms</title>
+      <link>/terms/</link>
+      <pubDate>Thu, 28 Jun 2018 00:00:00 +0100</pubDate>
+      <guid>/terms/</guid>
+      <description>&lt;p&gt;&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>External Project</title>
+      <link>/project/external-project/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      <guid>/project/external-project/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Internal Project</title>
+      <link>/project/internal-project/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      <guid>/project/internal-project/</guid>
+      <description>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
+&lt;p&gt;Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p&gt;
+&lt;p&gt;Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p&gt;
+&lt;p&gt;Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p&gt;
+&lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>An example journal article</title>
+      <link>/publication/journal-article/</link>
+      <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
+      <guid>/publication/journal-article/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Slides&lt;/em&gt; button above to demo Academic&amp;rsquo;s Markdown slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Supplementary notes can be added here, including 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code and math&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>An example conference paper</title>
+      <link>/publication/conference-paper/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      <guid>/publication/conference-paper/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Slides&lt;/em&gt; button above to demo Academic&amp;rsquo;s Markdown slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Supplementary notes can be added here, including 
+&lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code and math&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

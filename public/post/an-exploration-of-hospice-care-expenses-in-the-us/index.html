@@ -1,0 +1,2886 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Zachary Dyne">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="This project analyzes hospice care expenses throughout the United States and showcases a variety of R packages, data wrangling approaches, and statistical techniques. This was my final project for the *GSMDS5001: Fundamentals of Data Science with R* course.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/an-exploration-of-hospice-care-expenses-in-the-us/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="rgb(12, 138, 21)">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/css/all.min.css" integrity="sha256-4w9DunooKSr3MFXHXWyFER38WmPdm361bQS/2KUWZbU=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cutive+Mono%7CLora:400,700%7CRoboto:400,700&display=swap">
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="/post/an-exploration-of-hospice-care-expenses-in-the-us/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="Zachary Dyne">
+  <meta property="og:url" content="/post/an-exploration-of-hospice-care-expenses-in-the-us/">
+  <meta property="og:title" content="An Exploration of Hospice Care Expenses in the US | Zachary Dyne">
+  <meta property="og:description" content="This project analyzes hospice care expenses throughout the United States and showcases a variety of R packages, data wrangling approaches, and statistical techniques. This was my final project for the *GSMDS5001: Fundamentals of Data Science with R* course."><meta property="og:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
+  <meta property="twitter:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2019-12-14T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2019-12-14T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/post/an-exploration-of-hospice-care-expenses-in-the-us/"
+  },
+  "headline": "An Exploration of Hospice Care Expenses in the US",
+  
+  "datePublished": "2019-12-14T00:00:00Z",
+  "dateModified": "2019-12-14T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Zachary Dyne"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Zachary Dyne",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "This project analyzes hospice care expenses throughout the United States and showcases a variety of R packages, data wrangling approaches, and statistical techniques. This was my final project for the *GSMDS5001: Fundamentals of Data Science with R* course."
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>An Exploration of Hospice Care Expenses in the US | Zachary Dyne</title>
+
+</head>
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Zachary Dyne</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Zachary Dyne</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>About</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts & Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/files/cv.pdf"><span>Resume</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>An Exploration of Hospice Care Expenses in the US</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Dec 14, 2019
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    24 min read
+  </span>
+  
+
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/healthcare/">Healthcare</a>, <a href="/category/medicaid/">Medicaid</a>, <a href="/category/medicare/">Medicare</a>, <a href="/category/r/">R</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      
+
+<div id="TOC">
+<ul>
+<li><a href="#introduction">Introduction</a><ul>
+<li><a href="#project-overview-medicare-hospice-care-expenditures">Project Overview: Medicare Hospice Care Expenditures</a></li>
+<li><a href="#data-preparation">Data Preparation:</a></li>
+<li><a href="#merge-with-region-and-division-dataset">Merge with “Region and Division” dataset</a></li>
+</ul></li>
+<li><a href="#exploratory-data-analysis-and-regression-modeling">Exploratory Data Analysis and Regression Modeling</a><ul>
+<li><a href="#outcome-variable-medicare-payments">Outcome Variable: Medicare Payments</a></li>
+<li><a href="#predictor-variables-data-exploration-and-liner-models-by-variable-type">Predictor Variables: Data Exploration and Liner Models by Variable Type</a></li>
+<li><a href="#numeric-predictors-of-interest">Numeric Predictors of Interest</a></li>
+<li><a href="#final-conclusions-and-takeaways">Final Conclusions and Takeaways</a></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<div id="project-overview-medicare-hospice-care-expenditures" class="section level2">
+<h2>Project Overview: Medicare Hospice Care Expenditures</h2>
+<p>This project explores the nature of Medicare hospice care expenditures across the United States. I found these <a href="https://www.kaggle.com/cms/medicare-hospice-use-spending-aggregate-reports">datasets</a> on Kaggle, uploaded by the Center for Medicare and Medicaid Research.</p>
+<div id="what-is-hospice-care" class="section level3">
+<h3>What is Hospice Care?</h3>
+<ul>
+<li>Hospice care, otherwise known as end-of-life care, is a type of care typically used by patients who feel their treatment of a terminal illness is not helping them improve.</li>
+<li>Using hospice is not a signal of “giving up”. Hospice care focuses on quaility of life rather than directly treating the illness.
+<ul>
+<li>It focuses on “relief from pain, shortness of breath, and other symptoms so that you can focus on the people and things you care about the most” <a href="https://www.webmd.com/healthy-aging/hospice-care#1">(WebMD)</a>.</li>
+</ul></li>
+</ul>
+</div>
+<div id="research-questions" class="section level3">
+<h3>Research Questions</h3>
+<ul>
+<li>What factors predict Medicare payments to providers by diagnosis, length of stay, site of service, hours per week, and number of beneficiaries?</li>
+<li>With three years of data, I aim to learn how these factors change overtime by themselves while also seeing whether their interactions do as well.</li>
+<li>What is considered “typical” for payments to hospice care providers? What causes atypical payments to providers?</li>
+</ul>
+</div>
+</div>
+<div id="data-preparation" class="section level2">
+<h2>Data Preparation:</h2>
+<pre class="r"><code>#load required packages
+library(tidyverse)
+library(ggthemes)
+library(ggplot2); theme_set(theme_tufte())
+library(data.table)
+library(GGally)
+library(cowplot)
+library(mosaic)
+library(scales)
+library(broom)
+library(purrr)
+library(moderndive)
+
+#read datsets for each year, add a &#39;year&#39; factor variable to each dataset, and bind together
+setwd(&quot;C:/Users/Lenovo/Desktop/AGSM/Fall2019/RCertificate/Medicare Data/&quot;)
+Provider2016 &lt;- read_csv(&quot;medicare-hospice-use-and-spending-by-provider-aggregate-report-cy-2016.csv&quot;)
+Provider2016$Year &lt;- as.factor(2016)
+
+Provider2015 &lt;- read_csv(&quot;medicare-hospice-use-and-spending-by-provider-aggregate-report-cy-2015.csv&quot;)
+Provider2015$Year &lt;- as.factor(2015)
+
+Provider2014 &lt;- read_csv(&quot;medicare-hospice-use-and-spending-by-provider-aggregate-report-cy-2014.csv&quot;)
+Provider2014$Year &lt;- as.factor(2014)
+
+D &lt;- rbind(Provider2016, Provider2015)
+D &lt;- rbind(D, setnames(Provider2014, names(D)))</code></pre>
+</div>
+<div id="merge-with-region-and-division-dataset" class="section level2">
+<h2>Merge with “Region and Division” dataset</h2>
+<p>The original datasets do not include region, which may be a more useful metric than analyzing by state. I found this <a href="https://www.kaggle.com/omer2040/usa-states-to-region">dataset</a> on Kaggle, and it includes state names, state codes, region, and division. Classifications are as determined by the <a href="https://www2.census.gov/geo/pdfs/maps-data/maps/reference/us_regdiv.pdf">US Census Bureau</a>. Let’s merge it with the Medicare master dataset to be able to analyze payments by region.</p>
+<pre class="r"><code>states &lt;- read_csv(&quot;C:/Users/Lenovo/Desktop/AGSM/Fall2019/RCertificate/Medicare Data/states.csv&quot;) %&gt;%
+  rename(&quot;StateName&quot; = &quot;State&quot;, &quot;State&quot; = &quot;State Code&quot;) %&gt;% 
+  # rename to merge with master dataset
+  add_row(&quot;StateName&quot; = &quot;Puerto Rico&quot;, &quot;State&quot; = &quot;PR&quot;, &quot;Region&quot; = &quot;Caribbean &quot;, &quot;Division&quot; = &quot;Caribbean &quot;) 
+  #Puerto Rico was not listed in the original Region dataset
+D &lt;- D %&gt;%
+  merge(states, by = &quot;State&quot;, all.x = TRUE)</code></pre>
+</div>
+</div>
+<div id="exploratory-data-analysis-and-regression-modeling" class="section level1">
+<h1>Exploratory Data Analysis and Regression Modeling</h1>
+<p>The objective of this exploratory data analysis is to understand the nature of our individual variables. I</p>
+<div id="outcome-variable-medicare-payments" class="section level2">
+<h2>Outcome Variable: Medicare Payments</h2>
+<ul>
+<li>Total amount that Medicare paid for hospice care: Hospice services do not have any cost-sharing requirements and the Medicare payment amount will equal the allowed amount.</li>
+</ul>
+<p>While this dataset provides a metric for total absolute payments, it also provides a standardized payment amont which adjust for geographic differences in payment rates. Here are overall summary statistics for Total Standardized Medicare Payment Amounts.</p>
+<ul>
+<li>Total Medicare Standard Payment Amount: Total amount that Medicare paid for hospice care adjusted for geographic differences in payment rates.</li>
+</ul>
+<pre class="r"><code>favstats(D$`Total Medicare Standard Payment Amount`)</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">min</th>
+<th align="right">Q1</th>
+<th align="right">median</th>
+<th align="right">Q3</th>
+<th align="right">max</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">n</th>
+<th align="right">missing</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td align="right">12533.5</td>
+<td align="right">841358.2</td>
+<td align="right">2025179</td>
+<td align="right">4398192</td>
+<td align="right">508882642</td>
+<td align="right">4028648</td>
+<td align="right">9584881</td>
+<td align="right">12049</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The mean Standard Payment Amount is 4.028648310^{6}, which is notably higher than the median of 2.025179410^{6}. This fact, along with a large standard deviation of 9.584880810^{6} points towards either a high skew or the presence of some extreme outliers.</p>
+<p>Let’s view Total Medicare Standardized Payment Amount</p>
+<pre class="r"><code>plt1 &lt;- D %&gt;%
+    ggplot(aes(x = Year, y=`Total Medicare Standard Payment Amount`, fill = Year)) + 
+    geom_boxplot() + 
+    labs(title = &quot;Total Medicare \nStandared Payment \nAmount&quot;, fill = &quot;Year&quot;) + 
+    ylab(&quot; &quot;) +
+    theme(legend.position=&quot;none&quot;, axis.title = element_text()) + 
+    scale_y_continuous(label = dollar) + scale_fill_brewer()
+
+plt2 &lt;- D %&gt;%
+    mutate(rank = rank(desc(`Total Medicare Standard Payment Amount`))) %&gt;%
+    arrange(rank) %&gt;%
+    filter(rank &gt; 3) %&gt;%
+    ggplot(aes(x = Year, y=`Total Medicare Standard Payment Amount`, fill = Year)) + 
+    geom_boxplot() + 
+    labs(title = &quot;Total Medicare \nStandared Payment Amount&quot;, 
+        subtitle = &quot;Three highest values filtered out&quot;) + 
+    ylab(&quot; &quot;) +
+    theme(legend.position=&quot;none&quot;, axis.title = element_text()) +
+     scale_y_continuous(label = dollar) + scale_fill_brewer()
+#plot each boxplot series side-by-side using cowplot
+plot_grid(plt1, plt2, align = &quot;h&quot;, rel_widths = c(1, 1.3), axis = &quot;t&quot;)</code></pre>
+<p><img src="/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>If we remove all outliers, though, Total Medicare Standard Payment Amout mostly resembles a normal distriution.</p>
+<pre class="r"><code>plt3 &lt;- D %&gt;%
+    mutate(rank = rank(desc(`Total Medicare Standard Payment Amount`))) %&gt;%
+    arrange(rank) %&gt;%
+    filter(rank &gt; 3) %&gt;%
+    ggplot(aes(x = Year, y=`Total Medicare Standard Payment Amount`, fill = Year)) + 
+    geom_boxplot(outlier.shape = NA) +
+    labs(title = &quot;Total Medicare \nStandared Payment Amount&quot;, 
+        subtitle = &quot;Three highest values filtered out&quot;) + 
+    ylab(&quot; &quot;)  +
+    theme(legend.position=&quot;none&quot;, axis.title = element_text()) +
+    scale_y_continuous(label = dollar, limits = c(0, 7600000)) +
+    scale_fill_brewer()
+
+plt4 &lt;- D %&gt;%
+  mutate(logStandardPaymentAmount = log(`Total Medicare Standard Payment Amount`)) %&gt;%
+  ggplot(aes(x = Year, y=logStandardPaymentAmount, fill = Year)) + 
+  geom_boxplot() + 
+  labs(title = &quot;Total Medicare \nStandared Payment Amount&quot;, 
+       subtitle = &quot;Values are log transformed&quot;) + ylab(&quot; &quot;) +
+  theme(legend.position=&quot;none&quot;, axis.title = element_text()) +
+  scale_fill_brewer()
+
+plot_grid(plt3, plt4, align = &quot;h&quot;, rel_widths = c(1, 1.3), axis = &quot;t&quot;)</code></pre>
+<pre><code>## Warning: Removed 1508 rows containing non-finite values (stat_boxplot).</code></pre>
+<p><img src="/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>After removing these extreme estreme outliers, Standard Medicare Payment Amount is still skewed.With a normal distribution, log transformed values may be a more useful predictor. It is It is worth noting that the distributions appear to remain farily consistant over the three years in our dataset.</p>
+<p>Let’s see a correlation between our outcome variable and a variables that I would hypothesize would be positively correlated with Total Medicare Standard Payment.</p>
+<pre class="r"><code>D &lt;- D %&gt;%
+  mutate(logStandardPaymentAmount = log(`Total Medicare Standard Payment Amount`))
+CorVarLabs &lt;- c(&quot;Standard Pmt&quot;, &quot;Hospice beneficiaries&quot;, &quot;Total Days&quot;, &quot;Average Age&quot;, &quot;# with Cancer&quot;)
+D %&gt;%
+  select(`Total Medicare Standard Payment Amount`, 
+         `Hospice beneficiaries`, 
+         `Total Days`, 
+         `Average Age`,
+         `Hospice beneficiaries with a primary diagnosis of cancer`) %&gt;% 
+  ggpairs(title = &quot;Correlation Matrix with Standard Payment&quot;, 
+          columnLabels = CorVarLabs)</code></pre>
+<p><img src="/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>How do these correlations with the Standard Payment Amount compare with correlations with Logged Standard Payment Amount?</p>
+<pre class="r"><code>D %&gt;%
+  select(`logStandardPaymentAmount`, 
+         `Hospice beneficiaries`, 
+         `Total Days`, 
+         `Average Age`,
+         `Hospice beneficiaries with a primary diagnosis of cancer`) %&gt;% 
+  ggpairs(title = &quot;Correlation Matrix with Logged Standard Payment&quot;, 
+          columnLabels = CorVarLabs)</code></pre>
+<p><img src="/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Logging Standard Payment Amount decreases the correlation these selected predictor variables. It still may be useful in regressoin analyses</p>
+</div>
+<div id="predictor-variables-data-exploration-and-liner-models-by-variable-type" class="section level2">
+<h2>Predictor Variables: Data Exploration and Liner Models by Variable Type</h2>
+<p>Between the orignal datasets and merged ones, there are a variety of varialbes to anlayze. This section analyzes each variable of interest, grouped both by variable type (categorical and numeric) and by category (service hours, number of benificiaries by diagnosis, number of benificiaries by race, and number of benificiaries by gender).</p>
+<p>I will analyze each variable individually and compare them to variables within their category using t-tests and/or linear regressions to test differenes within each category.</p>
+<div id="categorical-predictor-variables" class="section level3">
+<h3>Categorical Predictor Variables</h3>
+<div id="data-exploration" class="section level4">
+<h4>Data Exploration</h4>
+<p><strong>Region</strong></p>
+<p>Summarize “Total Medicare Standard Payment Amount” and “Logged Total Medicare Standard Payment Amount” grouped by region and year</p>
+<pre class="r"><code>D %&gt;%
+  group_by(Region) %&gt;%
+  summarise(Min = min(`Total Medicare Standard Payment Amount`),
+            Q1 = quantile(`Total Medicare Standard Payment Amount`, .25),
+            median = median(`Total Medicare Standard Payment Amount`), 
+            Q3 = quantile(`Total Medicare Standard Payment Amount`, .75),
+            max = max(`Total Medicare Standard Payment Amount`),
+            mean = mean(`Total Medicare Standard Payment Amount`),
+            sd = sd(`Total Medicare Standard Payment Amount`),
+            n = n(),
+            missing = count(is.na(`Total Medicare Standard Payment Amount`))) %&gt;%
+  arrange(desc(mean))</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">Region</th>
+<th align="right">Min</th>
+<th align="right">Q1</th>
+<th align="right">median</th>
+<th align="right">Q3</th>
+<th align="right">max</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">n</th>
+<th align="right">missing</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Northeast</td>
+<td align="right">66370.61</td>
+<td align="right">1130719.3</td>
+<td align="right">2469996</td>
+<td align="right">5488644</td>
+<td align="right">55069310</td>
+<td align="right">4701323</td>
+<td align="right">6381407</td>
+<td align="right">1332</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">South</td>
+<td align="right">12533.50</td>
+<td align="right">997042.3</td>
+<td align="right">2214590</td>
+<td align="right">4494683</td>
+<td align="right">508882642</td>
+<td align="right">4531637</td>
+<td align="right">13678330</td>
+<td align="right">4750</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Caribbean</td>
+<td align="right">139677.62</td>
+<td align="right">1643344.3</td>
+<td align="right">2743352</td>
+<td align="right">3791254</td>
+<td align="right">42399624</td>
+<td align="right">4468607</td>
+<td align="right">7002663</td>
+<td align="right">115</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Midwest</td>
+<td align="right">21943.54</td>
+<td align="right">752023.8</td>
+<td align="right">1873480</td>
+<td align="right">4427457</td>
+<td align="right">72307285</td>
+<td align="right">3828595</td>
+<td align="right">5702301</td>
+<td align="right">2764</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">West</td>
+<td align="right">20066.94</td>
+<td align="right">609593.0</td>
+<td align="right">1506441</td>
+<td align="right">3709664</td>
+<td align="right">43524824</td>
+<td align="right">3127468</td>
+<td align="right">4562045</td>
+<td align="right">3088</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The Northeast has the highest mean payment amounts and second highest median, behind the Caribbean. The South has the widest spread. This seems natural since it has the highest amount of providers as well. The West has the lowest amount mean.</p>
+<div id="linear-model-exploring-payment-by-region" class="section level5">
+<h5>Linear Model Exploring Payment by Region</h5>
+<pre class="r"><code>lm(`Total Medicare Standard Payment Amount` ~ Region, data = D) %&gt;%
+  get_regression_table()</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">term</th>
+<th align="right">estimate</th>
+<th align="right">std_error</th>
+<th align="right">statistic</th>
+<th align="right">p_value</th>
+<th align="right">lower_ci</th>
+<th align="right">upper_ci</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">intercept</td>
+<td align="right">4468607.33</td>
+<td align="right">892146.3</td>
+<td align="right">5.009</td>
+<td align="right">0.000</td>
+<td align="right">2719857</td>
+<td align="right">6217357.6</td>
+</tr>
+<tr class="even">
+<td align="left">RegionMidwest</td>
+<td align="right">-640012.78</td>
+<td align="right">910516.6</td>
+<td align="right">-0.703</td>
+<td align="right">0.482</td>
+<td align="right">-2424772</td>
+<td align="right">1144746.4</td>
+</tr>
+<tr class="odd">
+<td align="left">RegionNortheast</td>
+<td align="right">232715.77</td>
+<td align="right">929861.4</td>
+<td align="right">0.250</td>
+<td align="right">0.802</td>
+<td align="right">-1589962</td>
+<td align="right">2055393.8</td>
+</tr>
+<tr class="even">
+<td align="left">RegionSouth</td>
+<td align="right">63029.46</td>
+<td align="right">902881.4</td>
+<td align="right">0.070</td>
+<td align="right">0.944</td>
+<td align="right">-1706763</td>
+<td align="right">1832822.2</td>
+</tr>
+<tr class="odd">
+<td align="left">RegionWest</td>
+<td align="right">-1341139.41</td>
+<td align="right">908606.6</td>
+<td align="right">-1.476</td>
+<td align="right">0.140</td>
+<td align="right">-3122155</td>
+<td align="right">439875.8</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Year</strong></p>
+<pre class="r"><code>D %&gt;%
+  group_by(Year) %&gt;%
+  summarise(Min = min(`Total Medicare Standard Payment Amount`),
+            Q1 = quantile(`Total Medicare Standard Payment Amount`, .25),
+            median = median(`Total Medicare Standard Payment Amount`), 
+            Q3 = quantile(`Total Medicare Standard Payment Amount`, .75),
+            max = max(`Total Medicare Standard Payment Amount`),
+            mean = mean(`Total Medicare Standard Payment Amount`),
+            sd = sd(`Total Medicare Standard Payment Amount`),
+            n = n(),
+            missing = count(is.na(`Total Medicare Standard Payment Amount`))) %&gt;%
+  arrange(desc(mean))</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">Year</th>
+<th align="right">Min</th>
+<th align="right">Q1</th>
+<th align="right">median</th>
+<th align="right">Q3</th>
+<th align="right">max</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">n</th>
+<th align="right">missing</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">2016</td>
+<td align="right">21943.54</td>
+<td align="right">864861.5</td>
+<td align="right">2081425</td>
+<td align="right">4575784</td>
+<td align="right">508882642</td>
+<td align="right">4159611</td>
+<td align="right">10133316</td>
+<td align="right">4125</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">2015</td>
+<td align="right">12533.50</td>
+<td align="right">850154.8</td>
+<td align="right">1998732</td>
+<td align="right">4354607</td>
+<td align="right">473266501</td>
+<td align="right">4028250</td>
+<td align="right">9650059</td>
+<td align="right">4009</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">2014</td>
+<td align="right">12541.04</td>
+<td align="right">812344.8</td>
+<td align="right">1977470</td>
+<td align="right">4294485</td>
+<td align="right">416553977</td>
+<td align="right">3891069</td>
+<td align="right">8899534</td>
+<td align="right">3915</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The mean and median payment accross the board has increased incrementally each year.</p>
+<p>Is this difference significant in a linear model?</p>
+<pre class="r"><code>lm(`Total Medicare Standard Payment Amount` ~ Year, data = D) %&gt;%
+  get_regression_table()</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">term</th>
+<th align="right">estimate</th>
+<th align="right">std_error</th>
+<th align="right">statistic</th>
+<th align="right">p_value</th>
+<th align="right">lower_ci</th>
+<th align="right">upper_ci</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">intercept</td>
+<td align="right">4159610.9</td>
+<td align="right">149239.0</td>
+<td align="right">27.872</td>
+<td align="right">0.000</td>
+<td align="right">3867078.4</td>
+<td align="right">4452143.4</td>
+</tr>
+<tr class="even">
+<td align="left">Year2015</td>
+<td align="right">-131361.0</td>
+<td align="right">212577.1</td>
+<td align="right">-0.618</td>
+<td align="right">0.537</td>
+<td align="right">-548046.3</td>
+<td align="right">285324.2</td>
+</tr>
+<tr class="odd">
+<td align="left">Year2014</td>
+<td align="right">-268541.9</td>
+<td align="right">213867.4</td>
+<td align="right">-1.256</td>
+<td align="right">0.209</td>
+<td align="right">-687756.4</td>
+<td align="right">150672.5</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>With insignificant p-vlaues for each of the years, there is not a significant difference by year.</p>
+</div>
+</div>
+<div id="lets-break-down-average-payment-by-region-and-year" class="section level4">
+<h4>Let’s break down Average Payment by Region and Year</h4>
+<pre class="r"><code>D %&gt;%
+  group_by(Region, Year) %&gt;%
+  summarise(Payment = mean(`Total Medicare Standard Payment Amount`)) %&gt;%
+  ggplot(aes(x = as.numeric(as.character(Year)), y = Payment, color= Region)) +
+  geom_line(size = 0.9) + geom_point() + 
+  labs(title = &quot;Mean Total Medicare Standard Payment Amount by Region&quot;) + 
+  xlab(&quot;Year&quot;) + ylab(&quot;Mean Payment&quot;) +
+  scale_x_continuous(labels = 
+      c(&quot;2014.0&quot; = &quot;2014&quot;, &quot;2014.5&quot; = &quot; &quot;, 
+        &quot;2015.0&quot; = &quot;2015&quot;, &quot;2015.5&quot; = &quot; &quot;, &quot;2016.0&quot; = &quot;2016&quot;)) +
+  scale_y_continuous(label = dollar) +
+  scale_color_brewer()</code></pre>
+<p><img src="/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+Payments are growing each year accross each region, except the West with a slight decline.</p>
+<div id="intertion-rregression-with-year-and-region" class="section level5">
+<h5>Intertion Rregression with Year and Region</h5>
+<p>Let’s see if that gorwing progression holds up in an interaction linear model</p>
+<pre class="r"><code>lm(`Total Medicare Standard Payment Amount` ~ Year*Region, data = D) %&gt;%
+  get_regression_table()</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">term</th>
+<th align="right">estimate</th>
+<th align="right">std_error</th>
+<th align="right">statistic</th>
+<th align="right">p_value</th>
+<th align="right">lower_ci</th>
+<th align="right">upper_ci</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">intercept</td>
+<td align="right">4409769.18</td>
+<td align="right">1532382</td>
+<td align="right">2.878</td>
+<td align="right">0.004</td>
+<td align="right">1406053</td>
+<td align="right">7413485</td>
+</tr>
+<tr class="even">
+<td align="left">Year2015</td>
+<td align="right">135412.27</td>
+<td align="right">2167116</td>
+<td align="right">0.062</td>
+<td align="right">0.950</td>
+<td align="right">-4112484</td>
+<td align="right">4383308</td>
+</tr>
+<tr class="odd">
+<td align="left">Year2014</td>
+<td align="right">40143.49</td>
+<td align="right">2196206</td>
+<td align="right">0.018</td>
+<td align="right">0.985</td>
+<td align="right">-4264774</td>
+<td align="right">4345061</td>
+</tr>
+<tr class="even">
+<td align="left">RegionMidwest</td>
+<td align="right">-365963.59</td>
+<td align="right">1564422</td>
+<td align="right">-0.234</td>
+<td align="right">0.815</td>
+<td align="right">-3432482</td>
+<td align="right">2700555</td>
+</tr>
+<tr class="odd">
+<td align="left">RegionNortheast</td>
+<td align="right">637839.66</td>
+<td align="right">1599300</td>
+<td align="right">0.399</td>
+<td align="right">0.690</td>
+<td align="right">-2497046</td>
+<td align="right">3772725</td>
+</tr>
+<tr class="even">
+<td align="left">RegionSouth</td>
+<td align="right">333632.32</td>
+<td align="right">1551015</td>
+<td align="right">0.215</td>
+<td align="right">0.830</td>
+<td align="right">-2706607</td>
+<td align="right">3373872</td>
+</tr>
+<tr class="odd">
+<td align="left">RegionWest</td>
+<td align="right">-1329208.91</td>
+<td align="right">1558556</td>
+<td align="right">-0.853</td>
+<td align="right">0.394</td>
+<td align="right">-4384229</td>
+<td align="right">1725812</td>
+</tr>
+<tr class="even">
+<td align="left">Year2015:RegionMidwest</td>
+<td align="right">-380649.59</td>
+<td align="right">2212426</td>
+<td align="right">-0.172</td>
+<td align="right">0.863</td>
+<td align="right">-4717361</td>
+<td align="right">3956062</td>
+</tr>
+<tr class="odd">
+<td align="left">Year2014:RegionMidwest</td>
+<td align="right">-441547.91</td>
+<td align="right">2241049</td>
+<td align="right">-0.197</td>
+<td align="right">0.844</td>
+<td align="right">-4834365</td>
+<td align="right">3951269</td>
+</tr>
+<tr class="even">
+<td align="left">Year2015:RegionNortheast</td>
+<td align="right">-524332.08</td>
+<td align="right">2261021</td>
+<td align="right">-0.232</td>
+<td align="right">0.817</td>
+<td align="right">-4956297</td>
+<td align="right">3907633</td>
+</tr>
+<tr class="odd">
+<td align="left">Year2014:RegionNortheast</td>
+<td align="right">-679993.19</td>
+<td align="right">2288218</td>
+<td align="right">-0.297</td>
+<td align="right">0.766</td>
+<td align="right">-5165270</td>
+<td align="right">3805284</td>
+</tr>
+<tr class="even">
+<td align="left">Year2015:RegionSouth</td>
+<td align="right">-324338.27</td>
+<td align="right">2193558</td>
+<td align="right">-0.148</td>
+<td align="right">0.882</td>
+<td align="right">-4624065</td>
+<td align="right">3975388</td>
+</tr>
+<tr class="odd">
+<td align="left">Year2014:RegionSouth</td>
+<td align="right">-489483.91</td>
+<td align="right">2222384</td>
+<td align="right">-0.220</td>
+<td align="right">0.826</td>
+<td align="right">-4845715</td>
+<td align="right">3866748</td>
+</tr>
+<tr class="even">
+<td align="left">Year2015:RegionWest</td>
+<td align="right">-90756.49</td>
+<td align="right">2206145</td>
+<td align="right">-0.041</td>
+<td align="right">0.967</td>
+<td align="right">-4415156</td>
+<td align="right">4233643</td>
+</tr>
+<tr class="odd">
+<td align="left">Year2014:RegionWest</td>
+<td align="right">65948.32</td>
+<td align="right">2236529</td>
+<td align="right">0.029</td>
+<td align="right">0.976</td>
+<td align="right">-4318009</td>
+<td align="right">4449906</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Neither levels themselves nor their interactions have statistically significant p-values, so alone these are not great predictors. This is actually something of positive sign for the industry. It would be concerning if amount paid varied drastically by year or region given the nature of the service hospice centers provide, so these are slightly encouraging findings.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="numeric-predictors-of-interest" class="section level2">
+<h2>Numeric Predictors of Interest</h2>
+<div id="physician-services" class="section level3">
+<h3>Physician Services</h3>
+<ul>
+<li>Physician Services: “Total number of hospice care physician services provided”</li>
+</ul>
+<pre class="r"><code>fav_stats(D$`Physician Services`)</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">min</th>
+<th align="right">Q1</th>
+<th align="right">median</th>
+<th align="right">Q3</th>
+<th align="right">max</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">n</th>
+<th align="right">missing</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">54</td>
+<td align="right">100641</td>
+<td align="right">306.6639</td>
+<td align="right">1952.223</td>
+<td align="right">10803</td>
+<td align="right">1246</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>There appears to be a very wide range with a large standard deviation. This variable is very skewed since both Q1 and the median are 0 hours, but the mean is about 307 hours.</p>
+<pre class="r"><code>D %&gt;%
+  ggplot(aes(y=`Physician Services`)) + geom_boxplot() +
+  labs(title = &quot;Physician Services&quot;,
+       subtitle = &quot;Total number of hospice care physician services provided&quot;) +
+  ylab(&quot;Physician Service Hours&quot;)</code></pre>
+<pre><code>## Warning: Removed 1246 rows containing non-finite values (stat_boxplot).</code></pre>
+<p><img src="/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+Indeed, there are several outliers present.</p>
+</div>
+<div id="care-hours-spent" class="section level3">
+<h3>Care Hours Spent</h3>
+<ul>
+<li>Home Health Visit Hours per Day</li>
+</ul>
+<pre class="r"><code>fav_stats(D$`Home Health Visit Hours per Day`)</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">min</th>
+<th align="right">Q1</th>
+<th align="right">median</th>
+<th align="right">Q3</th>
+<th align="right">max</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">n</th>
+<th align="right">missing</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td align="right">0</td>
+<td align="right">0.19</td>
+<td align="right">0.27</td>
+<td align="right">0.37</td>
+<td align="right">3.48</td>
+<td align="right">0.3133646</td>
+<td align="right">0.2269501</td>
+<td align="right">12049</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>Home Health Visit Hours per Day During Week Prior to Death</li>
+</ul>
+<pre class="r"><code>fav_stats(D$`Home Health Visit Hours per Day During Week Prior to Death`)</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">min</th>
+<th align="right">Q1</th>
+<th align="right">median</th>
+<th align="right">Q3</th>
+<th align="right">max</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">n</th>
+<th align="right">missing</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td align="right">0</td>
+<td align="right">0.19</td>
+<td align="right">0.28</td>
+<td align="right">0.42</td>
+<td align="right">8</td>
+<td align="right">0.3625512</td>
+<td align="right">0.3419532</td>
+<td align="right">12049</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>It is known that overall visit hours and, thus payments, are higher in th last week of life. Is that supported in this data?</p>
+<pre class="r"><code>t.test(D$`Home Health Visit Hours per Day`, 
+       D$`Home Health Visit Hours per Day During Week Prior to Death`) %&gt;% 
+  list() %&gt;% map_df(.,tidy)</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">estimate</th>
+<th align="right">estimate1</th>
+<th align="right">estimate2</th>
+<th align="right">statistic</th>
+<th align="right">p.value</th>
+<th align="right">parameter</th>
+<th align="right">conf.low</th>
+<th align="right">conf.high</th>
+<th align="left">method</th>
+<th align="left">alternative</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">-0.0491867</td>
+<td align="right">0.3133646</td>
+<td align="right">0.3625512</td>
+<td align="right">-13.15535</td>
+<td align="right">0</td>
+<td align="right">20937.13</td>
+<td align="right">-0.0565152</td>
+<td align="right">-0.0418581</td>
+<td align="left">Welch Two Sample t-test</td>
+<td align="left">two.sided</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Yes, the expected amount of visit hours is significanlty higher in the last week prior to death than it is overal. There is an average increase in Home Health Visit Hours per day of 0.05 hours in the week prior to death. Given the circumstances, that is actually a bit less of an increase than I would have expected.
+Lets see if there is a greter increase in other types of care hours in the week prior to death.</p>
+<pre class="r"><code>D %&gt;%
+  select(`Provider ID`,
+         `Home Health Visit Hours per Day`, 
+         `Home Health Visit Hours per Day During Week Prior to Death`) %&gt;%
+  gather(key = &quot;Type&quot;, value = &quot;Values&quot;, 2:3) %&gt;%
+  ggplot(aes(x=Values, fill = Type)) + 
+  geom_density() +
+  ggtitle(&quot;Home Health Visit Hours per Day&quot;) +
+  theme(legend.position=&quot;bottom&quot;)</code></pre>
+<p><img src="/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+The density plot of their logged values show that there is only a slight increase in hours per week in the week prior to death. This is likely due to a few outliers as well.</p>
+<ul>
+<li>Skilled Nursing Visit Hours per Day</li>
+</ul>
+<pre class="r"><code>fav_stats(D$`Skilled Nursing Visit Hours per Day`)</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">min</th>
+<th align="right">Q1</th>
+<th align="right">median</th>
+<th align="right">Q3</th>
+<th align="right">max</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">n</th>
+<th align="right">missing</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td align="right">0</td>
+<td align="right">0.21</td>
+<td align="right">0.26</td>
+<td align="right">0.33</td>
+<td align="right">5.39</td>
+<td align="right">0.2856171</td>
+<td align="right">0.1708162</td>
+<td align="right">12049</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>Skilled Nursing Visit Hours per Day During Week Prior to Death</li>
+</ul>
+<pre class="r"><code>fav_stats(D$`Skilled Nursing Visit Hours per Day During Week Prior to Death`)</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">min</th>
+<th align="right">Q1</th>
+<th align="right">median</th>
+<th align="right">Q3</th>
+<th align="right">max</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">n</th>
+<th align="right">missing</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td align="right">0</td>
+<td align="right">0.6</td>
+<td align="right">0.8</td>
+<td align="right">1.06</td>
+<td align="right">19.37</td>
+<td align="right">1.035322</td>
+<td align="right">1.042784</td>
+<td align="right">12049</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Does the hypothesized difference stand for Skilled Nursing Visits?</p>
+<pre class="r"><code>t.test(D$`Skilled Nursing Visit Hours per Day`, 
+       D$`Skilled Nursing Visit Hours per Day During Week Prior to Death`) %&gt;% 
+  list() %&gt;% map_df(.,tidy) </code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">estimate</th>
+<th align="right">estimate1</th>
+<th align="right">estimate2</th>
+<th align="right">statistic</th>
+<th align="right">p.value</th>
+<th align="right">parameter</th>
+<th align="right">conf.low</th>
+<th align="right">conf.high</th>
+<th align="left">method</th>
+<th align="left">alternative</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">-0.7497054</td>
+<td align="right">0.2856171</td>
+<td align="right">1.035322</td>
+<td align="right">-77.87929</td>
+<td align="right">0</td>
+<td align="right">12694.1</td>
+<td align="right">-0.7685748</td>
+<td align="right">-0.730836</td>
+<td align="left">Welch Two Sample t-test</td>
+<td align="left">two.sided</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Yes, there is a statistically significant increase in average hours per day by skilled nurses in the week prior to death than there are overall by 0.75 hours. This continues our expected trend of a slight increase in care hours in the week prior to death.</p>
+<ul>
+<li>Social Service Visit Hours per Day</li>
+</ul>
+<pre class="r"><code>fav_stats(D$`Social Service Visit Hours per Day`)</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">min</th>
+<th align="right">Q1</th>
+<th align="right">median</th>
+<th align="right">Q3</th>
+<th align="right">max</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">n</th>
+<th align="right">missing</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td align="right">0</td>
+<td align="right">0.03</td>
+<td align="right">0.04</td>
+<td align="right">0.06</td>
+<td align="right">0.47</td>
+<td align="right">0.0432675</td>
+<td align="right">0.0255404</td>
+<td align="right">12049</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>Social Service Visit Hours per Day During Week Prior to Death</li>
+</ul>
+<pre class="r"><code>fav_stats(D$`Social Service Visit Hours per Day During Week Prior to Death`)</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">min</th>
+<th align="right">Q1</th>
+<th align="right">median</th>
+<th align="right">Q3</th>
+<th align="right">max</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">n</th>
+<th align="right">missing</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td align="right">0</td>
+<td align="right">0.05</td>
+<td align="right">0.08</td>
+<td align="right">0.12</td>
+<td align="right">1.07</td>
+<td align="right">0.0933679</td>
+<td align="right">0.0665678</td>
+<td align="right">12049</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Does the difference hold for Social Service Hours per Day?</p>
+<pre class="r"><code>t.test(D$`Social Service Visit Hours per Day`, 
+       D$`Social Service Visit Hours per Day During Week Prior to Death`) %&gt;% 
+  list() %&gt;% map_df(.,tidy)</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">estimate</th>
+<th align="right">estimate1</th>
+<th align="right">estimate2</th>
+<th align="right">statistic</th>
+<th align="right">p.value</th>
+<th align="right">parameter</th>
+<th align="right">conf.low</th>
+<th align="right">conf.high</th>
+<th align="left">method</th>
+<th align="left">alternative</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">-0.0501004</td>
+<td align="right">0.0432675</td>
+<td align="right">0.0933679</td>
+<td align="right">-77.13154</td>
+<td align="right">0</td>
+<td align="right">15519.86</td>
+<td align="right">-0.0513736</td>
+<td align="right">-0.0488272</td>
+<td align="left">Welch Two Sample t-test</td>
+<td align="left">two.sided</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Yes. Continuing this trend, there is an average incraese in hours visited by social service representatives in the week prior to death.</p>
+<div id="linear-regression-by-type-of-hours-spent-with-patients" class="section level4">
+<h4>Linear Regression by type of hours spent with patients</h4>
+<pre class="r"><code>mVisits &lt;- lm(`Total Medicare Standard Payment Amount` ~ 
+   `Home Health Visit Hours per Day` +
+   `Home Health Visit Hours per Day During Week Prior to Death` +
+   `Skilled Nursing Visit Hours per Day` +
+   `Skilled Nursing Visit Hours per Day During Week Prior to Death` +
+   `Social Service Visit Hours per Day` +
+   `Social Service Visit Hours per Day During Week Prior to Death`, 
+   data = D)
+get_regression_table(mVisits)</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">term</th>
+<th align="right">estimate</th>
+<th align="right">std_error</th>
+<th align="right">statistic</th>
+<th align="right">p_value</th>
+<th align="right">lower_ci</th>
+<th align="right">upper_ci</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">intercept</td>
+<td align="right">547225.3</td>
+<td align="right">215837.7</td>
+<td align="right">2.535</td>
+<td align="right">0.011</td>
+<td align="right">124148.7</td>
+<td align="right">970301.9</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Home Health Visit Hours per Day</code></td>
+<td align="right">-2526305.4</td>
+<td align="right">526784.5</td>
+<td align="right">-4.796</td>
+<td align="right">0.000</td>
+<td align="right">-3558887.8</td>
+<td align="right">-1493723.1</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>Home Health Visit Hours per Day During Week Prior to Death</code></td>
+<td align="right">5282354.9</td>
+<td align="right">354670.5</td>
+<td align="right">14.894</td>
+<td align="right">0.000</td>
+<td align="right">4587143.6</td>
+<td align="right">5977566.3</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Skilled Nursing Visit Hours per Day</code></td>
+<td align="right">832342.8</td>
+<td align="right">639300.5</td>
+<td align="right">1.302</td>
+<td align="right">0.193</td>
+<td align="right">-420789.1</td>
+<td align="right">2085474.7</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>Skilled Nursing Visit Hours per Day During Week Prior to Death</code></td>
+<td align="right">1349556.5</td>
+<td align="right">99011.4</td>
+<td align="right">13.630</td>
+<td align="right">0.000</td>
+<td align="right">1155478.2</td>
+<td align="right">1543634.8</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Social Service Visit Hours per Day</code></td>
+<td align="right">-9206518.6</td>
+<td align="right">5057542.3</td>
+<td align="right">-1.820</td>
+<td align="right">0.069</td>
+<td align="right">-19120115.8</td>
+<td align="right">707078.6</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>Social Service Visit Hours per Day During Week Prior to Death</code></td>
+<td align="right">12009895.1</td>
+<td align="right">1890417.2</td>
+<td align="right">6.353</td>
+<td align="right">0.000</td>
+<td align="right">8304373.0</td>
+<td align="right">15715417.1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This linear model is quite interesting and suprising to me. Each of the types of hours are statistically significant except Skilled Nursing Visit Hours per day, and Social Service Visit Hous per Day. Suprisingly, the amount of Home Health Visit Hours per Day and Social Service Visit Hours per Day had significant negaitve coefficients. For Home Health Visit Hours per Day, for each increase hour visited, we expect a <em>decrease</em> in standard payment amount by <em>2526305.4</em>. However, this linear model alone has a low explanatory capacity, explaining only 6.62% of the overall variation in Total Medicare Standard Payment Amount. To assess if this is the result of very skewed data among all predictor and outcome variales, I will rerun the model using logged predictor and outcome values.</p>
+<ul>
+<li><strong>Regression with logged values</strong></li>
+</ul>
+<pre class="r"><code># create new dataframe for regression analysis of logged values
+DbyVistLog &lt;- D %&gt;%
+#### select only needed variables
+  select(`Provider ID`,
+        `Total Medicare Standard Payment Amount`,
+        `Home Health Visit Hours per Day`,
+        `Home Health Visit Hours per Day During Week Prior to Death`,
+        `Skilled Nursing Visit Hours per Day`, 
+        `Skilled Nursing Visit Hours per Day During Week Prior to Death`, 
+        `Social Service Visit Hours per Day`, 
+        `Social Service Visit Hours per Day During Week Prior to Death`) %&gt;%
+### filter out NAs
+  filter(!is.na(`Total Medicare Standard Payment Amount`) &amp; 
+         !is.na(`Home Health Visit Hours per Day`) &amp; 
+         !is.na(`Home Health Visit Hours per Day During Week Prior to Death`) &amp;
+         !is.na(`Skilled Nursing Visit Hours per Day`) &amp;
+         !is.na(`Skilled Nursing Visit Hours per Day During Week Prior to Death`) &amp; 
+         !is.na(`Social Service Visit Hours per Day`) &amp;
+         !is.na(`Social Service Visit Hours per Day During Week Prior to Death`)) %&gt;%
+### mutate with logging each value plus 1 (since min of multiple variables is 0)
+  mutate(lpmt = (log((`Total Medicare Standard Payment Amount`)+1)),
+         lHHVisitHRs = (log((`Home Health Visit Hours per Day`)+1)),
+         lHHVisitHRsD = (log((`Home Health Visit Hours per Day During Week Prior to Death`)+1)),
+         lSNV = (log((`Skilled Nursing Visit Hours per Day`)+1)),
+         lSNVD = (log((`Skilled Nursing Visit Hours per Day During Week Prior to Death`)+1)),
+         lSSVH = (log((`Social Service Visit Hours per Day`)+1)),
+         lSSVHD = (log((`Social Service Visit Hours per Day During Week Prior to Death`)+1)))
+# create and output model
+mVisitsL &lt;- lm(lpmt ~ lHHVisitHRs + lHHVisitHRsD + lHHVisitHRsD + lSNV + lSNVD  + lSSVH + lSSVHD, data = DbyVistLog)
+get_regression_table(mVisitsL)</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">term</th>
+<th align="right">estimate</th>
+<th align="right">std_error</th>
+<th align="right">statistic</th>
+<th align="right">p_value</th>
+<th align="right">lower_ci</th>
+<th align="right">upper_ci</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">intercept</td>
+<td align="right">13.789</td>
+<td align="right">0.034</td>
+<td align="right">410.747</td>
+<td align="right">0.000</td>
+<td align="right">13.723</td>
+<td align="right">13.855</td>
+</tr>
+<tr class="even">
+<td align="left">lHHVisitHRs</td>
+<td align="right">0.222</td>
+<td align="right">0.120</td>
+<td align="right">1.851</td>
+<td align="right">0.064</td>
+<td align="right">-0.013</td>
+<td align="right">0.457</td>
+</tr>
+<tr class="odd">
+<td align="left">lHHVisitHRsD</td>
+<td align="right">1.279</td>
+<td align="right">0.095</td>
+<td align="right">13.447</td>
+<td align="right">0.000</td>
+<td align="right">1.093</td>
+<td align="right">1.465</td>
+</tr>
+<tr class="even">
+<td align="left">lSNV</td>
+<td align="right">-0.705</td>
+<td align="right">0.149</td>
+<td align="right">-4.716</td>
+<td align="right">0.000</td>
+<td align="right">-0.997</td>
+<td align="right">-0.412</td>
+</tr>
+<tr class="odd">
+<td align="left">lSNVD</td>
+<td align="right">0.413</td>
+<td align="right">0.047</td>
+<td align="right">8.867</td>
+<td align="right">0.000</td>
+<td align="right">0.321</td>
+<td align="right">0.504</td>
+</tr>
+<tr class="even">
+<td align="left">lSSVH</td>
+<td align="right">-6.403</td>
+<td align="right">0.723</td>
+<td align="right">-8.859</td>
+<td align="right">0.000</td>
+<td align="right">-7.820</td>
+<td align="right">-4.986</td>
+</tr>
+<tr class="odd">
+<td align="left">lSSVHD</td>
+<td align="right">4.767</td>
+<td align="right">0.291</td>
+<td align="right">16.394</td>
+<td align="right">0.000</td>
+<td align="right">4.197</td>
+<td align="right">5.337</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Even after logging the values, a Social Service Visit Hours per Day still displays negative correlation with Total Medicare Standard Payment Amount. Interpreting the logged regression, each percent increase in Social Service Visit hours predicts a 6.403% <em>decrease</em> in Total Medicare Standard Payment Amount. After logging variables, this model also shows a predicted slight percent <em>decrease</em> in Total Medicare Standard Payment Amount with each percent increase in Skilled Nursing Visit Hours.</p>
+<p>Model Diagnostics:</p>
+<pre class="r"><code>get_regression_summaries(mVisitsL)</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">r_squared</th>
+<th align="right">adj_r_squared</th>
+<th align="right">mse</th>
+<th align="right">rmse</th>
+<th align="right">sigma</th>
+<th align="right">statistic</th>
+<th align="right">p_value</th>
+<th align="right">df</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">0.097</td>
+<td align="right">0.097</td>
+<td align="right">1.414159</td>
+<td align="right">1.189184</td>
+<td align="right">1.19</td>
+<td align="right">216.597</td>
+<td align="right">0</td>
+<td align="right">7</td>
+</tr>
+</tbody>
+</table>
+</div>
+<pre class="r"><code>get_regression_points(mVisitsL) %&gt;%
+   ggplot(aes(x=residual)) + geom_density() +
+   ggtitle(&quot;Residuals from mVisits Regression Model&quot;) </code></pre>
+<p><img src="/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-28-1.png" width="672" />
+Even the logged model still has a low overall predicitve capacity with an R Squared of only 9.70%. The model as a whole is statistically significant and the residuals do appear to be normal.</p>
+</div>
+</div>
+<div id="diagnosis-types" class="section level3">
+<h3>Diagnosis Types</h3>
+<pre class="r"><code># Create tidy dataframe with number of beneficiaries by type for easier analysis
+DbyDiagnosis &lt;- D %&gt;%
+  select(`Provider ID`,
+         `Hospice beneficiaries with a primary diagnosis of cancer`, 
+         `Hospice beneficiaries with a primary diagnosis of dementia`,
+         `Hospice beneficiaries with a primary diagnosis of stroke`,
+         `Hospice beneficiaries with a primary diagnosis of circulatory/heart disease`,
+         `Hospice beneficiaries with a primary diagnosis of respiratory disease`) %&gt;%
+  gather(key = &quot;Type&quot;, value = &quot;Beneficiaries&quot;, 2:6)</code></pre>
+<p>Summary Statistics by Diagnosis Type</p>
+<pre class="r"><code>DbyDiagnosis %&gt;%  
+  group_by(Type) %&gt;%
+  filter(!is.na(Beneficiaries)) %&gt;%
+  summarise(Min = min(Beneficiaries),
+            Q1 = quantile(Beneficiaries, .25),
+            median = median(Beneficiaries), 
+            Q3 = quantile(Beneficiaries, .75),
+            max = max(Beneficiaries),
+            mean = mean(Beneficiaries),
+            sd = sd(Beneficiaries),
+            n = n()) %&gt;%
+  arrange(desc(mean))</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">Type</th>
+<th align="right">Min</th>
+<th align="right">Q1</th>
+<th align="right">median</th>
+<th align="right">Q3</th>
+<th align="right">max</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Hospice beneficiaries with a primary diagnosis of cancer</td>
+<td align="right">0</td>
+<td align="right">27</td>
+<td align="right">54</td>
+<td align="right">125</td>
+<td align="right">5426</td>
+<td align="right">117.23597</td>
+<td align="right">205.04688</td>
+<td align="right">10048</td>
+</tr>
+<tr class="even">
+<td align="left">Hospice beneficiaries with a primary diagnosis of dementia</td>
+<td align="right">0</td>
+<td align="right">24</td>
+<td align="right">46</td>
+<td align="right">94</td>
+<td align="right">2078</td>
+<td align="right">83.31137</td>
+<td align="right">120.07482</td>
+<td align="right">9362</td>
+</tr>
+<tr class="odd">
+<td align="left">Hospice beneficiaries with a primary diagnosis of circulatory/heart disease</td>
+<td align="right">0</td>
+<td align="right">24</td>
+<td align="right">44</td>
+<td align="right">88</td>
+<td align="right">4993</td>
+<td align="right">78.73133</td>
+<td align="right">130.76801</td>
+<td align="right">9867</td>
+</tr>
+<tr class="even">
+<td align="left">Hospice beneficiaries with a primary diagnosis of respiratory disease</td>
+<td align="right">0</td>
+<td align="right">19</td>
+<td align="right">33</td>
+<td align="right">65</td>
+<td align="right">2398</td>
+<td align="right">57.41664</td>
+<td align="right">83.78012</td>
+<td align="right">7546</td>
+</tr>
+<tr class="odd">
+<td align="left">Hospice beneficiaries with a primary diagnosis of stroke</td>
+<td align="right">0</td>
+<td align="right">15</td>
+<td align="right">27</td>
+<td align="right">54</td>
+<td align="right">8336</td>
+<td align="right">52.11899</td>
+<td align="right">158.85912</td>
+<td align="right">6757</td>
+</tr>
+</tbody>
+</table>
+</div>
+<pre class="r"><code>DbyDiagnosis %&gt;%
+  ggplot(aes(x = Type, y = Beneficiaries, color = Type)) + 
+  geom_boxplot() + 
+  theme(legend.position=&quot;none&quot;) +
+  scale_x_discrete(labels = c(&quot;Cancer&quot;, &quot;Dementia&quot;, &quot;Stroke&quot;, &quot;Circulatory/Heart&quot;, &quot;Respiratory&quot;)) + 
+  labs(title = &quot;Number of Benificiaries by Primary Diagnosis&quot;) +
+  ylab(&quot;Number of Distinct Beneficiaries&quot;) +
+  scale_color_brewer()</code></pre>
+<p><img src="/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-31-1.png" width="672" />
+There are some extreme outliers, especially in Cancer, Dementia, and Respiratory</p>
+<pre class="r"><code>DbyDiagnosis %&gt;%
+  ggplot(aes(x = Type, y = log(Beneficiaries), fill = Type)) + 
+  geom_boxplot(outlier.shape = NA) + 
+  scale_x_discrete(labels = c(&quot;Cancer&quot;, &quot;Dementia&quot;, &quot;Stroke&quot;, &quot;Circulatory/Heart&quot;, &quot;Respiratory&quot;)) + 
+  labs(title = &quot;Number of Benificiaries by Primary Diagnosis&quot;,
+       subtitle = &quot;Values are Logged&quot;) +
+  ylab(&quot;Number of Distinct Beneficiaries&quot;) + 
+  theme(legend.position = &quot;none&quot;) +
+  scale_color_brewer()</code></pre>
+<p><img src="/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-32-1.png" width="672" />
+After logging, the distribution acorss primary diagnosis type is both consistant and normal between diagnosies.</p>
+</div>
+<div id="regression-by-diagnosis" class="section level3">
+<h3>Regression by Diagnosis</h3>
+<pre class="r"><code>DiagMod &lt;- lm(log((`Total Medicare Standard Payment Amount`)+1) ~ 
+   log((`Hospice beneficiaries with a primary diagnosis of cancer`)+1) + 
+   log((`Hospice beneficiaries with a primary diagnosis of dementia`)+1) +
+   log((`Hospice beneficiaries with a primary diagnosis of stroke`)+1) +
+   log((`Hospice beneficiaries with a primary diagnosis of circulatory/heart disease`)+1) +
+   log((`Hospice beneficiaries with a primary diagnosis of respiratory disease`)+1), 
+   data = D)
+get_regression_table(DiagMod) </code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">term</th>
+<th align="right">estimate</th>
+<th align="right">std_error</th>
+<th align="right">statistic</th>
+<th align="right">p_value</th>
+<th align="right">lower_ci</th>
+<th align="right">upper_ci</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">intercept</td>
+<td align="right">11.231</td>
+<td align="right">0.019</td>
+<td align="right">591.584</td>
+<td align="right">0</td>
+<td align="right">11.194</td>
+<td align="right">11.268</td>
+</tr>
+<tr class="even">
+<td align="left">log((<code>Hospice beneficiaries with a primary diagnosis of cancer</code>) + 1)</td>
+<td align="right">-0.072</td>
+<td align="right">0.007</td>
+<td align="right">-10.481</td>
+<td align="right">0</td>
+<td align="right">-0.086</td>
+<td align="right">-0.059</td>
+</tr>
+<tr class="odd">
+<td align="left">log((<code>Hospice beneficiaries with a primary diagnosis of dementia</code>) + 1)</td>
+<td align="right">0.362</td>
+<td align="right">0.006</td>
+<td align="right">63.777</td>
+<td align="right">0</td>
+<td align="right">0.351</td>
+<td align="right">0.373</td>
+</tr>
+<tr class="even">
+<td align="left">log((<code>Hospice beneficiaries with a primary diagnosis of stroke</code>) + 1)</td>
+<td align="right">0.195</td>
+<td align="right">0.007</td>
+<td align="right">29.524</td>
+<td align="right">0</td>
+<td align="right">0.182</td>
+<td align="right">0.208</td>
+</tr>
+<tr class="odd">
+<td align="left">log((<code>Hospice beneficiaries with a primary diagnosis of circulatory/heart disease</code>) + 1)</td>
+<td align="right">0.362</td>
+<td align="right">0.009</td>
+<td align="right">38.904</td>
+<td align="right">0</td>
+<td align="right">0.344</td>
+<td align="right">0.381</td>
+</tr>
+<tr class="even">
+<td align="left">log((<code>Hospice beneficiaries with a primary diagnosis of respiratory disease</code>) + 1)</td>
+<td align="right">0.162</td>
+<td align="right">0.009</td>
+<td align="right">18.099</td>
+<td align="right">0</td>
+<td align="right">0.145</td>
+<td align="right">0.180</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This logged model shows several diagnosies with minimal predictive power. Each coefficient is statistically significant at a 0.01 alpha level. Beneficiaries with primary diagnoses of cancer or circulatory/heart had the highest impact on Total Medicare Standard Payment Amount; with each percent increase in the number of benificiaries with either cancer or circulatory/heart disease, we would expect a 0.362 percent increase in Total Medicare Standard Payment Amount. While this may seem small, this impact adds up over time!</p>
+</div>
+<div id="gender-distribution" class="section level3">
+<h3>Gender Distribution</h3>
+<pre class="r"><code>DbyGender &lt;- D %&gt;%
+  select(`Provider ID`, `Female hospice beneficiaries`, `Male hospice beneficiaries`) %&gt;%
+  gather(key = &quot;Gender&quot;, value = &quot;Amount&quot;, 2:3) %&gt;%
+  filter(!is.na(Amount)) </code></pre>
+<pre class="r"><code>DbyGender %&gt;%  
+  group_by(Gender) %&gt;%
+  summarise(Min = min(Amount),
+            Q1 = quantile(Amount, .25),
+            median = median(Amount), 
+            Q3 = quantile(Amount, .75),
+            max = max(Amount),
+            mean = mean(Amount),
+            sd = sd(Amount),
+            n = n(),
+            missing = count(is.na(Amount))) %&gt;%
+  arrange(desc(mean))</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">Gender</th>
+<th align="right">Min</th>
+<th align="right">Q1</th>
+<th align="right">median</th>
+<th align="right">Q3</th>
+<th align="right">max</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">n</th>
+<th align="right">missing</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Female hospice beneficiaries</td>
+<td align="right">11</td>
+<td align="right">54</td>
+<td align="right">114</td>
+<td align="right">246</td>
+<td align="right">15554</td>
+<td align="right">224.6755</td>
+<td align="right">407.2776</td>
+<td align="right">11116</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Male hospice beneficiaries</td>
+<td align="right">11</td>
+<td align="right">37</td>
+<td align="right">79</td>
+<td align="right">172</td>
+<td align="right">10325</td>
+<td align="right">157.8419</td>
+<td align="right">287.6987</td>
+<td align="right">11116</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<pre class="r"><code>DbyGender %&gt;%
+  ggplot(aes(x=Gender, y = Amount, color = Gender)) +
+  geom_boxplot() + 
+  labs(title = &quot;Number of Hospice Benificiaries by Gender&quot;) +
+  theme(legend.position=&quot;none&quot;) +
+  scale_color_brewer()</code></pre>
+<p><img src="/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<pre class="r"><code># count outliers by gender
+library(grDevices)
+F &lt;- DbyGender %&gt;% 
+  filter(Gender == &quot;Female hospice beneficiaries&quot;)
+FL &lt;- length(F$Amount[which(F$Amount %in% boxplot.stats(F$Amount)$out)])
+M &lt;- DbyGender %&gt;% 
+  filter(Gender == &quot;Male hospice beneficiaries&quot;)
+ML &lt;- length(M$Amount[which(M$Amount %in% boxplot.stats(M$Amount)$out)])</code></pre>
+<p>The distribution appears to be skewed, but we have 1004 outliers for the amount of female benificiaries and 1040 outliers for the amount of male benificiaries.</p>
+<pre class="r"><code>DbyGender %&gt;%
+  ggplot(aes(x=Gender, y = Amount, fill = Gender)) +
+  geom_boxplot(outlier.shape = NA) + 
+  ylim(c(0,400)) +
+  labs(title = &quot;Number of Hospice Benificiaries by Gender&quot;, 
+       subtitle = &quot;Outliers Removed&quot;) +
+  theme(legend.position=&quot;none&quot;) +
+  scale_fill_brewer()</code></pre>
+<pre><code>## Warning: Removed 2471 rows containing non-finite values (stat_boxplot).</code></pre>
+<p><img src="/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-38-1.png" width="672" />
+Distribution is still somewhat skewed, but resembles closer to a normal distribution.</p>
+<div id="regression-model-by-gender" class="section level4">
+<h4>Regression model by Gender</h4>
+<p>Is there a difference in impact on Total Standard Payment by number of benificiaries by gender.</p>
+<pre class="r"><code>GMod &lt;- lm(log(`Total Medicare Standard Payment Amount`) ~ 
+   log(`Female hospice beneficiaries`) +
+   log(`Male hospice beneficiaries`), 
+   data = D)
+get_regression_table(GMod) </code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">term</th>
+<th align="right">estimate</th>
+<th align="right">std_error</th>
+<th align="right">statistic</th>
+<th align="right">p_value</th>
+<th align="right">lower_ci</th>
+<th align="right">upper_ci</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">intercept</td>
+<td align="right">10.046</td>
+<td align="right">0.015</td>
+<td align="right">652.148</td>
+<td align="right">0.000</td>
+<td align="right">10.016</td>
+<td align="right">10.076</td>
+</tr>
+<tr class="even">
+<td align="left">log(<code>Female hospice beneficiaries</code>)</td>
+<td align="right">0.922</td>
+<td align="right">0.013</td>
+<td align="right">72.061</td>
+<td align="right">0.000</td>
+<td align="right">0.897</td>
+<td align="right">0.947</td>
+</tr>
+<tr class="odd">
+<td align="left">log(<code>Male hospice beneficiaries</code>)</td>
+<td align="right">0.042</td>
+<td align="right">0.013</td>
+<td align="right">3.278</td>
+<td align="right">0.001</td>
+<td align="right">0.017</td>
+<td align="right">0.067</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In using log values, we see a 0.88% stronger impact of female beneficiaries on Total Medicare Standard Payment Amount than we do for male beneficiaries. Both factors are statistically significant, though. This model alone, though, has a very strong exlanatory capacity with an R squared at 89.7%. That is by far the strongest model within each category.</p>
+<p>All told, this indicates that there are noteably more women than men in the US hospice system.</p>
+</div>
+</div>
+<div id="racial-distributions" class="section level3">
+<h3>Racial Distributions</h3>
+<pre class="r"><code>DbyRace &lt;- D %&gt;%
+  select(`Provider ID`, 
+         `White hospice beneficiaries`, 
+         `Black hospice beneficiaries`, 
+         `Asian hospice beneficiaries`, 
+         `Hispanic hospice beneficiaries`, 
+         `Other/unknown race hospice beneficiaries`) %&gt;%
+  gather(key = &quot;Race&quot;, value = &quot;Amount&quot;, 2:6) %&gt;%
+  filter(!is.na(Amount))</code></pre>
+<pre class="r"><code>DbyRace %&gt;%
+  group_by(Race) %&gt;%
+  summarise(Min = min(Amount),
+            Q1 = quantile(Amount, .25),
+            median = median(Amount), 
+            Q3 = quantile(Amount, .75),
+            max = max(Amount),
+            mean = mean(Amount),
+            sd = sd(Amount),
+            n = n(),
+            missing = count(is.na(Amount))) %&gt;%
+  arrange(desc(mean))</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">Race</th>
+<th align="right">Min</th>
+<th align="right">Q1</th>
+<th align="right">median</th>
+<th align="right">Q3</th>
+<th align="right">max</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">n</th>
+<th align="right">missing</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">White hospice beneficiaries</td>
+<td align="right">0</td>
+<td align="right">63</td>
+<td align="right">147</td>
+<td align="right">335</td>
+<td align="right">16332</td>
+<td align="right">306.110458</td>
+<td align="right">539.10949</td>
+<td align="right">11570</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Black hospice beneficiaries</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">19</td>
+<td align="right">48</td>
+<td align="right">2917</td>
+<td align="right">45.129267</td>
+<td align="right">98.52297</td>
+<td align="right">7295</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Hispanic hospice beneficiaries</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">13</td>
+<td align="right">37</td>
+<td align="right">6145</td>
+<td align="right">43.443305</td>
+<td align="right">171.20910</td>
+<td align="right">5556</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Asian hospice beneficiaries</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1230</td>
+<td align="right">7.722306</td>
+<td align="right">40.40040</td>
+<td align="right">5967</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Other/unknown race hospice beneficiaries</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">11</td>
+<td align="right">234</td>
+<td align="right">6.733256</td>
+<td align="right">15.77411</td>
+<td align="right">3449</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<pre class="r"><code>DbyRace$RaceLabel &lt;- word(DbyRace$Race, 1) 
+#extract the first word in the varaible, caputring the only word needed for the boxplot label
+
+DbyRace %&gt;%  
+  ggplot(aes(x=RaceLabel, y = Amount, color = Race)) +
+  geom_boxplot() + 
+  labs(title = &quot;Number of Hospice Benificiaries by Race&quot;) +
+  theme(legend.position=&quot;none&quot;) + 
+  xlab(&quot;Race&quot;) + ylab(&quot;Amount of Beifiareis&quot;) +
+  scale_color_brewer()</code></pre>
+<p><img src="/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<pre class="r"><code>DbyRace %&gt;%  
+  ggplot(aes(x=RaceLabel, y = Amount, fill = Race)) +
+  geom_boxplot(outlier.shape = NA) + 
+  labs(title = &quot;Number of Hospice Benificiaries by Race&quot;,
+       subtitle = &quot;Outliers Removed&quot;) +
+  theme(legend.position=&quot;none&quot;) + 
+  ylim(c(0, 550)) +
+  xlab(&quot;Race&quot;) + ylab(&quot;Amount of Beifiareis&quot;) +
+  scale_fill_brewer()</code></pre>
+<pre><code>## Warning: Removed 1766 rows containing non-finite values (stat_boxplot).</code></pre>
+<p><img src="/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<p>It is difficult to see the distribution of amount of benificiaries by race, particularly considering the range for amount of White identifying benificiaries is so much higher than it is for the each of the other Race categories.</p>
+<pre class="r"><code>DbyRace %&gt;%
+  group_by(Race) %&gt;%  
+  summarise(total = sum(Amount)) %&gt;%
+  mutate(percent = percent(total/sum(total)))</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">Race</th>
+<th align="right">total</th>
+<th align="left">percent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Asian hospice beneficiaries</td>
+<td align="right">46079</td>
+<td align="left">1.1%</td>
+</tr>
+<tr class="even">
+<td align="left">Black hospice beneficiaries</td>
+<td align="right">329218</td>
+<td align="left">7.9%</td>
+</tr>
+<tr class="odd">
+<td align="left">Hispanic hospice beneficiaries</td>
+<td align="right">241371</td>
+<td align="left">5.8%</td>
+</tr>
+<tr class="even">
+<td align="left">Other/unknown race hospice beneficiaries</td>
+<td align="right">23223</td>
+<td align="left">0.6%</td>
+</tr>
+<tr class="odd">
+<td align="left">White hospice beneficiaries</td>
+<td align="right">3541698</td>
+<td align="left">84.7%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For a clearer visualization of this descrepency, let’s see the difference just between White and White.</p>
+<pre class="r"><code>DbyRace &lt;- DbyRace %&gt;%
+  mutate(White = RaceLabel == &quot;White&quot;)
+DbyRace %&gt;%
+  group_by(White) %&gt;%  
+  summarise(total = sum(Amount)) %&gt;%
+  mutate(percent = percent(total/sum(total)))</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">White</th>
+<th align="right">total</th>
+<th align="left">percent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">FALSE</td>
+<td align="right">639891</td>
+<td align="left">15.3%</td>
+</tr>
+<tr class="even">
+<td align="left">TRUE</td>
+<td align="right">3541698</td>
+<td align="left">84.7%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<pre class="r"><code>DbyRace %&gt;%  
+  ggplot(aes(x=White, y = Amount, fill = White)) +
+  geom_boxplot(outlier.shape = NA) + 
+  labs(title = &quot;Number of Hospice Benificiaries by Race&quot;,
+       subtitle = &quot;Outliers Removed, Non-White and White&quot;) +
+  theme(legend.position=&quot;none&quot;) + 
+  ylim(c(0, 550)) +
+  xlab(&quot;White&quot;) + ylab(&quot;Amount of Beifiareis&quot;) +
+  scale_fill_brewer()</code></pre>
+<pre><code>## Warning: Removed 1766 rows containing non-finite values (stat_boxplot).</code></pre>
+<p><img src="/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<p>It is interesting to note that 84.7% of the beneficiaries in the dataset are identified as white. This could be an anomolie or the result of several intersecting socioeconoimc and historical factors pertaining to access to healh care, especially end-of-life care. This is consistant <a href="https://www.ncbi.nlm.nih.gov/pubmed/18588409">Cohen’s 2008 systematic review</a> of racial disparities in hospice care system.</p>
+<p>Let’s see how this logic holds up in a regression model on Total Medicare Standard Payment Amount.</p>
+<pre class="r"><code>RMod &lt;- lm(`Total Medicare Standard Payment Amount` ~ 
+   `White hospice beneficiaries` +
+   `Black hospice beneficiaries` + 
+   `Asian hospice beneficiaries` +
+   `Hispanic hospice beneficiaries` + 
+   `Other/unknown race hospice beneficiaries`, data = D)
+get_regression_table(RMod)</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="left">term</th>
+<th align="right">estimate</th>
+<th align="right">std_error</th>
+<th align="right">statistic</th>
+<th align="right">p_value</th>
+<th align="right">lower_ci</th>
+<th align="right">upper_ci</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">intercept</td>
+<td align="right">-999832.977</td>
+<td align="right">136345.786</td>
+<td align="right">-7.333</td>
+<td align="right">0.000</td>
+<td align="right">-1267300.053</td>
+<td align="right">-732365.90</td>
+</tr>
+<tr class="even">
+<td align="left"><code>White hospice beneficiaries</code></td>
+<td align="right">10677.084</td>
+<td align="right">202.108</td>
+<td align="right">52.829</td>
+<td align="right">0.000</td>
+<td align="right">10280.612</td>
+<td align="right">11073.56</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>Black hospice beneficiaries</code></td>
+<td align="right">11347.950</td>
+<td align="right">1113.098</td>
+<td align="right">10.195</td>
+<td align="right">0.000</td>
+<td align="right">9164.406</td>
+<td align="right">13531.50</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Asian hospice beneficiaries</code></td>
+<td align="right">5467.372</td>
+<td align="right">3376.764</td>
+<td align="right">1.619</td>
+<td align="right">0.106</td>
+<td align="right">-1156.766</td>
+<td align="right">12091.51</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>Hispanic hospice beneficiaries</code></td>
+<td align="right">44770.962</td>
+<td align="right">618.849</td>
+<td align="right">72.345</td>
+<td align="right">0.000</td>
+<td align="right">43556.976</td>
+<td align="right">45984.95</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Other/unknown race hospice beneficiaries</code></td>
+<td align="right">-76587.338</td>
+<td align="right">17497.609</td>
+<td align="right">-4.377</td>
+<td align="right">0.000</td>
+<td align="right">-110912.082</td>
+<td align="right">-42262.59</td>
+</tr>
+</tbody>
+</table>
+</div>
+<pre class="r"><code>summary(RMod)$r.squared</code></pre>
+<pre><code>## [1] 0.9701032</code></pre>
+<p>This model has a vey high predictive power with an R squared of 97.0% with each coefficient being statistically significant. According to this model, each added white beneficiary contributes an expected $10677.08 in standard medicare payments with a relatively low standard error of $202.11. Each added added Black beneficiary contributes an expected $11347.95 in standard medicare payments, but with a relatively high standard error of $1113.10. This variation is again likely due to the notably more white beneficiares in the dataset.</p>
+</div>
+</div>
+<div id="final-conclusions-and-takeaways" class="section level2">
+<h2>Final Conclusions and Takeaways</h2>
+<ul>
+<li>Diagnosis Type, Gender, and Race all proved to be strong predictors of standard medicare payments</li>
+<li>Year and Region did not prove to be strong predictors.</li>
+<li>There are noteably more women then men recieving treatment in the hospice system.</li>
+<li>Hospice payments are tend to be skewed with a small group of highlgy differentiated outliers. If one is interested in detecting fraud, identifying unique characteristics of those outliers is a useful starting point.</li>
+</ul>
+<div id="next-steps-for-further-exploration" class="section level3">
+<h3>Next steps for further exploration</h3>
+<p>There is so much more to explore about the hospice system using this data set as a startin point. Some initial ideas to include:</p>
+<ul>
+<li>Analyze average age as a variable</li>
+<li>Create regression analyses of within each variable grouping to find the stongest predictors.</li>
+</ul>
+</div>
+</div>
+</div>
+
+    </div>
+
+    
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/healthcare/">Healthcare</a>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+    
+    
+    <div class="media author-card content-widget-hr">
+      
+        
+        <img class="avatar mr-3 avatar-square" src="/author/zachary-dyne/avatar_hu42e9a288c3f239ff7e7b54bf719405b0_70776_270x270_fill_q90_lanczos_center.jpg" alt="Zachary Dyne">
+      
+
+      <div class="media-body">
+        <h5 class="card-title"><a href="/">Zachary Dyne</a></h5>
+        <h6 class="card-subtitle">Data Scientist, Data Analyst, &amp; Research Programmer</h6>
+        <p class="card-text">Zachary Dyne is a recent MBA graduate and data scientist interested in the intersection of data science, health care, and public &amp; nonprofit management.</p>
+        <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:zdynedatasci@gmail.com" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/zachary-dyne/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/zdynedatasci" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+      </div>
+    </div>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    <script>const isSiteThemeDark = false;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.37431be2d92d7fb0160054761ab79602.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+  <p class="powered-by">
+    
+      <a href="/privacy/">Privacy Policy</a>
+    
+    
+       &middot; 
+      <a href="/terms/">Terms</a>
+    
+  </p>
+  
+
+  <p class="powered-by">
+    © 2020 Zachary Dyne
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
