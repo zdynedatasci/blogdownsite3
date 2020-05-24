@@ -6,7 +6,7 @@ active = true  # Activate this widget? true/false
 weight = 40  # Order that this section will appear.
 
 title = "Experience"
-subtitle = "Here is a brief overview of the work, project, and internship experience I've gained while completing my BA, MBA, and Data Science Graduate Certificate. Check out my resume for specific details on each experience."
+subtitle = "Here is a brief overview of the work, project, and internship experience I've gained while completing my BA, MBA, and Data Science Graduate Certificate. Check out my [resume](https://zldyne.netlify.app/files/cv.pdf) for specific details on each experience."
 
 # Date format for experience
 #   Refer to https://sourcethemes.com/academic/docs/customization/#date-format
@@ -30,7 +30,7 @@ date_format = "Jan 2006"
   """
 
 [[experience]]
-  title = "Graduate Assistant: **Financial Statement Analysis**"
+  title = "Graduate Assistant: *Financial Statement Analysis*"
   company = "Willamette University, Atkinson Graduate School of Management"
   company_url = ""
   location = "Salem, Oregon"
