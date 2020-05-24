@@ -37,7 +37,7 @@ date_format = "Jan 2006"
   date_start = "2019-08-01"
   date_end = "2019-12-01"
   description = """
- I created and updated financial statement analysis data templates to be used an MBA level finance and accounting elective course using Excel. While learning financial accounting, I practiced managing my own data projects in a new subject area.
+ I created and updated financial statement analysis data templates to be used in an MBA level finance and accounting elective course using Excel. While learning financial accounting, I practiced managing my own data projects in a new subject area.
   """
 
 [[experience]]
