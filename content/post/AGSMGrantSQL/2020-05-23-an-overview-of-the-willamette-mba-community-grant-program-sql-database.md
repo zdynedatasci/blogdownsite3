@@ -44,7 +44,7 @@ While I can't share the content of many tables due to privacy reasons, I can sha
 ![Access Relational](/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/AccessRelation.PNG)
 
 #### Hey, it works!
-Sample problem: *List the organization name, project name, description, and amount recieved for each project operated by an organization who has operate more than on project. Provide the list in descending order by amount.*
+Sample problem: *List the organization name, project name, description, and amount recieved for each project operated by an organization who has operate more than one project. Provide the list in descending order by amount.*
 
 ![Sample Code](/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/SampleCode.PNG)
 
