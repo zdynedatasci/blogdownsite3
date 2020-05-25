@@ -179,7 +179,7 @@ plt2 &lt;- D %&gt;%
      scale_y_continuous(label = dollar) + scale_fill_brewer()
 #plot each boxplot series side-by-side using cowplot
 plot_grid(plt1, plt2, align = &quot;h&quot;, rel_widths = c(1, 1.3), axis = &quot;t&quot;)</code></pre>
-<p><img src="/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>If we remove all outliers, though, Total Medicare Standard Payment Amout mostly resembles a normal distriution.</p>
 <pre class="r"><code>plt3 &lt;- D %&gt;%
     mutate(rank = rank(desc(`Total Medicare Standard Payment Amount`))) %&gt;%
@@ -205,7 +205,7 @@ plt4 &lt;- D %&gt;%
 
 plot_grid(plt3, plt4, align = &quot;h&quot;, rel_widths = c(1, 1.3), axis = &quot;t&quot;)</code></pre>
 <pre><code>## Warning: Removed 1508 rows containing non-finite values (stat_boxplot).</code></pre>
-<p><img src="/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>After removing these extreme estreme outliers, Standard Medicare Payment Amount is still skewed.With a normal distribution, log transformed values may be a more useful predictor. It is It is worth noting that the distributions appear to remain farily consistant over the three years in our dataset.</p>
 <p>Let’s see a correlation between our outcome variable and a variables that I would hypothesize would be positively correlated with Total Medicare Standard Payment.</p>
 <pre class="r"><code>D &lt;- D %&gt;%
@@ -219,7 +219,7 @@ D %&gt;%
          `Hospice beneficiaries with a primary diagnosis of cancer`) %&gt;% 
   ggpairs(title = &quot;Correlation Matrix with Standard Payment&quot;, 
           columnLabels = CorVarLabs)</code></pre>
-<p><img src="/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>How do these correlations with the Standard Payment Amount compare with correlations with Logged Standard Payment Amount?</p>
 <pre class="r"><code>D %&gt;%
   select(`logStandardPaymentAmount`, 
@@ -229,7 +229,7 @@ D %&gt;%
          `Hospice beneficiaries with a primary diagnosis of cancer`) %&gt;% 
   ggpairs(title = &quot;Correlation Matrix with Logged Standard Payment&quot;, 
           columnLabels = CorVarLabs)</code></pre>
-<p><img src="/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Logging Standard Payment Amount decreases the correlation these selected predictor variables. It still may be useful in regressoin analyses</p>
 </div>
 <div id="predictor-variables-data-exploration-and-liner-models-by-variable-type" class="section level2">
@@ -535,7 +535,7 @@ D %&gt;%
         &quot;2015.0&quot; = &quot;2015&quot;, &quot;2015.5&quot; = &quot; &quot;, &quot;2016.0&quot; = &quot;2016&quot;)) +
   scale_y_continuous(label = dollar) +
   scale_color_brewer()</code></pre>
-<p><img src="/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<p><img src="/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 Payments are growing each year accross each region, except the West with a slight decline.</p>
 <div id="intertion-rregression-with-year-and-region" class="section level5">
 <h5>Intertion Rregression with Year and Region</h5>
@@ -746,7 +746,7 @@ Payments are growing each year accross each region, except the West with a sligh
        subtitle = &quot;Total number of hospice care physician services provided&quot;) +
   ylab(&quot;Physician Service Hours&quot;)</code></pre>
 <pre><code>## Warning: Removed 1246 rows containing non-finite values (stat_boxplot).</code></pre>
-<p><img src="/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+<p><img src="/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-15-1.png" width="672" />
 Indeed, there are several outliers present.</p>
 </div>
 <div id="care-hours-spent" class="section level3">
@@ -870,7 +870,7 @@ Lets see if there is a greter increase in other types of care hours in the week 
   geom_density() +
   ggtitle(&quot;Home Health Visit Hours per Day&quot;) +
   theme(legend.position=&quot;bottom&quot;)</code></pre>
-<p><img src="/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+<p><img src="/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-19-1.png" width="672" />
 The density plot of their logged values show that there is only a slight increase in hours per week in the week prior to death. This is likely due to a few outliers as well.</p>
 <ul>
 <li>Skilled Nursing Visit Hours per Day</li>
@@ -1329,7 +1329,7 @@ get_regression_table(mVisitsL)</code></pre>
 <pre class="r"><code>get_regression_points(mVisitsL) %&gt;%
    ggplot(aes(x=residual)) + geom_density() +
    ggtitle(&quot;Residuals from mVisits Regression Model&quot;) </code></pre>
-<p><img src="/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-28-1.png" width="672" />
+<p><img src="/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-28-1.png" width="672" />
 Even the logged model still has a low overall predicitve capacity with an R Squared of only 9.70%. The model as a whole is statistically significant and the residuals do appear to be normal.</p>
 </div>
 </div>
@@ -1439,7 +1439,7 @@ DbyDiagnosis &lt;- D %&gt;%
   labs(title = &quot;Number of Benificiaries by Primary Diagnosis&quot;) +
   ylab(&quot;Number of Distinct Beneficiaries&quot;) +
   scale_color_brewer()</code></pre>
-<p><img src="/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-31-1.png" width="672" />
+<p><img src="/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-31-1.png" width="672" />
 There are some extreme outliers, especially in Cancer, Dementia, and Respiratory</p>
 <pre class="r"><code>DbyDiagnosis %&gt;%
   ggplot(aes(x = Type, y = log(Beneficiaries), fill = Type)) + 
@@ -1450,7 +1450,7 @@ There are some extreme outliers, especially in Cancer, Dementia, and Respiratory
   ylab(&quot;Number of Distinct Beneficiaries&quot;) + 
   theme(legend.position = &quot;none&quot;) +
   scale_color_brewer()</code></pre>
-<p><img src="/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-32-1.png" width="672" />
+<p><img src="/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-32-1.png" width="672" />
 After logging, the distribution acorss primary diagnosis type is both consistant and normal between diagnosies.</p>
 </div>
 <div id="regression-by-diagnosis" class="section level3">
@@ -1604,7 +1604,7 @@ get_regression_table(DiagMod) </code></pre>
   labs(title = &quot;Number of Hospice Benificiaries by Gender&quot;) +
   theme(legend.position=&quot;none&quot;) +
   scale_color_brewer()</code></pre>
-<p><img src="/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p><img src="/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
 <pre class="r"><code># count outliers by gender
 library(grDevices)
 F &lt;- DbyGender %&gt;% 
@@ -1623,7 +1623,7 @@ ML &lt;- length(M$Amount[which(M$Amount %in% boxplot.stats(M$Amount)$out)])</cod
   theme(legend.position=&quot;none&quot;) +
   scale_fill_brewer()</code></pre>
 <pre><code>## Warning: Removed 2471 rows containing non-finite values (stat_boxplot).</code></pre>
-<p><img src="/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-38-1.png" width="672" />
+<p><img src="/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-38-1.png" width="672" />
 Distribution is still somewhat skewed, but resembles closer to a normal distribution.</p>
 <div id="regression-model-by-gender" class="section level4">
 <h4>Regression model by Gender</h4>
@@ -1794,7 +1794,7 @@ DbyRace %&gt;%
   theme(legend.position=&quot;none&quot;) + 
   xlab(&quot;Race&quot;) + ylab(&quot;Amount of Beifiareis&quot;) +
   scale_color_brewer()</code></pre>
-<p><img src="/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<p><img src="/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
 <pre class="r"><code>DbyRace %&gt;%  
   ggplot(aes(x=RaceLabel, y = Amount, fill = Race)) +
   geom_boxplot(outlier.shape = NA) + 
@@ -1805,7 +1805,7 @@ DbyRace %&gt;%
   xlab(&quot;Race&quot;) + ylab(&quot;Amount of Beifiareis&quot;) +
   scale_fill_brewer()</code></pre>
 <pre><code>## Warning: Removed 1766 rows containing non-finite values (stat_boxplot).</code></pre>
-<p><img src="/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<p><img src="/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
 <p>It is difficult to see the distribution of amount of benificiaries by race, particularly considering the range for amount of White identifying benificiaries is so much higher than it is for the each of the other Race categories.</p>
 <pre class="r"><code>DbyRace %&gt;%
   group_by(Race) %&gt;%  
@@ -1889,7 +1889,7 @@ DbyRace %&gt;%
   xlab(&quot;White&quot;) + ylab(&quot;Amount of Beifiareis&quot;) +
   scale_fill_brewer()</code></pre>
 <pre><code>## Warning: Removed 1766 rows containing non-finite values (stat_boxplot).</code></pre>
-<p><img src="/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<p><img src="/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
 <p>It is interesting to note that 84.7% of the beneficiaries in the dataset are identified as white. This could be an anomolie or the result of several intersecting socioeconoimc and historical factors pertaining to access to healh care, especially end-of-life care. This is consistant <a href="https://www.ncbi.nlm.nih.gov/pubmed/18588409">Cohen’s 2008 systematic review</a> of racial disparities in hospice care system.</p>
 <p>Let’s see how this logic holds up in a regression model on Total Medicare Standard Payment Amount.</p>
 <pre class="r"><code>RMod &lt;- lm(`Total Medicare Standard Payment Amount` ~ 

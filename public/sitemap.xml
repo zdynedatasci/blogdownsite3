@@ -83,31 +83,6 @@
   </url>
   
   <url>
-    <loc>/post/hpstock/hp-stock/</loc>
-    <lastmod>2020-05-24T08:32:18-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/finance/</loc>
-    <lastmod>2020-05-24T08:32:18-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/forecasting/</loc>
-    <lastmod>2020-05-24T08:32:18-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/r/</loc>
-    <lastmod>2020-05-24T08:32:18-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/time-series/</loc>
-    <lastmod>2020-05-24T08:32:18-07:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/post/hospice/an-exploration-of-hospice-care-expenses-in-the-us/</loc>
     <lastmod>2019-12-14T00:00:00+00:00</lastmod>
   </url>
@@ -130,6 +105,31 @@
   <url>
     <loc>/category/medicare/</loc>
     <lastmod>2019-12-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/category/r/</loc>
+    <lastmod>2020-05-24T08:32:18-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/hpstock/hp-stock/</loc>
+    <lastmod>2020-05-24T08:32:18-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/finance/</loc>
+    <lastmod>2020-05-24T08:32:18-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/forecasting/</loc>
+    <lastmod>2020-05-24T08:32:18-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/time-series/</loc>
+    <lastmod>2020-05-24T08:32:18-07:00</lastmod>
   </url>
   
   <url>

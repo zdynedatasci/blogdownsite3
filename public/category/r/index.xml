@@ -5,340 +5,12 @@
     <link>/category/r/</link>
       <atom:link href="/category/r/index.xml" rel="self" type="application/rss+xml" />
     <description>R</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Zachary Dyne</copyright><lastBuildDate>Mon, 16 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Zachary Dyne</copyright><lastBuildDate>Sat, 14 Dec 2019 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>R</title>
       <link>/category/r/</link>
     </image>
-    
-    <item>
-      <title>An Analysis of HP&#39;s Quarterly Stock Return</title>
-      <link>/post/hpstock/hp-stock/</link>
-      <pubDate>Mon, 16 Dec 2019 00:00:00 +0000</pubDate>
-      <guid>/post/hpstock/hp-stock/</guid>
-      <description>
-
-&lt;div id=&#34;TOC&#34;&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#project-background&#34;&gt;Project Background&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#data-understanding&#34;&gt;Data Understanding&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#holt-linear-smoothing&#34;&gt;Holt Linear Smoothing&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#arima&#34;&gt;ARIMA&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#method-comparison-to-actual-results&#34;&gt;Method Comparison to actual results&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#what-did-we-learn&#34;&gt;What did we learn?&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-
-&lt;div id=&#34;project-background&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Project Background&lt;/h2&gt;
-&lt;p&gt;I had the opportunity to take a course on time series economic forecasting during my MBA program. This was certainly one of the more challenging data-related courses given how many moving parts are invovled in time series analysis and how much it deviates from my quantitative social science background. All the new content made it all the more valuable. I also appreciated that each of the course’s assignments were done in groups and I was fortunate to work with Roxanne Adams and Matt Stone throughout the semester. The course’s final project involved finding a time series dataset and identifying which forecasting methods work best at predicting future events.&lt;/p&gt;
-&lt;p&gt;As a big fan of the &lt;a href=&#34;https://business-science.github.io/tidyquant/&#34;&gt;&lt;em&gt;tidyquant&lt;/em&gt;&lt;/a&gt; package and its ability to fetch data directly from Yahoo! Finance without having to dowload a .csv from the internet, I persuaded our group to use it to analyze HP’s stock return. This also solved a classic student problem of having to switch file directories when sharing the file among our group (this was before I really knew how to use Github).&lt;/p&gt;
-&lt;p&gt;Why HP and why stock retrun? As a consumer it would appear as if a large part of the company’s sales come from printers, ink, and tonor, which are items that are generally being replaced by cloud services (Google Drive for indivdiuals and AWS for enterprises) in the “information sharing” market. Of course, they also sell computers and a large suite of enterprise technology services. Based on that admitidely unresearched assumption it would seem at first that HP’s attractiveness as an investment would change quite a bit over time. While neither I nor my teammates would call ourselves financial market gurus, we were curious to see how these changing market trends would be refleceted in HP’s quarterly return over time. Plus, HP is a big employer in the Oregon tech community with offices in Corvallis and just across the boarder in Vancouver, Washington. We already used Intel’s in a class example and we had to choose something. After we started working on this project we discovered that Xerox was working on a bid for a hostile takeover of HP, &lt;a href=&#34;https://www.forbes.com/sites/sergeiklebnikov/2020/01/06/xerox-secures-24-billion-for-hostile-takeover-bid-of-hp/#6c80dd81b4d6&#34;&gt;which was recently secured&lt;/a&gt;.&lt;/p&gt;
-&lt;div id=&#34;package-and-data-setup&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Package and Data Setup&lt;/h3&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;## Package Setup
-
-library(tidyverse) # for data wrangling and analysis
-library(fpp2) # for forecasting functions
-library(tidyquant) # for stock price data
-library(ggthemes) # for plot themes
-library(ggplot2); theme_set(theme_economist_white()) # set plot theme to resemble the Economist
-
-## Data Setup
-# Fetch HP and S&amp;amp;P500 Quartely Return from 2000 - 2017
-
-Rb &amp;lt;- &amp;quot;^GSPC&amp;quot; %&amp;gt;% # fetch S&amp;amp;P500
-    tq_get(get  = &amp;quot;stock.prices&amp;quot;,
-           from = &amp;quot;2000-01-01&amp;quot;, to = &amp;quot;2018-01-01&amp;quot;) %&amp;gt;%
-    tq_transmute(select     = adjusted, 
-                 mutate_fun = periodReturn, 
-                 period     = &amp;quot;quarterly&amp;quot;, 
-                 col_rename = &amp;quot;SP500&amp;quot;)
-
-Ra &amp;lt;- &amp;quot;HPQ&amp;quot; %&amp;gt;% # fetch HP&amp;#39;s stock price  
-    tq_get(get  = &amp;quot;stock.prices&amp;quot;,
-           from = &amp;quot;2000-01-01&amp;quot;, to = &amp;quot;2018-01-01&amp;quot;) %&amp;gt;%
-    tq_transmute(select     = adjusted, 
-                 mutate_fun = periodReturn, 
-                 period     = &amp;quot;quarterly&amp;quot;, 
-                 col_rename = &amp;quot;HPQ&amp;quot;)
-
-RaRb &amp;lt;- left_join(Ra, Rb, by = c(&amp;quot;date&amp;quot; = &amp;quot;date&amp;quot;)) # bind HP and S&amp;amp;P500 by date
-
-RaRb &amp;lt;- RaRb %&amp;gt;% # paste quarterly and yearly labels together for plotting
-  mutate(Year = substr(date, 1, 4)) %&amp;gt;%
-  mutate(Quarter = rep(rep(1:4), 72/4)) %&amp;gt;%
-  mutate(QuarterLab = paste(&amp;quot;Q&amp;quot;, Quarter, sep = &amp;quot;&amp;quot;)) %&amp;gt;%
-  mutate(Period = paste(Year, QuarterLab, sep = &amp;quot;:&amp;quot;))
-
-RaRb1 &amp;lt;- RaRb %&amp;gt;% # create training dataset, extracting years 2015-2017. 
-  mutate(QuarterID = (1:length(HPQ))) %&amp;gt;% #We will test the model with those years at the end
-  filter(QuarterID &amp;lt; (length(HPQ)-11))
-tail(RaRb1)&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;kable-table&#34;&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr class=&#34;header&#34;&gt;
-&lt;th align=&#34;left&#34;&gt;date&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;HPQ&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;SP500&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;Year&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;Quarter&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;QuarterLab&lt;/th&gt;
-&lt;th align=&#34;left&#34;&gt;Period&lt;/th&gt;
-&lt;th align=&#34;right&#34;&gt;QuarterID&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;2013-09-30&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;-0.1481195&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.0468598&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;2013&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;Q3&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;2013:Q3&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;55&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;2013-12-31&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.3400305&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.0992001&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;2013&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;4&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;Q4&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;2013:Q4&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;56&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;2014-03-31&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.1620944&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.0129737&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;2014&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;Q1&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;2014:Q1&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;57&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;2014-06-30&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.0457355&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.0469413&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;2014&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;Q2&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;2014:Q2&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;58&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;odd&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;2014-09-30&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.0576499&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.0061524&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;2014&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;3&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;Q3&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;2014:Q3&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;59&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class=&#34;even&#34;&gt;
-&lt;td align=&#34;left&#34;&gt;2014-12-31&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.1359744&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;0.0439134&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;2014&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;4&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;Q4&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;2014:Q4&lt;/td&gt;
-&lt;td align=&#34;right&#34;&gt;60&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;data-understanding&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Data Understanding&lt;/h2&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;RaRb1 %&amp;gt;%
-  ggplot(aes(x=date, y = HPQ)) + 
-  geom_line(size = 1.1) +
-  scale_x_date(labels = RaRb$Period, breaks = RaRb$date) +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1, size = 6)) +
-  ggtitle(&amp;quot;Hewlett-Packard Quarterly Stock Return&amp;quot;, subtitle = &amp;quot;2000:Q1 - 2014:Q4&amp;quot;) + 
-  ylab(&amp;quot;Quarterly Percent Return&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/HPStock/2019-12-19-an-analysis-of-hp-s-quarterly-stock-return_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;We see no consistent seasonality and no consistant upward or downard trend. At first glance there does appear to be a dip in returns in each Q3, but there are a few counterexamples. There is a cyclical pattern in return wiht an upward trend from 2002-2005, downard from 2006-2011, and up again from 2011-2015.&lt;/p&gt;
-&lt;div id=&#34;which-forecasting-methods-might-work&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Which forecasting methods might work?&lt;/h3&gt;
-&lt;p&gt;While there is no harm in trying everything and seeing what sticks, the patterns in the data can provide insights into what forecasting methods are most likely to work. Becasue there is no strong ternd or seasonality, a linear forecasting method wouldn’t make much sense. An Error-Trend-Seasonal (ETS) method wouldn’t work because they work best for seaonal forecasting. For consistency, we did try these methods to see what would happen, and indeed they violated model assumptions and/or performed poorly. I won’t include them here to save space.&lt;/p&gt;
-&lt;p&gt;This lead us to two possible leads: Holt Exponential Smoothing to measure trend and level and ARIMA (autoregresssive integrating moving average, best for nonseasonal data).&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;holt-linear-smoothing&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Holt Linear Smoothing&lt;/h2&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;h &amp;lt;- holt(RaRb1$HPQ)
-hd &amp;lt;- holt(RaRb1$HPQ, damped = T, phi = 0.95)
-hd2 &amp;lt;- holt(RaRb1$HPQ, damped = T, phi = 0.8)
-autoplot(ts(RaRb1$HPQ)) +
-  autolayer(h, PI = F, series = &amp;quot; Regular Holt&amp;quot;) +
-  autolayer(hd, PI = F, series = &amp;quot;Damped Holt (high phi)&amp;quot;) +
-  autolayer(hd2, PI = F, series = &amp;quot;Damped Holt (low phi)&amp;quot;) +
-  ggtitle(&amp;quot;Holt and Damped Holt Forecasts&amp;quot;,
-          subtitle = &amp;quot;Hewlett-Packard Quarterly Stock Return&amp;quot;) +
-  theme(legend.title = element_blank())&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/HPStock/2019-12-19-an-analysis-of-hp-s-quarterly-stock-return_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;The damped methods produce fairly similar results. This is likely becasue there is no trend to really dampen, wich is the idea behind the dampening parameter. To simplify things, we just used the regular Holt method for our analysis.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(h)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## 
-## Forecast method: Holt&amp;#39;s method
-## 
-## Model Information:
-## Holt&amp;#39;s method 
-## 
-## Call:
-##  holt(y = RaRb1$HPQ) 
-## 
-##   Smoothing parameters:
-##     alpha = 0.0554 
-##     beta  = 1e-04 
-## 
-##   Initial states:
-##     l = 0.089 
-##     b = 0 
-## 
-##   sigma:  0.2112
-## 
-##      AIC     AICc      BIC 
-## 64.92805 66.03916 75.39977 
-## 
-## Error measures:
-##                       ME      RMSE       MAE      MPE    MAPE      MASE
-## Training set -0.01380629 0.2040401 0.1529902 134.1629 176.444 0.7198957
-##                     ACF1
-## Training set -0.07826283
-## 
-## Forecasts:
-##    Point Forecast      Lo 80     Hi 80      Lo 95     Hi 95
-## 61     0.03984102 -0.2308247 0.3105068 -0.3741065 0.4537886
-## 62     0.03980209 -0.2312804 0.3108846 -0.3747828 0.4543870
-## 63     0.03976317 -0.2317369 0.3112632 -0.3754603 0.4549867
-## 64     0.03972424 -0.2321942 0.3116427 -0.3761392 0.4555877
-## 65     0.03968531 -0.2326525 0.3120231 -0.3768194 0.4561900
-## 66     0.03964639 -0.2331115 0.3124043 -0.3775009 0.4567936
-## 67     0.03960746 -0.2335715 0.3127864 -0.3781837 0.4573986
-## 68     0.03956853 -0.2340323 0.3131693 -0.3788678 0.4580048
-## 69     0.03952960 -0.2344939 0.3135531 -0.3795532 0.4586124
-## 70     0.03949068 -0.2349564 0.3139377 -0.3802399 0.4592212&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;checkresiduals(h)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/HPStock/2019-12-19-an-analysis-of-hp-s-quarterly-stock-return_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;## 
-##  Ljung-Box test
-## 
-## data:  Residuals from Holt&amp;#39;s method
-## Q* = 5.3108, df = 6, p-value = 0.5046
-## 
-## Model df: 4.   Total lags used: 10&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Accuracy Metrics&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;RMSE = 0.204&lt;/li&gt;
-&lt;li&gt;MAE 0.1529&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Quality Metrics&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;No autocorrelation&lt;/li&gt;
-&lt;li&gt;Residual mean is roughly zero&lt;/li&gt;
-&lt;li&gt;Residuals seem indepenent with constant variance&lt;/li&gt;
-&lt;li&gt;Residuals are mostly normally distriuted&lt;/li&gt;
-&lt;li&gt;However the p-value is farily high at 0.5046&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Maybe an ARIMA will perform better.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;arima&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;ARIMA&lt;/h2&gt;
-&lt;p&gt;Let’s try an ARIMA method&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;HPQArima1 &amp;lt;- RaRb1 %&amp;gt;%
-  select(HPQ) %&amp;gt;%
-  auto.arima(lambda = BoxCox.lambda(RaRb1$HPQ)) # auto.arima() selects the optimal constant values
-
-summary(HPQArima1)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Series: . 
-## ARIMA(0,0,0) with non-zero mean 
-## Box Cox transformation: lambda= 0.7043195 
-## 
-## Coefficients:
-##          mean
-##       -1.3862
-## s.e.   0.0523
-## 
-## sigma^2 estimated as 0.1672:  log likelihood=-30.97
-## AIC=65.93   AICc=66.14   BIC=70.12
-## 
-## Training set error measures:
-##                      ME      RMSE       MAE      MPE    MAPE      MASE
-## Training set 0.01521414 0.1974573 0.1497182 102.6973 105.691 0.7044997
-##                     ACF1
-## Training set -0.09284311&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;HPQArima1Fcast &amp;lt;- HPQArima1 %&amp;gt;%
-  forecast(h=10) # forecast 10 periods
-HPQArima1Fcast&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##    Point Forecast      Lo 80     Hi 80      Lo 95     Hi 95
-## 61    0.004924653 -0.2209981 0.2652703 -0.4176718 0.4705934
-## 62    0.004924653 -0.2209981 0.2652703 -0.4176718 0.4705934
-## 63    0.004924653 -0.2209981 0.2652703 -0.4176718 0.4705934
-## 64    0.004924653 -0.2209981 0.2652703 -0.4176718 0.4705934
-## 65    0.004924653 -0.2209981 0.2652703 -0.4176718 0.4705934
-## 66    0.004924653 -0.2209981 0.2652703 -0.4176718 0.4705934
-## 67    0.004924653 -0.2209981 0.2652703 -0.4176718 0.4705934
-## 68    0.004924653 -0.2209981 0.2652703 -0.4176718 0.4705934
-## 69    0.004924653 -0.2209981 0.2652703 -0.4176718 0.4705934
-## 70    0.004924653 -0.2209981 0.2652703 -0.4176718 0.4705934&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;## autoplot forecast
-HPQArima1 %&amp;gt;%
-  forecast(h=11) %&amp;gt;%
-  autoplot()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/HPStock/2019-12-19-an-analysis-of-hp-s-quarterly-stock-return_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;checkresiduals(HPQArima1)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/HPStock/2019-12-19-an-analysis-of-hp-s-quarterly-stock-return_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;## 
-##  Ljung-Box test
-## 
-## data:  Residuals from ARIMA(0,0,0) with non-zero mean
-## Q* = 3.9186, df = 9, p-value = 0.9167
-## 
-## Model df: 1.   Total lags used: 10&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Accuracy Metrics&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;RMSE = 0.1974573&lt;/li&gt;
-&lt;li&gt;MAE = 0.1497182&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Quality Metrics&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Residuals appear to have a mean of zero&lt;/li&gt;
-&lt;li&gt;Residuals vary independently and constantly&lt;/li&gt;
-&lt;li&gt;REsiduals are mostly normally distributed&lt;/li&gt;
-&lt;li&gt;No evidence of autocorrelation&lt;/li&gt;
-&lt;li&gt;p-value = 0.9167&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;ARIMA(0,0,0) essentially predicts that the return will be roughly zero over a long enough perido of time.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;method-comparison-to-actual-results&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Method Comparison to actual results&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Both models preseted satisfy all residual assumptions&lt;/li&gt;
-&lt;li&gt;Holt’s method has a lower RMSE and MAE, meaning it generally performs bettere at predicting actual events, and is easier to interpret. Here is the Holt forecast plotted on top of the actaul values for 2014:Q1-2017:Q4.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;autoplot(ts(RaRb$HPQ)) +
-  autolayer(h, PI = F) +
-  ggtitle(&amp;quot;Hewlett-Packard Quarterly Stock Return&amp;quot;, 
-          subtitle = &amp;quot;2000:Q1 - 2017:Q4 | Actual vs Holt Forecasted&amp;quot;) +
-  ylab(&amp;quot;Quarterly Percent Return&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/HPStock/2019-12-19-an-analysis-of-hp-s-quarterly-stock-return_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;what-did-we-learn&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;What did we learn?&lt;/h2&gt;
-&lt;p&gt;If you’re interested in long term trends, this isn’t too bad. HP has remained a somewhat attractive investment with a return just above zero. Of course, this is a fairly simplistic method of forecsating the stock market. Did we find anything remarkably insightful in our data? Not really. However, for a final project in an introduction to time series modeling course, it was fun way to practice some of our newfound skills. With more time, I’m looking forwrd to playing around more with &lt;em&gt;tidyquant&lt;/em&gt; and time series methods.&lt;/p&gt;
-&lt;/div&gt;
-</description>
-    </item>
     
     <item>
       <title>An Exploration of Hospice Care Expenses in the US</title>
@@ -496,7 +168,7 @@ plt2 &amp;lt;- D %&amp;gt;%
      scale_y_continuous(label = dollar) + scale_fill_brewer()
 #plot each boxplot series side-by-side using cowplot
 plot_grid(plt1, plt2, align = &amp;quot;h&amp;quot;, rel_widths = c(1, 1.3), axis = &amp;quot;t&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;If we remove all outliers, though, Total Medicare Standard Payment Amout mostly resembles a normal distriution.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plt3 &amp;lt;- D %&amp;gt;%
     mutate(rank = rank(desc(`Total Medicare Standard Payment Amount`))) %&amp;gt;%
@@ -522,7 +194,7 @@ plt4 &amp;lt;- D %&amp;gt;%
 
 plot_grid(plt3, plt4, align = &amp;quot;h&amp;quot;, rel_widths = c(1, 1.3), axis = &amp;quot;t&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Warning: Removed 1508 rows containing non-finite values (stat_boxplot).&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;After removing these extreme estreme outliers, Standard Medicare Payment Amount is still skewed.With a normal distribution, log transformed values may be a more useful predictor. It is It is worth noting that the distributions appear to remain farily consistant over the three years in our dataset.&lt;/p&gt;
 &lt;p&gt;Let’s see a correlation between our outcome variable and a variables that I would hypothesize would be positively correlated with Total Medicare Standard Payment.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;D &amp;lt;- D %&amp;gt;%
@@ -536,7 +208,7 @@ D %&amp;gt;%
          `Hospice beneficiaries with a primary diagnosis of cancer`) %&amp;gt;% 
   ggpairs(title = &amp;quot;Correlation Matrix with Standard Payment&amp;quot;, 
           columnLabels = CorVarLabs)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;How do these correlations with the Standard Payment Amount compare with correlations with Logged Standard Payment Amount?&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;D %&amp;gt;%
   select(`logStandardPaymentAmount`, 
@@ -546,7 +218,7 @@ D %&amp;gt;%
          `Hospice beneficiaries with a primary diagnosis of cancer`) %&amp;gt;% 
   ggpairs(title = &amp;quot;Correlation Matrix with Logged Standard Payment&amp;quot;, 
           columnLabels = CorVarLabs)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Logging Standard Payment Amount decreases the correlation these selected predictor variables. It still may be useful in regressoin analyses&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;predictor-variables-data-exploration-and-liner-models-by-variable-type&#34; class=&#34;section level2&#34;&gt;
@@ -852,7 +524,7 @@ D %&amp;gt;%
         &amp;quot;2015.0&amp;quot; = &amp;quot;2015&amp;quot;, &amp;quot;2015.5&amp;quot; = &amp;quot; &amp;quot;, &amp;quot;2016.0&amp;quot; = &amp;quot;2016&amp;quot;)) +
   scale_y_continuous(label = dollar) +
   scale_color_brewer()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;672&#34; /&gt;
 Payments are growing each year accross each region, except the West with a slight decline.&lt;/p&gt;
 &lt;div id=&#34;intertion-rregression-with-year-and-region&#34; class=&#34;section level5&#34;&gt;
 &lt;h5&gt;Intertion Rregression with Year and Region&lt;/h5&gt;
@@ -1063,7 +735,7 @@ Payments are growing each year accross each region, except the West with a sligh
        subtitle = &amp;quot;Total number of hospice care physician services provided&amp;quot;) +
   ylab(&amp;quot;Physician Service Hours&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Warning: Removed 1246 rows containing non-finite values (stat_boxplot).&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-15-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-15-1.png&#34; width=&#34;672&#34; /&gt;
 Indeed, there are several outliers present.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;care-hours-spent&#34; class=&#34;section level3&#34;&gt;
@@ -1187,7 +859,7 @@ Lets see if there is a greter increase in other types of care hours in the week 
   geom_density() +
   ggtitle(&amp;quot;Home Health Visit Hours per Day&amp;quot;) +
   theme(legend.position=&amp;quot;bottom&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-19-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-19-1.png&#34; width=&#34;672&#34; /&gt;
 The density plot of their logged values show that there is only a slight increase in hours per week in the week prior to death. This is likely due to a few outliers as well.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Skilled Nursing Visit Hours per Day&lt;/li&gt;
@@ -1646,7 +1318,7 @@ get_regression_table(mVisitsL)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;get_regression_points(mVisitsL) %&amp;gt;%
    ggplot(aes(x=residual)) + geom_density() +
    ggtitle(&amp;quot;Residuals from mVisits Regression Model&amp;quot;) &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-28-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-28-1.png&#34; width=&#34;672&#34; /&gt;
 Even the logged model still has a low overall predicitve capacity with an R Squared of only 9.70%. The model as a whole is statistically significant and the residuals do appear to be normal.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1756,7 +1428,7 @@ DbyDiagnosis &amp;lt;- D %&amp;gt;%
   labs(title = &amp;quot;Number of Benificiaries by Primary Diagnosis&amp;quot;) +
   ylab(&amp;quot;Number of Distinct Beneficiaries&amp;quot;) +
   scale_color_brewer()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-31-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-31-1.png&#34; width=&#34;672&#34; /&gt;
 There are some extreme outliers, especially in Cancer, Dementia, and Respiratory&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;DbyDiagnosis %&amp;gt;%
   ggplot(aes(x = Type, y = log(Beneficiaries), fill = Type)) + 
@@ -1767,7 +1439,7 @@ There are some extreme outliers, especially in Cancer, Dementia, and Respiratory
   ylab(&amp;quot;Number of Distinct Beneficiaries&amp;quot;) + 
   theme(legend.position = &amp;quot;none&amp;quot;) +
   scale_color_brewer()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-32-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-32-1.png&#34; width=&#34;672&#34; /&gt;
 After logging, the distribution acorss primary diagnosis type is both consistant and normal between diagnosies.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;regression-by-diagnosis&#34; class=&#34;section level3&#34;&gt;
@@ -1921,7 +1593,7 @@ get_regression_table(DiagMod) &lt;/code&gt;&lt;/pre&gt;
   labs(title = &amp;quot;Number of Hospice Benificiaries by Gender&amp;quot;) +
   theme(legend.position=&amp;quot;none&amp;quot;) +
   scale_color_brewer()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-36-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-36-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# count outliers by gender
 library(grDevices)
 F &amp;lt;- DbyGender %&amp;gt;% 
@@ -1940,7 +1612,7 @@ ML &amp;lt;- length(M$Amount[which(M$Amount %in% boxplot.stats(M$Amount)$out)])&
   theme(legend.position=&amp;quot;none&amp;quot;) +
   scale_fill_brewer()&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Warning: Removed 2471 rows containing non-finite values (stat_boxplot).&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-38-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-38-1.png&#34; width=&#34;672&#34; /&gt;
 Distribution is still somewhat skewed, but resembles closer to a normal distribution.&lt;/p&gt;
 &lt;div id=&#34;regression-model-by-gender&#34; class=&#34;section level4&#34;&gt;
 &lt;h4&gt;Regression model by Gender&lt;/h4&gt;
@@ -2111,7 +1783,7 @@ DbyRace %&amp;gt;%
   theme(legend.position=&amp;quot;none&amp;quot;) + 
   xlab(&amp;quot;Race&amp;quot;) + ylab(&amp;quot;Amount of Beifiareis&amp;quot;) +
   scale_color_brewer()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-42-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-42-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;DbyRace %&amp;gt;%  
   ggplot(aes(x=RaceLabel, y = Amount, fill = Race)) +
   geom_boxplot(outlier.shape = NA) + 
@@ -2122,7 +1794,7 @@ DbyRace %&amp;gt;%
   xlab(&amp;quot;Race&amp;quot;) + ylab(&amp;quot;Amount of Beifiareis&amp;quot;) +
   scale_fill_brewer()&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Warning: Removed 1766 rows containing non-finite values (stat_boxplot).&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-43-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-43-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;It is difficult to see the distribution of amount of benificiaries by race, particularly considering the range for amount of White identifying benificiaries is so much higher than it is for the each of the other Race categories.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;DbyRace %&amp;gt;%
   group_by(Race) %&amp;gt;%  
@@ -2206,7 +1878,7 @@ DbyRace %&amp;gt;%
   xlab(&amp;quot;White&amp;quot;) + ylab(&amp;quot;Amount of Beifiareis&amp;quot;) +
   scale_fill_brewer()&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Warning: Removed 1766 rows containing non-finite values (stat_boxplot).&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-46-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-46-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;It is interesting to note that 84.7% of the beneficiaries in the dataset are identified as white. This could be an anomolie or the result of several intersecting socioeconoimc and historical factors pertaining to access to healh care, especially end-of-life care. This is consistant &lt;a href=&#34;https://www.ncbi.nlm.nih.gov/pubmed/18588409&#34;&gt;Cohen’s 2008 systematic review&lt;/a&gt; of racial disparities in hospice care system.&lt;/p&gt;
 &lt;p&gt;Let’s see how this logic holds up in a regression model on Total Medicare Standard Payment Amount.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;RMod &amp;lt;- lm(`Total Medicare Standard Payment Amount` ~ 
@@ -2309,6 +1981,334 @@ get_regression_table(RMod)&lt;/code&gt;&lt;/pre&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>An Analysis of HP&#39;s Quarterly Stock Return</title>
+      <link>/post/hpstock/hp-stock/</link>
+      <pubDate>Fri, 13 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>/post/hpstock/hp-stock/</guid>
+      <description>
+
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#project-background&#34;&gt;Project Background&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#data-understanding&#34;&gt;Data Understanding&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#holt-linear-smoothing&#34;&gt;Holt Linear Smoothing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#arima&#34;&gt;ARIMA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#method-comparison-to-actual-results&#34;&gt;Method Comparison to actual results&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#what-did-we-learn&#34;&gt;What did we learn?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&#34;project-background&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Project Background&lt;/h2&gt;
+&lt;p&gt;I had the opportunity to take a course on time series economic forecasting during my MBA program. This was certainly one of the more challenging data-related courses given how many moving parts are invovled in time series analysis and how much it deviates from my quantitative social science background. All the new content made it all the more valuable. I also appreciated that each of the course’s assignments were done in groups and I was fortunate to work with Roxanne Adams and Matt Stone throughout the semester. The course’s final project involved finding a time series dataset and identifying which forecasting methods work best at predicting future events.&lt;/p&gt;
+&lt;p&gt;As a big fan of the &lt;a href=&#34;https://business-science.github.io/tidyquant/&#34;&gt;&lt;em&gt;tidyquant&lt;/em&gt;&lt;/a&gt; package and its ability to fetch data directly from Yahoo! Finance without having to dowload a .csv from the internet, I persuaded our group to use it to analyze HP’s stock return. This also solved a classic student problem of having to switch file directories when sharing the file among our group (this was before I really knew how to use Github).&lt;/p&gt;
+&lt;p&gt;Why HP and why stock retrun? As a consumer it would appear as if a large part of the company’s sales come from printers, ink, and tonor, which are items that are generally being replaced by cloud services (Google Drive for indivdiuals and AWS for enterprises) in the “information sharing” market. Of course, they also sell computers and a large suite of enterprise technology services. Based on that admitidely unresearched assumption it would seem at first that HP’s attractiveness as an investment would change quite a bit over time. While neither I nor my teammates would call ourselves financial market gurus, we were curious to see how these changing market trends would be refleceted in HP’s quarterly return over time. Plus, HP is a big employer in the Oregon tech community with offices in Corvallis and just across the boarder in Vancouver, Washington. We already used Intel’s in a class example and we had to choose something. After we started working on this project we discovered that Xerox was working on a bid for a hostile takeover of HP, &lt;a href=&#34;https://www.forbes.com/sites/sergeiklebnikov/2020/01/06/xerox-secures-24-billion-for-hostile-takeover-bid-of-hp/#6c80dd81b4d6&#34;&gt;which was recently secured&lt;/a&gt;.&lt;/p&gt;
+&lt;div id=&#34;package-and-data-setup&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Package and Data Setup&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;## Package Setup
+
+library(tidyverse) # for data wrangling and analysis
+library(fpp2) # for forecasting functions
+library(tidyquant) # for stock price data
+library(ggthemes) # for plot themes
+library(ggplot2); theme_set(theme_economist_white()) # set plot theme to resemble the Economist
+
+## Data Setup
+# Fetch HP and S&amp;amp;P500 Quartely Return from 2000 - 2017
+
+Rb &amp;lt;- &amp;quot;^GSPC&amp;quot; %&amp;gt;% # fetch S&amp;amp;P500
+    tq_get(get  = &amp;quot;stock.prices&amp;quot;,
+           from = &amp;quot;2000-01-01&amp;quot;, to = &amp;quot;2018-01-01&amp;quot;) %&amp;gt;%
+    tq_transmute(select     = adjusted, 
+                 mutate_fun = periodReturn, 
+                 period     = &amp;quot;quarterly&amp;quot;, 
+                 col_rename = &amp;quot;SP500&amp;quot;)
+
+Ra &amp;lt;- &amp;quot;HPQ&amp;quot; %&amp;gt;% # fetch HP&amp;#39;s stock price  
+    tq_get(get  = &amp;quot;stock.prices&amp;quot;,
+           from = &amp;quot;2000-01-01&amp;quot;, to = &amp;quot;2018-01-01&amp;quot;) %&amp;gt;%
+    tq_transmute(select     = adjusted, 
+                 mutate_fun = periodReturn, 
+                 period     = &amp;quot;quarterly&amp;quot;, 
+                 col_rename = &amp;quot;HPQ&amp;quot;)
+
+RaRb &amp;lt;- left_join(Ra, Rb, by = c(&amp;quot;date&amp;quot; = &amp;quot;date&amp;quot;)) # bind HP and S&amp;amp;P500 by date
+
+RaRb &amp;lt;- RaRb %&amp;gt;% # paste quarterly and yearly labels together for plotting
+  mutate(Year = substr(date, 1, 4)) %&amp;gt;%
+  mutate(Quarter = rep(rep(1:4), 72/4)) %&amp;gt;%
+  mutate(QuarterLab = paste(&amp;quot;Q&amp;quot;, Quarter, sep = &amp;quot;&amp;quot;)) %&amp;gt;%
+  mutate(Period = paste(Year, QuarterLab, sep = &amp;quot;:&amp;quot;))
+
+RaRb1 &amp;lt;- RaRb %&amp;gt;% # create training dataset, extracting years 2015-2017. 
+  mutate(QuarterID = (1:length(HPQ))) %&amp;gt;% #We will test the model with those years at the end
+  filter(QuarterID &amp;lt; (length(HPQ)-11))
+tail(RaRb1)&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;date&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;HPQ&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;SP500&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;Year&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Quarter&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;QuarterLab&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;Period&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;QuarterID&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;2013-09-30&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.1481195&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.0468598&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2013&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Q3&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2013:Q3&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;55&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;2013-12-31&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.3400305&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.0992001&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2013&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Q4&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2013:Q4&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;56&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;2014-03-31&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.1620944&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.0129737&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2014&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Q1&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2014:Q1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;57&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;2014-06-30&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.0457355&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.0469413&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2014&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Q2&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2014:Q2&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;58&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;2014-09-30&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.0576499&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.0061524&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2014&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Q3&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2014:Q3&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;59&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;2014-12-31&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.1359744&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.0439134&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2014&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Q4&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2014:Q4&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;60&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;data-understanding&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Data Understanding&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;RaRb1 %&amp;gt;%
+  ggplot(aes(x=date, y = HPQ)) + 
+  geom_line(size = 1.1) +
+  scale_x_date(labels = RaRb$Period, breaks = RaRb$date) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, size = 6)) +
+  ggtitle(&amp;quot;Hewlett-Packard Quarterly Stock Return&amp;quot;, subtitle = &amp;quot;2000:Q1 - 2014:Q4&amp;quot;) + 
+  ylab(&amp;quot;Quarterly Percent Return&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/HPStock/2019-12-19-an-analysis-of-hp-s-quarterly-stock-return_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;We see no consistent seasonality and no consistant upward or downard trend. At first glance there does appear to be a dip in returns in each Q3, but there are a few counterexamples. There is a cyclical pattern in return wiht an upward trend from 2002-2005, downard from 2006-2011, and up again from 2011-2015.&lt;/p&gt;
+&lt;div id=&#34;which-forecasting-methods-might-work&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Which forecasting methods might work?&lt;/h3&gt;
+&lt;p&gt;While there is no harm in trying everything and seeing what sticks, the patterns in the data can provide insights into what forecasting methods are most likely to work. Becasue there is no strong ternd or seasonality, a linear forecasting method wouldn’t make much sense. An Error-Trend-Seasonal (ETS) method wouldn’t work because they work best for seaonal forecasting. For consistency, we did try these methods to see what would happen, and indeed they violated model assumptions and/or performed poorly. I won’t include them here to save space.&lt;/p&gt;
+&lt;p&gt;This lead us to two possible leads: Holt Exponential Smoothing to measure trend and level and ARIMA (autoregresssive integrating moving average, best for nonseasonal data).&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;holt-linear-smoothing&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Holt Linear Smoothing&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;h &amp;lt;- holt(RaRb1$HPQ)
+hd &amp;lt;- holt(RaRb1$HPQ, damped = T, phi = 0.95)
+hd2 &amp;lt;- holt(RaRb1$HPQ, damped = T, phi = 0.8)
+autoplot(ts(RaRb1$HPQ)) +
+  autolayer(h, PI = F, series = &amp;quot; Regular Holt&amp;quot;) +
+  autolayer(hd, PI = F, series = &amp;quot;Damped Holt (high phi)&amp;quot;) +
+  autolayer(hd2, PI = F, series = &amp;quot;Damped Holt (low phi)&amp;quot;) +
+  ggtitle(&amp;quot;Holt and Damped Holt Forecasts&amp;quot;,
+          subtitle = &amp;quot;Hewlett-Packard Quarterly Stock Return&amp;quot;) +
+  theme(legend.title = element_blank())&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/HPStock/2019-12-19-an-analysis-of-hp-s-quarterly-stock-return_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The damped methods produce fairly similar results. This is likely becasue there is no trend to really dampen, wich is the idea behind the dampening parameter. To simplify things, we just used the regular Holt method for our analysis.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(h)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Forecast method: Holt&amp;#39;s method
+## 
+## Model Information:
+## Holt&amp;#39;s method 
+## 
+## Call:
+##  holt(y = RaRb1$HPQ) 
+## 
+##   Smoothing parameters:
+##     alpha = 0.0554 
+##     beta  = 1e-04 
+## 
+##   Initial states:
+##     l = 0.089 
+##     b = 0 
+## 
+##   sigma:  0.2112
+## 
+##      AIC     AICc      BIC 
+## 64.92805 66.03916 75.39977 
+## 
+## Error measures:
+##                       ME      RMSE       MAE      MPE    MAPE      MASE
+## Training set -0.01380629 0.2040401 0.1529902 134.1629 176.444 0.7198957
+##                     ACF1
+## Training set -0.07826283
+## 
+## Forecasts:
+##    Point Forecast      Lo 80     Hi 80      Lo 95     Hi 95
+## 61     0.03984102 -0.2308247 0.3105068 -0.3741065 0.4537886
+## 62     0.03980209 -0.2312804 0.3108846 -0.3747828 0.4543870
+## 63     0.03976317 -0.2317369 0.3112632 -0.3754603 0.4549867
+## 64     0.03972424 -0.2321942 0.3116427 -0.3761392 0.4555877
+## 65     0.03968531 -0.2326525 0.3120231 -0.3768194 0.4561900
+## 66     0.03964639 -0.2331115 0.3124043 -0.3775009 0.4567936
+## 67     0.03960746 -0.2335715 0.3127864 -0.3781837 0.4573986
+## 68     0.03956853 -0.2340323 0.3131693 -0.3788678 0.4580048
+## 69     0.03952960 -0.2344939 0.3135531 -0.3795532 0.4586124
+## 70     0.03949068 -0.2349564 0.3139377 -0.3802399 0.4592212&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;checkresiduals(h)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/HPStock/2019-12-19-an-analysis-of-hp-s-quarterly-stock-return_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## 
+##  Ljung-Box test
+## 
+## data:  Residuals from Holt&amp;#39;s method
+## Q* = 5.3108, df = 6, p-value = 0.5046
+## 
+## Model df: 4.   Total lags used: 10&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Accuracy Metrics&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;RMSE = 0.204&lt;/li&gt;
+&lt;li&gt;MAE 0.1529&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Quality Metrics&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;No autocorrelation&lt;/li&gt;
+&lt;li&gt;Residual mean is roughly zero&lt;/li&gt;
+&lt;li&gt;Residuals seem indepenent with constant variance&lt;/li&gt;
+&lt;li&gt;Residuals are mostly normally distriuted&lt;/li&gt;
+&lt;li&gt;However the p-value is farily high at 0.5046&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Maybe an ARIMA will perform better.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;arima&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;ARIMA&lt;/h2&gt;
+&lt;p&gt;Let’s try an ARIMA method&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;HPQArima1 &amp;lt;- RaRb1 %&amp;gt;%
+  select(HPQ) %&amp;gt;%
+  auto.arima(lambda = BoxCox.lambda(RaRb1$HPQ)) # auto.arima() selects the optimal constant values
+
+summary(HPQArima1)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Series: . 
+## ARIMA(0,0,0) with non-zero mean 
+## Box Cox transformation: lambda= 0.7043195 
+## 
+## Coefficients:
+##          mean
+##       -1.3862
+## s.e.   0.0523
+## 
+## sigma^2 estimated as 0.1672:  log likelihood=-30.97
+## AIC=65.93   AICc=66.14   BIC=70.12
+## 
+## Training set error measures:
+##                      ME      RMSE       MAE      MPE    MAPE      MASE
+## Training set 0.01521414 0.1974573 0.1497182 102.6973 105.691 0.7044997
+##                     ACF1
+## Training set -0.09284311&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;HPQArima1Fcast &amp;lt;- HPQArima1 %&amp;gt;%
+  forecast(h=10) # forecast 10 periods
+HPQArima1Fcast&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    Point Forecast      Lo 80     Hi 80      Lo 95     Hi 95
+## 61    0.004924653 -0.2209981 0.2652703 -0.4176718 0.4705934
+## 62    0.004924653 -0.2209981 0.2652703 -0.4176718 0.4705934
+## 63    0.004924653 -0.2209981 0.2652703 -0.4176718 0.4705934
+## 64    0.004924653 -0.2209981 0.2652703 -0.4176718 0.4705934
+## 65    0.004924653 -0.2209981 0.2652703 -0.4176718 0.4705934
+## 66    0.004924653 -0.2209981 0.2652703 -0.4176718 0.4705934
+## 67    0.004924653 -0.2209981 0.2652703 -0.4176718 0.4705934
+## 68    0.004924653 -0.2209981 0.2652703 -0.4176718 0.4705934
+## 69    0.004924653 -0.2209981 0.2652703 -0.4176718 0.4705934
+## 70    0.004924653 -0.2209981 0.2652703 -0.4176718 0.4705934&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;## autoplot forecast
+HPQArima1 %&amp;gt;%
+  forecast(h=11) %&amp;gt;%
+  autoplot()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/HPStock/2019-12-19-an-analysis-of-hp-s-quarterly-stock-return_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;checkresiduals(HPQArima1)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/HPStock/2019-12-19-an-analysis-of-hp-s-quarterly-stock-return_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## 
+##  Ljung-Box test
+## 
+## data:  Residuals from ARIMA(0,0,0) with non-zero mean
+## Q* = 3.9186, df = 9, p-value = 0.9167
+## 
+## Model df: 1.   Total lags used: 10&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Accuracy Metrics&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;RMSE = 0.1974573&lt;/li&gt;
+&lt;li&gt;MAE = 0.1497182&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Quality Metrics&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Residuals appear to have a mean of zero&lt;/li&gt;
+&lt;li&gt;Residuals vary independently and constantly&lt;/li&gt;
+&lt;li&gt;REsiduals are mostly normally distributed&lt;/li&gt;
+&lt;li&gt;No evidence of autocorrelation&lt;/li&gt;
+&lt;li&gt;p-value = 0.9167&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;ARIMA(0,0,0) essentially predicts that the return will be roughly zero over a long enough perido of time.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;method-comparison-to-actual-results&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Method Comparison to actual results&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Both models preseted satisfy all residual assumptions&lt;/li&gt;
+&lt;li&gt;Holt’s method has a lower RMSE and MAE, meaning it generally performs bettere at predicting actual events, and is easier to interpret. Here is the Holt forecast plotted on top of the actaul values for 2014:Q1-2017:Q4.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;autoplot(ts(RaRb$HPQ)) +
+  autolayer(h, PI = F) +
+  ggtitle(&amp;quot;Hewlett-Packard Quarterly Stock Return&amp;quot;, 
+          subtitle = &amp;quot;2000:Q1 - 2017:Q4 | Actual vs Holt Forecasted&amp;quot;) +
+  ylab(&amp;quot;Quarterly Percent Return&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/HPStock/2019-12-19-an-analysis-of-hp-s-quarterly-stock-return_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;what-did-we-learn&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;What did we learn?&lt;/h2&gt;
+&lt;p&gt;If you’re interested in long term trends, this isn’t too bad. HP has remained a somewhat attractive investment with a return just above zero. Of course, this is a fairly simplistic method of forecsating the stock market. Did we find anything remarkably insightful in our data? Not really. However, for a final project in an introduction to time series modeling course, it was fun way to practice some of our newfound skills. With more time, I’m looking forwrd to playing around more with &lt;em&gt;tidyquant&lt;/em&gt; and time series methods.&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>

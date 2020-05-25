@@ -463,7 +463,7 @@
         
 
         <li class="nav-item">
-          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+          <a class="nav-link " href="/#experience"><span>Experience</span></a>
         </li>
 
         
@@ -486,6 +486,35 @@
 
         <li class="nav-item">
           <a class="nav-link " href="/files/cv.pdf"><span>Resume</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
         </li>
 
         
@@ -609,7 +638,7 @@
 <h3 id="willamette-mba-community-grant-program">Willamette MBA Community Grant Program</h3>
 <p>The 
 <a href="https://www.agsmgrants.com/" target="_blank" rel="noopener">Willamette MBA Community Grant Program</a> is the only 100% student-administered grantmaking program in the US and provides funding opportunities for nonprofit or social service organizations serving Oregon&rsquo;s 
-<a href="https://geology.com/county-map/oregon.shtml" target="_blank" rel="noopener">Marion, Polk, and/or Yamhill counties</a>. As students facilitating multiple rounds of grantee applications bt reviewing organizational and operational metrics while following up on the results of projects from previous funding cycles, it was getting difficult to keep track of all of the information we needed. As the project manager and lead financial data analyst, the disorganization made creating tools for internal communication, financial statement analysis, and risk modeling particularly tedious. Additionally, because it is completely student-run, the program experiences 100% annual turnover, with the exception of the two faculty instructors. This makes organizing institutional knowledge all the more difficult yet essential. Seems like a problem an Access SQL database could solve!</p>
+<a href="https://geology.com/county-map/oregon.shtml" target="_blank" rel="noopener">Marion, Polk, and/or Yamhill counties</a>. As students facilitating multiple rounds of grantee applications by reviewing organizational and operational metrics while following up on the results of projects from previous funding cycles, it was getting difficult to keep track of all of the information we needed. As the project manager and lead financial data analyst, the disorganization made creating tools for internal communication, financial statement analysis, and risk modeling particularly tedious. Additionally, because it is completely student-run, the program experiences 100% annual turnover, with the exception of the two faculty instructors. This makes organizing institutional knowledge all the more difficult yet essential. Seems like a problem an Access SQL database could solve!</p>
 <h3 id="database-overview">Database Overview</h3>
 <p>My goal in creating this database was to make it as flexable as possible to adapt to future itrations of the program. The Grant Program only just finished its fourth year and there are many things that could hypothetically happen that haven&rsquo;t yet. As such, the database seems a bit redundant (in SQL-talk: it has more many-to-many relationships than initally seems necessary). For example, an <em>EnrollIn</em> relationship needs its own table since it is hypothetically possible for a student to enroll in the course more than once (they coud be a JD/MBA or an MBA-for-Life student). If we just assumed that each student will enroll in the course only once, <em>EnrollIn</em> could just be a column in the <em>Student</em>  table. Feel free to check out the 
 <a href="https://drive.google.com/file/d/1rOdZmnAYQa-UH4V_KDCOjGDaF2aHaYjl/view?usp=sharing" target="_blank" rel="noopener">full project description</a> for all of the database requirements.</p>
@@ -619,7 +648,7 @@
 <h4 id="access-relational-diagram">Access Relational Diagram</h4>
 <p><img src="/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/AccessRelation.PNG" alt="Access Relational"></p>
 <h4 id="hey-it-works">Hey, it works!</h4>
-<p>Sample problem: <em>List the organization name, project name, description, and amount recieved for each project operated by an organization who has operate more than on project. Provide the list in descending order by amount.</em></p>
+<p>Sample problem: <em>List the organization name, project name, description, and amount recieved for each project operated by an organization who has operate more than one project. Provide the list in descending order by amount.</em></p>
 <p><img src="/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/SampleCode.PNG" alt="Sample Code"></p>
 <p><img src="/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/SampleQ.PNG" alt="Sample Q"></p>
 <h3 id="final-thoughts">Final Thoughts</h3>

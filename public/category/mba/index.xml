@@ -21,7 +21,7 @@
 &lt;h3 id=&#34;willamette-mba-community-grant-program&#34;&gt;Willamette MBA Community Grant Program&lt;/h3&gt;
 &lt;p&gt;The 
 &lt;a href=&#34;https://www.agsmgrants.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Willamette MBA Community Grant Program&lt;/a&gt; is the only 100% student-administered grantmaking program in the US and provides funding opportunities for nonprofit or social service organizations serving Oregon&amp;rsquo;s 
-&lt;a href=&#34;https://geology.com/county-map/oregon.shtml&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Marion, Polk, and/or Yamhill counties&lt;/a&gt;. As students facilitating multiple rounds of grantee applications bt reviewing organizational and operational metrics while following up on the results of projects from previous funding cycles, it was getting difficult to keep track of all of the information we needed. As the project manager and lead financial data analyst, the disorganization made creating tools for internal communication, financial statement analysis, and risk modeling particularly tedious. Additionally, because it is completely student-run, the program experiences 100% annual turnover, with the exception of the two faculty instructors. This makes organizing institutional knowledge all the more difficult yet essential. Seems like a problem an Access SQL database could solve!&lt;/p&gt;
+&lt;a href=&#34;https://geology.com/county-map/oregon.shtml&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Marion, Polk, and/or Yamhill counties&lt;/a&gt;. As students facilitating multiple rounds of grantee applications by reviewing organizational and operational metrics while following up on the results of projects from previous funding cycles, it was getting difficult to keep track of all of the information we needed. As the project manager and lead financial data analyst, the disorganization made creating tools for internal communication, financial statement analysis, and risk modeling particularly tedious. Additionally, because it is completely student-run, the program experiences 100% annual turnover, with the exception of the two faculty instructors. This makes organizing institutional knowledge all the more difficult yet essential. Seems like a problem an Access SQL database could solve!&lt;/p&gt;
 &lt;h3 id=&#34;database-overview&#34;&gt;Database Overview&lt;/h3&gt;
 &lt;p&gt;My goal in creating this database was to make it as flexable as possible to adapt to future itrations of the program. The Grant Program only just finished its fourth year and there are many things that could hypothetically happen that haven&amp;rsquo;t yet. As such, the database seems a bit redundant (in SQL-talk: it has more many-to-many relationships than initally seems necessary). For example, an &lt;em&gt;EnrollIn&lt;/em&gt; relationship needs its own table since it is hypothetically possible for a student to enroll in the course more than once (they coud be a JD/MBA or an MBA-for-Life student). If we just assumed that each student will enroll in the course only once, &lt;em&gt;EnrollIn&lt;/em&gt; could just be a column in the &lt;em&gt;Student&lt;/em&gt;  table. Feel free to check out the 
 &lt;a href=&#34;https://drive.google.com/file/d/1rOdZmnAYQa-UH4V_KDCOjGDaF2aHaYjl/view?usp=sharing&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;full project description&lt;/a&gt; for all of the database requirements.&lt;/p&gt;
@@ -31,7 +31,7 @@
 &lt;h4 id=&#34;access-relational-diagram&#34;&gt;Access Relational Diagram&lt;/h4&gt;
 &lt;p&gt;&lt;img src=&#34;/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/AccessRelation.PNG&#34; alt=&#34;Access Relational&#34;&gt;&lt;/p&gt;
 &lt;h4 id=&#34;hey-it-works&#34;&gt;Hey, it works!&lt;/h4&gt;
-&lt;p&gt;Sample problem: &lt;em&gt;List the organization name, project name, description, and amount recieved for each project operated by an organization who has operate more than on project. Provide the list in descending order by amount.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Sample problem: &lt;em&gt;List the organization name, project name, description, and amount recieved for each project operated by an organization who has operate more than one project. Provide the list in descending order by amount.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/SampleCode.PNG&#34; alt=&#34;Sample Code&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/SampleQ.PNG&#34; alt=&#34;Sample Q&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;final-thoughts&#34;&gt;Final Thoughts&lt;/h3&gt;
@@ -43,7 +43,7 @@
     <item>
       <title>An Analysis of HP&#39;s Quarterly Stock Return</title>
       <link>/post/hpstock/hp-stock/</link>
-      <pubDate>Mon, 16 Dec 2019 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 13 Dec 2019 00:00:00 +0000</pubDate>
       <guid>/post/hpstock/hp-stock/</guid>
       <description>
 
