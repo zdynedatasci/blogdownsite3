@@ -1,8 +1,7 @@
 ---
-title: 'Relocation, Education, and Incentivization: Adjusting residential zoning laws
-  to improve economic mobility in Kansas City, Missouri'
+title: 'Relocation, Education, and Incentivization: Adjusting residential zoning laws to improve economic mobility in Kansas City, Missouri'
 author: "Zachary Dyne"
-date: '2020-05-27'
+date: '2020-01-13'
 categories: MBA
 featured: no
 image:
@@ -13,8 +12,7 @@ lastmod: '2020-05-27T11:41:00-07:00'
 projects: []
 slug: KCMO-impact-zoning-Laws-on-education
 subtitle: ''
-summary: This is a policy memo I wrote about the impact of zoning laws on education
-  outcomes and economic mobility in Kansas City, Missouri.
+summary: This is a policy memo I wrote about the impact of zoning laws on education outcomes and economic mobility in Kansas City, Missouri.
 tags:
 - Public Policy
 - Real Estate
@@ -27,7 +25,7 @@ Economic mobility, the ability for individuals to economically fare better than 
 
 #### Exhibit 1
 ![Exhibit 1](/post/ZoningLawsKCMO/2020-05-27-relocation-education-and-incentivization-adjusting-residential-zoning-laws-to-improve-economic-mobility-in-kansas-city-missouri_files/EDUscreenshot.PNG)
-*The Red dot represents data for the Kansas City School District*
+*The red dot represents data for the Kansas City School District*
 
 
 
