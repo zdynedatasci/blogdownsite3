@@ -1,27 +1,28 @@
 ---
-title: An Overview of the Willamette MBA Community Grant Program SQL Database
-author: Zachary Dyne
+title: "An Overview of the Willamette MBA Community Grant Program SQL Database"
+author: "Zachary Dyne"
 date: '2020-05-23'
-slug: agsmgrantssql
 categories:
-  - SQL
-  - Data Engineering
-  - MBA
-tags:
-  - SQL
-  - Access
-  - MBA
-  - Willamette MBA Community Grant Program
-subtitle: ''
-summary: 'This post provides an overview of the SQL database I created for the Willamette MBA Community Grant Program during my MBA.'
-authors: []
-lastmod: '2020-05-23T10:28:44-07:00'
+- SQL
+- Data Engineering
+- MBA
 featured: no
 image:
   caption: ''
   focal_point: ''
   preview_only: no
+lastmod: '2020-05-23T10:28:44-07:00'
 projects: []
+slug: agsmgrantssql
+subtitle: ''
+summary: This post provides an overview of the SQL database I created for the Willamette
+  MBA Community Grant Program during my MBA.
+tags:
+- SQL
+- Access
+- MBA
+- Willamette MBA Community Grant Program
+authors: []
 ---
 
 One of my favorite courses I took during my time at Atkinson was *GSMDS5003: Data Engineering*, taught by the one and only Prof. Henry Bi. We not only learned how to write SQL code but also about the fundamentals of database design, including entity relational (ER) modeling, standardization, and normalization. Learning the structure of well designed databases made learning to retrieve data via SQL a fairly straitforward extension. The course's final project was to create a database of our own using Microsoft Access, so I decided to use this opportunity to solve a different problem I was dealing with: the information scattered throughout the Google Drive of the Willamette MBA Community Grant Program.
