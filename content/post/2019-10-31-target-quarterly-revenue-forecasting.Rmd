@@ -67,7 +67,7 @@ TargetAddDecompm %>%
   autoplot() +
   ggtitle("Classical Additive Decomposition of Target Sales") +
   xlab("Year") +
-  theme_economist_white()
+  theme_economist_white() # choose economist theme
 ```
 This plot is reasonably interesting, as it shows th trend and seasonally adjusted data alonogside each other, along with the error from the decomposition model. 
 
