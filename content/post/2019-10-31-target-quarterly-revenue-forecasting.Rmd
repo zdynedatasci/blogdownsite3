@@ -1,5 +1,5 @@
 ---
-title: Target Quarterly Revenue Forecasting
+title: Forecasting Target Corporation's Quarterly Revenue
 author: Zachary Dyne
 date: '2019-10-31'
 slug: target-quarterly-revenue-forecasting
