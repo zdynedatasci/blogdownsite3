@@ -1,0 +1,245 @@
+---
+title: Target Quarterly Revenue Forecasting
+author: Zachary Dyne
+date: '2019-10-31'
+slug: target-quarterly-revenue-forecasting
+categories:
+  - MBA
+tags:
+  - Forecasting
+  - Finance
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-05-28T15:10:22-07:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+output:
+  blogdown::html_page:
+    toc: yes
+    df_print: kable
+    toc_depth: 2
+---
+
+During my MBA program I had the opportunity to take a course on busines and economic forecasting. The revenue cycle of many businesses can be highly seasonal, which adds a degree of complexity to creating forecasts. This is especially true in the retail sector, which made forecasting Target Corporation's quarterly revenue from 1993-2001 a fun challenge! 
+
+```{r message=F, warning=F}
+#setup
+library(tidyverse)
+library(fpp2)
+library(kableExtra)
+library(ggthemes)
+TargetLabF <- read_csv("C:/Users/Lenovo/Desktop/AGSM/Fall2019/Forecasting/TargetDecomp/TargetLabF.csv")
+TargetLabF$Period <- with(TargetLabF, paste(Yr, Quarter, sep = ":Q"))
+
+# Create Timeseries Data for Decomposition Analysis
+TargetTS <- TargetLabF %>%
+  filter(!is.na(Sales)) %>%
+  select(Time, Sales) %>%
+  ts(., start = c(1993, 1), end = c(2001, 4), frequency = 4)
+
+# Plot Data
+TargetLabF %>%
+  filter(!is.na(Sales)) %>%
+  ggplot(aes(x=Time, y=Sales)) + 
+  geom_line(size = 2) + 
+  scale_x_continuous(breaks = TargetLabF$Time, labels = TargetLabF$Period) +
+  theme_economist_white() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  ggtitle("Target Quarterly Sales 1993:Q1 - 2001:Q4") +
+  ylab("Sales (in millions of US Dollars)")
+```
+
+Target's quarterly sales show a general upward trend with strong seasonality. There is a strong increase in Quarter 4 in each year, which is typical for the retail industry given the surge in holiday shopping. There isn't a clear cycle, though, meaning that the trend is fairly constnat. 
+
+Since the seasonal component here is constant from year to year, a classical decomposition method should work nicely here. We will work first through an additive decomposition and then through a multiplicative decomposition process. 
+
+## Additive Decomposition
+```{r}
+TargetAddDecompm <- TargetTS %>% 
+  decompose(type = "additive")
+
+TargetAddDecompm %>%
+  autoplot() +
+  ggtitle("Classical Additive Decomposition of Target Sales") +
+  xlab("Year") +
+  theme_economist_white()
+```
+This plot is reasonably interesting, as it shows th trend and seasonally adjusted data alonogside each other, along with the error from the decomposition model. 
+
+
+```{r}
+# Extract Seasonal and Trend Components
+Seasonal <- TargetAddDecompm$seasonal  # Extract seasonal indecies            
+SeasAdj <- (TargetTS/Seasonal)         # Seasonally adjusted data   
+TimeF <- TargetLabF %>% select(Time)   # Extract TimeF
+TrendMod <- lm(SeasAdj ~ TargetTS)     # Fit trend to seasonally adjusted data   
+TimeFramef <- TargetLabF %>% select(Sales) # Extract sales
+Trend <- predict(TrendMod,              # Project trend using trend model  
+                 newdata = TargetTS)
+TrendDecomp <- TargetAddDecompm$trend   #Extract trend value
+TrendDecompDF <- TrendDecomp[,2] %>% as.data.frame() # Convert trend value to df
+names(TrendDecompDF) <- c("Trend") # rename
+
+# to find model coeficients
+summary(TrendMod)
+```
+ 
+
+```{r message = F, warning=F}
+TrendVals <- Trend %>% 
+  as.data.frame() %>% 
+  select(TargetTS.Sales) %>% 
+  ts(., start = c(1993, 1), end = c(2001, 4), frequency = 4)
+
+#create aggregate dataframe for plotting and performance anlaysis
+Forecast <- TrendVals * Seasonal
+SalesData <- TargetTS %>% as.data.frame() %>% select(Sales) 
+TimeData <- TargetTS %>% as.data.frame() %>%  select(Time)
+AddPlot <- data.frame(TrendDecompDF, Forecast, SalesData, TimeData)
+names(AddPlot) <- c("Trend", "Forecast", "Data", "Time")
+AddPlot %>%
+  gather(key="DataType", value="Value", 1:3) %>%
+  ggplot(aes(x=Time, y=Value, color = DataType)) + 
+  geom_line(size=1.5) + 
+  theme_economist_white() +
+  scale_x_continuous(breaks = TargetLabF$Time, labels = TargetLabF$Period) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  ggtitle("Additve Decomposition", subtitle = "Forecast and Actual Data") +
+  ylab("Sales (in millions of US Dollars)")
+```
+
+Seasonal Indecies (in millions of dollars)
+```{r warning=F}
+Seasonal %>%
+  as.tibble() %>%
+  rowid_to_column() %>%
+  filter(rowid < 5) %>%
+  rename("Quarter" = "rowid") %>%
+  rename("Seasonal_Indicator" = "x")
+```
+
+Performance Metrics
+```{r}
+# create all of the relevant performance metrics
+SSTO <- sum((AddPlot$Data - mean(AddPlot$Data))^2)
+SSE <- sum((AddPlot$Data - AddPlot$Forecast)^2)
+MSD <- SSE/length(AddPlot$Data)
+s <- sqrt(MSD)
+R2 <- (SSTO - SSE)/SSTO
+MAD <- sum(abs(AddPlot$Data - AddPlot$Forecast))/length(AddPlot$Data)
+MPE <- 100*sum((AddPlot$Data - AddPlot$Forecast)/AddPlot$Data)/length(AddPlot$Data)
+MAPE <- 100*sum(abs((AddPlot$Data - AddPlot$Forecast)/AddPlot$Data))/length(AddPlot$Data)  
+Performance <- tibble(SSTO, SSE, MSD, s, R2, MAD, MPE, MAPE)
+```
+
+#### Additive Decomposition Performance Metrics
+```{r}
+Performance %>% kable() %>% kable_styling()
+```
+
+### Additive Decomposition Assessment
+
+Through all of that, our predicted spike in quarter four is expected to continue, but the ability of the forecast to predict actual data in quater 3 in years 1996-1998 are far off, as the plot of forecast would suggest.  
+
+We have a farily low R2, which is the portion of variation explained by the model. This coincides with a high MAD (Mean Absolute Deviation) and SSE (Sum of Squered Error), which are both metrics of by how much the model misses actual data. While these are useful quantitative metircs, the of forecast against actual data indicates that perhaps we should try multiplicative decomposition methods for forecasting Target's quarterly revenue. 
+
+## Multiplicative Decomposition
+```{r}
+TargetMultDecomp <- TargetTS %>% 
+  decompose(type = "multiplicative") 
+
+TargetMultDecomp %>%
+  autoplot() +
+  ggtitle("Classical Multiplicative Decomposition of Target Sales") +
+  xlab("Year") + 
+  theme_economist_white()
+```
+
+```{r warning=F}
+# Extract Seasonal and Trend Components
+Seasonal <- TargetMultDecomp$seasonal              
+SeasAdj <- (TargetTS/Seasonal)          
+TimeF <- TargetLabF %>% select(Time)
+TrendMod <- lm(SeasAdj ~ TargetTS)
+TimeFramef <- TargetLabF %>% select(Sales)
+Trend <- predict(TrendMod,                
+                 newdata = TargetTS)
+TrendDecomp <- TargetMultDecomp$trend
+TrendDecompDF <- TrendDecomp[,2] %>% as.data.frame()
+names(TrendDecompDF) <- c("Trend")
+
+TrendVals <- Trend %>% 
+  as.data.frame() %>% 
+  select(TargetTS.Sales) %>% 
+  ts(., start = c(1993, 1), end = c(2001, 4), frequency = 4)
+
+#create aggregate dataframe for plotting and performance anlaysis
+Forecast <- TrendVals * Seasonal
+SalesData <- TargetTS %>% as.data.frame() %>% select(Sales) 
+TimeData <- TargetTS %>% as.data.frame() %>%  select(Time)
+MultPlot <- data.frame(TrendDecompDF, Forecast, SalesData, TimeData)
+names(MultPlot) <- c("Trend", "Forecast", "Data", "Time")
+MultPlot %>%
+  gather(key="DataType", value="Value", 1:3) %>%
+  ggplot(aes(x=Time, y=Value, color = DataType)) + 
+  geom_line(size=1.5) + 
+  scale_x_continuous(breaks = TargetLabF$Time, labels = TargetLabF$Period) +
+  theme_economist_white() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  ggtitle("Multiplicative Decomposition") +
+  ylab("Sales (in millions of US Dollars)")
+```
+
+```{r}
+Seasonal %>%
+  as.tibble() %>%
+  rowid_to_column() %>%
+  filter(rowid < 5) %>%
+  rename("Quarter" = "rowid") %>%
+  rename("Seasonal_Indicator" = "x")
+```
+
+```{r}
+SSTO <- sum((MultPlot$Data - mean(MultPlot$Data))^2)
+SSE <- sum((MultPlot$Data - MultPlot$Forecast)^2)
+MSD <- SSE/length(MultPlot$Data)
+s <- sqrt(MSD)
+R2 <- (SSTO - SSE)/SSTO
+MAD <- sum(abs(MultPlot$Data - MultPlot$Forecast))/length(MultPlot$Data)
+MPE <- 100*sum((MultPlot$Data - MultPlot$Forecast)/MultPlot$Data)/length(MultPlot$Data)
+MAPE <- 100*sum(abs((MultPlot$Data - MultPlot$Forecast)/MultPlot$Data))/length(MultPlot$Data)  
+Performance <- tibble(SSTO, SSE, MSD, s, R2, MAD, MPE, MAPE)
+```
+
+#### Multiplicative Decomposition Performance Metrics
+```{r}
+Performance %>% kable() %>% kable_styling()
+```
+
+### Multiplicative Decomposition Assessment
+The multiplicative model performs noteably better than the additive model. The R2 indicates that almost 99% of the varaition is captured by the model. As demonstrated by the low MAD and SSE values, the model has a fairly low total error. This model may actually be useful for forecasting Target's 2002 and 2003 quarterly revenue. Let's do it! 
+
+## Forecasting 2002 - 2003
+```{r}
+TargetTS %>% 
+  forecast() %>%
+  autoplot() +
+  ggtitle("Target Sales Forecast Using Multiplicative Decomposition") + 
+  ylab("Sales & Forecast (in millions of US dollars") +
+  theme_economist_white()
+```
+
+```{r}
+TargetTS %>% 
+  forecast() %>%
+  as.data.frame() %>% 
+  filter(Series == "Sales") %>%
+  select(-Series)
+```
+
+

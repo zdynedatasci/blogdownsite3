@@ -10,7 +10,7 @@ authors:
 superuser: true
 
 # Role/position
-role: Data Scientist, Data Analyst, & Research Programmer
+role: Data Scientist and Project Manager
 
 # Organizations/Affiliations
 organizations:

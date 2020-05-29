@@ -340,5 +340,655 @@ HPQArima1 %&amp;gt;%
 </description>
     </item>
     
+    <item>
+      <title>Target Quarterly Revenue Forecasting</title>
+      <link>/post/target-quarterly-revenue-forecasting/</link>
+      <pubDate>Thu, 31 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>/post/target-quarterly-revenue-forecasting/</guid>
+      <description>
+&lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+
+&lt;div id=&#34;TOC&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#additive-decomposition&#34;&gt;Additive Decomposition&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#multiplicative-decomposition&#34;&gt;Multiplicative Decomposition&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#forecasting-2002---2003&#34;&gt;Forecasting 2002 - 2003&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;p&gt;During my MBA program I had the opportunity to take a course on busines and economic forecasting. The revenue cycle of many businesses can be highly seasonal, which adds a degree of complexity to creating forecasts. This is especially true in the retail sector, which made forecasting Target Corporation’s quarterly revenue from 1993-2001 a fun challenge!&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#setup
+library(tidyverse)
+library(fpp2)
+library(kableExtra)
+library(ggthemes)
+TargetLabF &amp;lt;- read_csv(&amp;quot;C:/Users/Lenovo/Desktop/AGSM/Fall2019/Forecasting/TargetDecomp/TargetLabF.csv&amp;quot;)
+TargetLabF$Period &amp;lt;- with(TargetLabF, paste(Yr, Quarter, sep = &amp;quot;:Q&amp;quot;))
+
+# Create Timeseries Data for Decomposition Analysis
+TargetTS &amp;lt;- TargetLabF %&amp;gt;%
+  filter(!is.na(Sales)) %&amp;gt;%
+  select(Time, Sales) %&amp;gt;%
+  ts(., start = c(1993, 1), end = c(2001, 4), frequency = 4)
+
+# Plot Data
+TargetLabF %&amp;gt;%
+  filter(!is.na(Sales)) %&amp;gt;%
+  ggplot(aes(x=Time, y=Sales)) + 
+  geom_line(size = 2) + 
+  scale_x_continuous(breaks = TargetLabF$Time, labels = TargetLabF$Period) +
+  theme_economist_white() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  ggtitle(&amp;quot;Target Quarterly Sales 1993:Q1 - 2001:Q4&amp;quot;) +
+  ylab(&amp;quot;Sales (in millions of US Dollars)&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-10-31-target-quarterly-revenue-forecasting_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Target’s quarterly sales show a general upward trend with strong seasonality. There is a strong increase in Quarter 4 in each year, which is typical for the retail industry given the surge in holiday shopping. There isn’t a clear cycle, though, meaning that the trend is fairly constnat.&lt;/p&gt;
+&lt;p&gt;Since the seasonal component here is constant from year to year, a classical decomposition method should work nicely here. We will work first through an additive decomposition and then through a multiplicative decomposition process.&lt;/p&gt;
+&lt;div id=&#34;additive-decomposition&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Additive Decomposition&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;TargetAddDecompm &amp;lt;- TargetTS %&amp;gt;% 
+  decompose(type = &amp;quot;additive&amp;quot;)
+
+TargetAddDecompm %&amp;gt;%
+  autoplot() +
+  ggtitle(&amp;quot;Classical Additive Decomposition of Target Sales&amp;quot;) +
+  xlab(&amp;quot;Year&amp;quot;) +
+  theme_economist_white()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-10-31-target-quarterly-revenue-forecasting_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;
+This plot is reasonably interesting, as it shows th trend and seasonally adjusted data alonogside each other, along with the error from the decomposition model.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Extract Seasonal and Trend Components
+Seasonal &amp;lt;- TargetAddDecompm$seasonal  # Extract seasonal indecies            
+SeasAdj &amp;lt;- (TargetTS/Seasonal)         # Seasonally adjusted data   
+TimeF &amp;lt;- TargetLabF %&amp;gt;% select(Time)   # Extract TimeF
+TrendMod &amp;lt;- lm(SeasAdj ~ TargetTS)     # Fit trend to seasonally adjusted data   
+TimeFramef &amp;lt;- TargetLabF %&amp;gt;% select(Sales) # Extract sales
+Trend &amp;lt;- predict(TrendMod,              # Project trend using trend model  
+                 newdata = TargetTS)
+TrendDecomp &amp;lt;- TargetAddDecompm$trend   #Extract trend value
+TrendDecompDF &amp;lt;- TrendDecomp[,2] %&amp;gt;% as.data.frame() # Convert trend value to df
+names(TrendDecompDF) &amp;lt;- c(&amp;quot;Trend&amp;quot;) # rename
+
+# to find model coeficients
+summary(TrendMod)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Response TargetTS.Time :
+## 
+## Call:
+## lm(formula = TargetTS.Time ~ TargetTS)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.043735 -0.017572 -0.003055  0.022056  0.041730 
+## 
+## Coefficients:
+##                 Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)   -1.207e-01  1.294e-02  -9.326 9.03e-11 ***
+## TargetTSTime  -1.168e-02  8.534e-04 -13.690 3.67e-15 ***
+## TargetTSSales  5.398e-05  4.450e-06  12.129 1.05e-13 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 0.02545 on 33 degrees of freedom
+## Multiple R-squared:  0.8503, Adjusted R-squared:  0.8413 
+## F-statistic: 93.74 on 2 and 33 DF,  p-value: 2.455e-14
+## 
+## 
+## Response TargetTS.Sales :
+## 
+## Call:
+## lm(formula = TargetTS.Sales ~ TargetTS)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -10.084  -4.671  -2.064   5.803  11.019 
+## 
+## Coefficients:
+##                 Estimate Std. Error t value Pr(&amp;gt;|t|)    
+## (Intercept)   -37.309120   3.250817  -11.48 4.61e-13 ***
+## TargetTSTime   -2.650954   0.214332  -12.37 6.14e-14 ***
+## TargetTSSales   0.013913   0.001118   12.45 5.16e-14 ***
+## ---
+## Signif. codes:  0 &amp;#39;***&amp;#39; 0.001 &amp;#39;**&amp;#39; 0.01 &amp;#39;*&amp;#39; 0.05 &amp;#39;.&amp;#39; 0.1 &amp;#39; &amp;#39; 1
+## 
+## Residual standard error: 6.392 on 33 degrees of freedom
+## Multiple R-squared:  0.8325, Adjusted R-squared:  0.8223 
+## F-statistic: 81.99 on 2 and 33 DF,  p-value: 1.575e-13&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;TrendVals &amp;lt;- Trend %&amp;gt;% 
+  as.data.frame() %&amp;gt;% 
+  select(TargetTS.Sales) %&amp;gt;% 
+  ts(., start = c(1993, 1), end = c(2001, 4), frequency = 4)
+
+#create aggregate dataframe for plotting and performance anlaysis
+Forecast &amp;lt;- TrendVals * Seasonal
+SalesData &amp;lt;- TargetTS %&amp;gt;% as.data.frame() %&amp;gt;% select(Sales) 
+TimeData &amp;lt;- TargetTS %&amp;gt;% as.data.frame() %&amp;gt;%  select(Time)
+AddPlot &amp;lt;- data.frame(TrendDecompDF, Forecast, SalesData, TimeData)
+names(AddPlot) &amp;lt;- c(&amp;quot;Trend&amp;quot;, &amp;quot;Forecast&amp;quot;, &amp;quot;Data&amp;quot;, &amp;quot;Time&amp;quot;)
+AddPlot %&amp;gt;%
+  gather(key=&amp;quot;DataType&amp;quot;, value=&amp;quot;Value&amp;quot;, 1:3) %&amp;gt;%
+  ggplot(aes(x=Time, y=Value, color = DataType)) + 
+  geom_line(size=1.5) + 
+  theme_economist_white() +
+  scale_x_continuous(breaks = TargetLabF$Time, labels = TargetLabF$Period) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  ggtitle(&amp;quot;Additve Decomposition&amp;quot;, subtitle = &amp;quot;Forecast and Actual Data&amp;quot;) +
+  ylab(&amp;quot;Sales (in millions of US Dollars)&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-10-31-target-quarterly-revenue-forecasting_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Seasonal Indecies (in millions of dollars)&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;Seasonal %&amp;gt;%
+  as.tibble() %&amp;gt;%
+  rowid_to_column() %&amp;gt;%
+  filter(rowid &amp;lt; 5) %&amp;gt;%
+  rename(&amp;quot;Quarter&amp;quot; = &amp;quot;rowid&amp;quot;) %&amp;gt;%
+  rename(&amp;quot;Seasonal_Indicator&amp;quot; = &amp;quot;x&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Quarter
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Seasonal_Indicator
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+-319.0977
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+-200.3242
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+3
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+-205.1211
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+4
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+724.5430
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;p&gt;Performance Metrics&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# create all of the relevant performance metrics
+SSTO &amp;lt;- sum((AddPlot$Data - mean(AddPlot$Data))^2)
+SSE &amp;lt;- sum((AddPlot$Data - AddPlot$Forecast)^2)
+MSD &amp;lt;- SSE/length(AddPlot$Data)
+s &amp;lt;- sqrt(MSD)
+R2 &amp;lt;- (SSTO - SSE)/SSTO
+MAD &amp;lt;- sum(abs(AddPlot$Data - AddPlot$Forecast))/length(AddPlot$Data)
+MPE &amp;lt;- 100*sum((AddPlot$Data - AddPlot$Forecast)/AddPlot$Data)/length(AddPlot$Data)
+MAPE &amp;lt;- 100*sum(abs((AddPlot$Data - AddPlot$Forecast)/AddPlot$Data))/length(AddPlot$Data)  
+Performance &amp;lt;- tibble(SSTO, SSE, MSD, s, R2, MAD, MPE, MAPE)&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;additive-decomposition-performance-metrics&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Additive Decomposition Performance Metrics&lt;/h4&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;Performance %&amp;gt;% kable() %&amp;gt;% kable_styling()&lt;/code&gt;&lt;/pre&gt;
+&lt;table class=&#34;table&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+SSTO
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+SSE
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+MSD
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+s
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+R2
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+MAD
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+MPE
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+MAPE
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+142871385
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+167622658
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+4656185
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2157.819
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+-0.1732416
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1743.858
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+3.88285
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+33.83439
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&#34;additive-decomposition-assessment&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Additive Decomposition Assessment&lt;/h3&gt;
+&lt;p&gt;Through all of that, our predicted spike in quarter four is expected to continue, but the ability of the forecast to predict actual data in quater 3 in years 1996-1998 are far off, as the plot of forecast would suggest.&lt;/p&gt;
+&lt;p&gt;We have a farily low R2, which is the portion of variation explained by the model. This coincides with a high MAD (Mean Absolute Deviation) and SSE (Sum of Squered Error), which are both metrics of by how much the model misses actual data. While these are useful quantitative metircs, the of forecast against actual data indicates that perhaps we should try multiplicative decomposition methods for forecasting Target’s quarterly revenue.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;multiplicative-decomposition&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Multiplicative Decomposition&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;TargetMultDecomp &amp;lt;- TargetTS %&amp;gt;% 
+  decompose(type = &amp;quot;multiplicative&amp;quot;) 
+
+TargetMultDecomp %&amp;gt;%
+  autoplot() +
+  ggtitle(&amp;quot;Classical Multiplicative Decomposition of Target Sales&amp;quot;) +
+  xlab(&amp;quot;Year&amp;quot;) + 
+  theme_economist_white()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-10-31-target-quarterly-revenue-forecasting_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Extract Seasonal and Trend Components
+Seasonal &amp;lt;- TargetMultDecomp$seasonal              
+SeasAdj &amp;lt;- (TargetTS/Seasonal)          
+TimeF &amp;lt;- TargetLabF %&amp;gt;% select(Time)
+TrendMod &amp;lt;- lm(SeasAdj ~ TargetTS)
+TimeFramef &amp;lt;- TargetLabF %&amp;gt;% select(Sales)
+Trend &amp;lt;- predict(TrendMod,                
+                 newdata = TargetTS)
+TrendDecomp &amp;lt;- TargetMultDecomp$trend
+TrendDecompDF &amp;lt;- TrendDecomp[,2] %&amp;gt;% as.data.frame()
+names(TrendDecompDF) &amp;lt;- c(&amp;quot;Trend&amp;quot;)
+
+TrendVals &amp;lt;- Trend %&amp;gt;% 
+  as.data.frame() %&amp;gt;% 
+  select(TargetTS.Sales) %&amp;gt;% 
+  ts(., start = c(1993, 1), end = c(2001, 4), frequency = 4)
+
+#create aggregate dataframe for plotting and performance anlaysis
+Forecast &amp;lt;- TrendVals * Seasonal
+SalesData &amp;lt;- TargetTS %&amp;gt;% as.data.frame() %&amp;gt;% select(Sales) 
+TimeData &amp;lt;- TargetTS %&amp;gt;% as.data.frame() %&amp;gt;%  select(Time)
+MultPlot &amp;lt;- data.frame(TrendDecompDF, Forecast, SalesData, TimeData)
+names(MultPlot) &amp;lt;- c(&amp;quot;Trend&amp;quot;, &amp;quot;Forecast&amp;quot;, &amp;quot;Data&amp;quot;, &amp;quot;Time&amp;quot;)
+MultPlot %&amp;gt;%
+  gather(key=&amp;quot;DataType&amp;quot;, value=&amp;quot;Value&amp;quot;, 1:3) %&amp;gt;%
+  ggplot(aes(x=Time, y=Value, color = DataType)) + 
+  geom_line(size=1.5) + 
+  scale_x_continuous(breaks = TargetLabF$Time, labels = TargetLabF$Period) +
+  theme_economist_white() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  ggtitle(&amp;quot;Multiplicative Decomposition&amp;quot;) +
+  ylab(&amp;quot;Sales (in millions of US Dollars)&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-10-31-target-quarterly-revenue-forecasting_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;Seasonal %&amp;gt;%
+  as.tibble() %&amp;gt;%
+  rowid_to_column() %&amp;gt;%
+  filter(rowid &amp;lt; 5) %&amp;gt;%
+  rename(&amp;quot;Quarter&amp;quot; = &amp;quot;rowid&amp;quot;) %&amp;gt;%
+  rename(&amp;quot;Seasonal_Indicator&amp;quot; = &amp;quot;x&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Quarter
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Seasonal_Indicator
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.9387531
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.9632068
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+3
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.9580566
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+4
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1.1399835
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;SSTO &amp;lt;- sum((MultPlot$Data - mean(MultPlot$Data))^2)
+SSE &amp;lt;- sum((MultPlot$Data - MultPlot$Forecast)^2)
+MSD &amp;lt;- SSE/length(MultPlot$Data)
+s &amp;lt;- sqrt(MSD)
+R2 &amp;lt;- (SSTO - SSE)/SSTO
+MAD &amp;lt;- sum(abs(MultPlot$Data - MultPlot$Forecast))/length(MultPlot$Data)
+MPE &amp;lt;- 100*sum((MultPlot$Data - MultPlot$Forecast)/MultPlot$Data)/length(MultPlot$Data)
+MAPE &amp;lt;- 100*sum(abs((MultPlot$Data - MultPlot$Forecast)/MultPlot$Data))/length(MultPlot$Data)  
+Performance &amp;lt;- tibble(SSTO, SSE, MSD, s, R2, MAD, MPE, MAPE)&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;multiplicative-decomposition-performance-metrics&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Multiplicative Decomposition Performance Metrics&lt;/h4&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;Performance %&amp;gt;% kable() %&amp;gt;% kable_styling()&lt;/code&gt;&lt;/pre&gt;
+&lt;table class=&#34;table&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+SSTO
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+SSE
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+MSD
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+s
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+R2
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+MAD
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+MPE
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+MAPE
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+142871385
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+283144.5
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+7865.124
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+88.68553
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.9980182
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+69.91029
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+0.1328121
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1.487155
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&#34;multiplicative-decomposition-assessment&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Multiplicative Decomposition Assessment&lt;/h3&gt;
+&lt;p&gt;The multiplicative model performs noteably better than the additive model. The R2 indicates that almost 99% of the varaition is captured by the model. As demonstrated by the low MAD and SSE values, the model has a fairly low total error. This model may actually be useful for forecasting Target’s 2002 and 2003 quarterly revenue. Let’s do it!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;forecasting-2002---2003&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Forecasting 2002 - 2003&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;TargetTS %&amp;gt;% 
+  forecast() %&amp;gt;%
+  autoplot() +
+  ggtitle(&amp;quot;Target Sales Forecast Using Multiplicative Decomposition&amp;quot;) + 
+  ylab(&amp;quot;Sales &amp;amp; Forecast (in millions of US dollars&amp;quot;) +
+  theme_economist_white()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-10-31-target-quarterly-revenue-forecasting_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;TargetTS %&amp;gt;% 
+  forecast() %&amp;gt;%
+  as.data.frame() %&amp;gt;% 
+  filter(Series == &amp;quot;Sales&amp;quot;) %&amp;gt;%
+  select(-Series)&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;kable-table&#34;&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+Time
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Point Forecast
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Lo 80
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Hi 80
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Lo 95
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Hi 95
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2002 Q1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+7488.757
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+7288.633
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+7688.881
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+7182.693
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+7794.821
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2002 Q2
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+8084.943
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+7838.603
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+8331.283
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+7708.198
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+8461.687
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2002 Q3
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+8201.530
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+7918.507
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+8484.552
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+7768.684
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+8634.375
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2002 Q4
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+11688.782
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+11235.422
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+12142.141
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+10995.428
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+12382.135
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2003 Q1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+8178.980
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+7825.157
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+8532.802
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+7637.855
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+8720.105
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2003 Q2
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+8813.331
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+8391.215
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+9235.447
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+8167.761
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+9458.902
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2003 Q3
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+8924.146
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+8454.131
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+9394.161
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+8205.321
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+9642.972
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+2003 Q4
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+12696.455
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+11965.674
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+13427.237
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+11578.821
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+13814.089
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>

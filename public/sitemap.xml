@@ -28,22 +28,62 @@
   </url>
   
   <url>
-    <loc>/categories/</loc>
-    <lastmod>2020-05-27T11:41:00-07:00</lastmod>
+    <loc>/tag/access/</loc>
+    <lastmod>2020-05-23T10:28:44-07:00</lastmod>
   </url>
   
   <url>
-    <loc>/tag/education/</loc>
-    <lastmod>2020-05-27T11:41:00-07:00</lastmod>
+    <loc>/post/agsmgrantsql/agsmgrantssql/</loc>
+    <lastmod>2020-05-23T10:28:44-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/</loc>
+    <lastmod>2020-05-28T15:10:22-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/category/data-engineering/</loc>
+    <lastmod>2020-05-23T10:28:44-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/mba/</loc>
+    <lastmod>2020-05-23T10:28:44-07:00</lastmod>
   </url>
   
   <url>
     <loc>/category/mba/</loc>
-    <lastmod>2020-05-27T11:41:00-07:00</lastmod>
+    <lastmod>2020-05-28T15:10:22-07:00</lastmod>
   </url>
   
   <url>
     <loc>/post/</loc>
+    <lastmod>2020-05-28T15:10:22-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/sql/</loc>
+    <lastmod>2020-05-23T10:28:44-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/category/sql/</loc>
+    <lastmod>2020-05-23T10:28:44-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-05-28T15:10:22-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/willamette-mba-community-grant-program/</loc>
+    <lastmod>2020-05-23T10:28:44-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/education/</loc>
     <lastmod>2020-05-27T11:41:00-07:00</lastmod>
   </url>
   
@@ -60,46 +100,6 @@
   <url>
     <loc>/post/zoninglawskcmo/kcmo-impact-zoning-laws-on-education/</loc>
     <lastmod>2020-05-27T11:41:00-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <lastmod>2020-05-27T11:41:00-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/access/</loc>
-    <lastmod>2020-05-23T10:28:44-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/agsmgrantsql/agsmgrantssql/</loc>
-    <lastmod>2020-05-23T10:28:44-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/data-engineering/</loc>
-    <lastmod>2020-05-23T10:28:44-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/mba/</loc>
-    <lastmod>2020-05-23T10:28:44-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/sql/</loc>
-    <lastmod>2020-05-23T10:28:44-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/category/sql/</loc>
-    <lastmod>2020-05-23T10:28:44-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tag/willamette-mba-community-grant-program/</loc>
-    <lastmod>2020-05-23T10:28:44-07:00</lastmod>
   </url>
   
   <url>
@@ -139,17 +139,22 @@
   
   <url>
     <loc>/tag/finance/</loc>
-    <lastmod>2020-05-24T08:32:18-07:00</lastmod>
+    <lastmod>2020-05-28T15:10:22-07:00</lastmod>
   </url>
   
   <url>
     <loc>/tag/forecasting/</loc>
-    <lastmod>2020-05-24T08:32:18-07:00</lastmod>
+    <lastmod>2020-05-28T15:10:22-07:00</lastmod>
   </url>
   
   <url>
     <loc>/tag/time-series/</loc>
     <lastmod>2020-05-24T08:32:18-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/target-quarterly-revenue-forecasting/</loc>
+    <lastmod>2020-05-28T15:10:22-07:00</lastmod>
   </url>
   
   <url>

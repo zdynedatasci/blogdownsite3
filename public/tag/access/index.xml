@@ -31,7 +31,7 @@
 &lt;h4 id=&#34;access-relational-diagram&#34;&gt;Access Relational Diagram&lt;/h4&gt;
 &lt;p&gt;&lt;img src=&#34;/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/AccessRelation.PNG&#34; alt=&#34;Access Relational&#34;&gt;&lt;/p&gt;
 &lt;h4 id=&#34;hey-it-works&#34;&gt;Hey, it works!&lt;/h4&gt;
-&lt;p&gt;Sample problem: &lt;em&gt;List the organization name, project name, description, and amount recieved for each project operated by an organization who has operate more than one project. Provide the list in descending order by amount.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Sample problem: &lt;em&gt;List the organization name, project name, description, and amount received for each project operated by an organization who has operated more than one project. Provide the list in descending order by amount.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/SampleCode.PNG&#34; alt=&#34;Sample Code&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/SampleQ.PNG&#34; alt=&#34;Sample Q&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;final-thoughts&#34;&gt;Final Thoughts&lt;/h3&gt;
