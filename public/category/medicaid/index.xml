@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Medicaid | Zachary Dyne</title>
-    <link>/category/medicaid/</link>
-      <atom:link href="/category/medicaid/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://zldyne.netlify.app/category/medicaid/</link>
+      <atom:link href="https://zldyne.netlify.app/category/medicaid/index.xml" rel="self" type="application/rss+xml" />
     <description>Medicaid</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Zachary Dyne</copyright><lastBuildDate>Sat, 14 Dec 2019 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>https://zldyne.netlify.app/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Medicaid</title>
-      <link>/category/medicaid/</link>
+      <link>https://zldyne.netlify.app/category/medicaid/</link>
     </image>
     
     <item>
       <title>An Exploration of Hospice Care Expenses in the US</title>
-      <link>/post/hospice/an-exploration-of-hospice-care-expenses-in-the-us/</link>
+      <link>https://zldyne.netlify.app/post/hospice/an-exploration-of-hospice-care-expenses-in-the-us/</link>
       <pubDate>Sat, 14 Dec 2019 00:00:00 +0000</pubDate>
-      <guid>/post/hospice/an-exploration-of-hospice-care-expenses-in-the-us/</guid>
+      <guid>https://zldyne.netlify.app/post/hospice/an-exploration-of-hospice-care-expenses-in-the-us/</guid>
       <description>
 
 &lt;div id=&#34;TOC&#34;&gt;
@@ -168,7 +168,7 @@ plt2 &amp;lt;- D %&amp;gt;%
      scale_y_continuous(label = dollar) + scale_fill_brewer()
 #plot each boxplot series side-by-side using cowplot
 plot_grid(plt1, plt2, align = &amp;quot;h&amp;quot;, rel_widths = c(1, 1.3), axis = &amp;quot;t&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;If we remove all outliers, though, Total Medicare Standard Payment Amout mostly resembles a normal distriution.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plt3 &amp;lt;- D %&amp;gt;%
     mutate(rank = rank(desc(`Total Medicare Standard Payment Amount`))) %&amp;gt;%
@@ -194,7 +194,7 @@ plt4 &amp;lt;- D %&amp;gt;%
 
 plot_grid(plt3, plt4, align = &amp;quot;h&amp;quot;, rel_widths = c(1, 1.3), axis = &amp;quot;t&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Warning: Removed 1508 rows containing non-finite values (stat_boxplot).&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;After removing these extreme estreme outliers, Standard Medicare Payment Amount is still skewed.With a normal distribution, log transformed values may be a more useful predictor. It is It is worth noting that the distributions appear to remain farily consistant over the three years in our dataset.&lt;/p&gt;
 &lt;p&gt;Let’s see a correlation between our outcome variable and a variables that I would hypothesize would be positively correlated with Total Medicare Standard Payment.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;D &amp;lt;- D %&amp;gt;%
@@ -208,7 +208,7 @@ D %&amp;gt;%
          `Hospice beneficiaries with a primary diagnosis of cancer`) %&amp;gt;% 
   ggpairs(title = &amp;quot;Correlation Matrix with Standard Payment&amp;quot;, 
           columnLabels = CorVarLabs)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;How do these correlations with the Standard Payment Amount compare with correlations with Logged Standard Payment Amount?&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;D %&amp;gt;%
   select(`logStandardPaymentAmount`, 
@@ -218,7 +218,7 @@ D %&amp;gt;%
          `Hospice beneficiaries with a primary diagnosis of cancer`) %&amp;gt;% 
   ggpairs(title = &amp;quot;Correlation Matrix with Logged Standard Payment&amp;quot;, 
           columnLabels = CorVarLabs)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Logging Standard Payment Amount decreases the correlation these selected predictor variables. It still may be useful in regressoin analyses&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;predictor-variables-data-exploration-and-liner-models-by-variable-type&#34; class=&#34;section level2&#34;&gt;
@@ -524,7 +524,7 @@ D %&amp;gt;%
         &amp;quot;2015.0&amp;quot; = &amp;quot;2015&amp;quot;, &amp;quot;2015.5&amp;quot; = &amp;quot; &amp;quot;, &amp;quot;2016.0&amp;quot; = &amp;quot;2016&amp;quot;)) +
   scale_y_continuous(label = dollar) +
   scale_color_brewer()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;672&#34; /&gt;
 Payments are growing each year accross each region, except the West with a slight decline.&lt;/p&gt;
 &lt;div id=&#34;intertion-rregression-with-year-and-region&#34; class=&#34;section level5&#34;&gt;
 &lt;h5&gt;Intertion Rregression with Year and Region&lt;/h5&gt;
@@ -735,7 +735,7 @@ Payments are growing each year accross each region, except the West with a sligh
        subtitle = &amp;quot;Total number of hospice care physician services provided&amp;quot;) +
   ylab(&amp;quot;Physician Service Hours&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Warning: Removed 1246 rows containing non-finite values (stat_boxplot).&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-15-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-15-1.png&#34; width=&#34;672&#34; /&gt;
 Indeed, there are several outliers present.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;care-hours-spent&#34; class=&#34;section level3&#34;&gt;
@@ -859,7 +859,7 @@ Lets see if there is a greter increase in other types of care hours in the week 
   geom_density() +
   ggtitle(&amp;quot;Home Health Visit Hours per Day&amp;quot;) +
   theme(legend.position=&amp;quot;bottom&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-19-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-19-1.png&#34; width=&#34;672&#34; /&gt;
 The density plot of their logged values show that there is only a slight increase in hours per week in the week prior to death. This is likely due to a few outliers as well.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Skilled Nursing Visit Hours per Day&lt;/li&gt;
@@ -1318,7 +1318,7 @@ get_regression_table(mVisitsL)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;get_regression_points(mVisitsL) %&amp;gt;%
    ggplot(aes(x=residual)) + geom_density() +
    ggtitle(&amp;quot;Residuals from mVisits Regression Model&amp;quot;) &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-28-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-28-1.png&#34; width=&#34;672&#34; /&gt;
 Even the logged model still has a low overall predicitve capacity with an R Squared of only 9.70%. The model as a whole is statistically significant and the residuals do appear to be normal.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1428,7 +1428,7 @@ DbyDiagnosis &amp;lt;- D %&amp;gt;%
   labs(title = &amp;quot;Number of Benificiaries by Primary Diagnosis&amp;quot;) +
   ylab(&amp;quot;Number of Distinct Beneficiaries&amp;quot;) +
   scale_color_brewer()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-31-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-31-1.png&#34; width=&#34;672&#34; /&gt;
 There are some extreme outliers, especially in Cancer, Dementia, and Respiratory&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;DbyDiagnosis %&amp;gt;%
   ggplot(aes(x = Type, y = log(Beneficiaries), fill = Type)) + 
@@ -1439,7 +1439,7 @@ There are some extreme outliers, especially in Cancer, Dementia, and Respiratory
   ylab(&amp;quot;Number of Distinct Beneficiaries&amp;quot;) + 
   theme(legend.position = &amp;quot;none&amp;quot;) +
   scale_color_brewer()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-32-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-32-1.png&#34; width=&#34;672&#34; /&gt;
 After logging, the distribution acorss primary diagnosis type is both consistant and normal between diagnosies.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;regression-by-diagnosis&#34; class=&#34;section level3&#34;&gt;
@@ -1593,7 +1593,7 @@ get_regression_table(DiagMod) &lt;/code&gt;&lt;/pre&gt;
   labs(title = &amp;quot;Number of Hospice Benificiaries by Gender&amp;quot;) +
   theme(legend.position=&amp;quot;none&amp;quot;) +
   scale_color_brewer()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-36-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-36-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# count outliers by gender
 library(grDevices)
 F &amp;lt;- DbyGender %&amp;gt;% 
@@ -1612,7 +1612,7 @@ ML &amp;lt;- length(M$Amount[which(M$Amount %in% boxplot.stats(M$Amount)$out)])&
   theme(legend.position=&amp;quot;none&amp;quot;) +
   scale_fill_brewer()&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Warning: Removed 2471 rows containing non-finite values (stat_boxplot).&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-38-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-38-1.png&#34; width=&#34;672&#34; /&gt;
 Distribution is still somewhat skewed, but resembles closer to a normal distribution.&lt;/p&gt;
 &lt;div id=&#34;regression-model-by-gender&#34; class=&#34;section level4&#34;&gt;
 &lt;h4&gt;Regression model by Gender&lt;/h4&gt;
@@ -1783,7 +1783,7 @@ DbyRace %&amp;gt;%
   theme(legend.position=&amp;quot;none&amp;quot;) + 
   xlab(&amp;quot;Race&amp;quot;) + ylab(&amp;quot;Amount of Beifiareis&amp;quot;) +
   scale_color_brewer()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-42-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-42-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;DbyRace %&amp;gt;%  
   ggplot(aes(x=RaceLabel, y = Amount, fill = Race)) +
   geom_boxplot(outlier.shape = NA) + 
@@ -1794,7 +1794,7 @@ DbyRace %&amp;gt;%
   xlab(&amp;quot;Race&amp;quot;) + ylab(&amp;quot;Amount of Beifiareis&amp;quot;) +
   scale_fill_brewer()&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Warning: Removed 1766 rows containing non-finite values (stat_boxplot).&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-43-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-43-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;It is difficult to see the distribution of amount of benificiaries by race, particularly considering the range for amount of White identifying benificiaries is so much higher than it is for the each of the other Race categories.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;DbyRace %&amp;gt;%
   group_by(Race) %&amp;gt;%  
@@ -1878,7 +1878,7 @@ DbyRace %&amp;gt;%
   xlab(&amp;quot;White&amp;quot;) + ylab(&amp;quot;Amount of Beifiareis&amp;quot;) +
   scale_fill_brewer()&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Warning: Removed 1766 rows containing non-finite values (stat_boxplot).&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-46-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-46-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;It is interesting to note that 84.7% of the beneficiaries in the dataset are identified as white. This could be an anomolie or the result of several intersecting socioeconoimc and historical factors pertaining to access to healh care, especially end-of-life care. This is consistant &lt;a href=&#34;https://www.ncbi.nlm.nih.gov/pubmed/18588409&#34;&gt;Cohen’s 2008 systematic review&lt;/a&gt; of racial disparities in hospice care system.&lt;/p&gt;
 &lt;p&gt;Let’s see how this logic holds up in a regression model on Total Medicare Standard Payment Amount.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;RMod &amp;lt;- lm(`Total Medicare Standard Payment Amount` ~ 
