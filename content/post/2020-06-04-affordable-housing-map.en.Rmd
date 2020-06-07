@@ -118,7 +118,7 @@ RentBurdenPercent %>% # display nicely
   rename("County" = "NAME", 
          "Estimated Housing Burdened Population" = "TotalRentBurden",
          "Estimated Total Population" = "Total",
-         "Perect Hoousing Burdened" = "PercentRentBurden") %>%
+         "Perect Housing Burdened" = "PercentRentBurden") %>%
   kable() %>%
   kable_styling("striped") %>%
   scroll_box(width = "100%", height = "300px")
