@@ -300,7 +300,7 @@ RentBurdenPercent %&amp;gt;% # display nicely
   rename(&amp;quot;County&amp;quot; = &amp;quot;NAME&amp;quot;, 
          &amp;quot;Estimated Housing Burdened Population&amp;quot; = &amp;quot;TotalRentBurden&amp;quot;,
          &amp;quot;Estimated Total Population&amp;quot; = &amp;quot;Total&amp;quot;,
-         &amp;quot;Perect Hoousing Burdened&amp;quot; = &amp;quot;PercentRentBurden&amp;quot;) %&amp;gt;%
+         &amp;quot;Percent Housing Burdened&amp;quot; = &amp;quot;PercentRentBurden&amp;quot;) %&amp;gt;%
   kable() %&amp;gt;%
   kable_styling(&amp;quot;striped&amp;quot;) %&amp;gt;%
   scroll_box(width = &amp;quot;100%&amp;quot;, height = &amp;quot;300px&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
@@ -318,7 +318,7 @@ Estimated Housing Burdened Population
 Estimated Total Population
 &lt;/th&gt;
 &lt;th style=&#34;text-align:left;position: sticky; top:0; background-color: #FFFFFF;&#34;&gt;
-Perect Hoousing Burdened
+Percent Housing Burdened
 &lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
