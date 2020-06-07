@@ -1,0 +1,240 @@
+---
+# Documentation: https://sourcethemes.com/academic/docs/managing-content/
+  
+title: "Affordable Housing Map"
+subtitle: ""
+summary: "I created an interactive map displaying housing burden rates and affordable housing complexes in Oregon."
+authors: []
+tags: []
+categories: []
+date: 2020-06-04T13:24:36-07:00
+lastmod: 2020-06-04T13:24:36-07:00
+featured: false
+draft: false
+
+# Featured image
+# To use, add an image named `featured.jpg/png` to your page's folder.
+# Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
+image:
+  caption: ""
+focal_point: ""
+preview_only: false
+
+# Projects (optional).
+#   Associate this post with one or more of your projects.
+#   Simply enter your project's folder or file name without extension.
+#   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
+#   Otherwise, set `projects = []`.
+projects: []
+---
+
+The lack of access to affordable housing is one of the biggest social issues throughout the United States. This is also true locally in Oregon, as the [Oregon Center for Public Policy](https://www.ocpp.org/2018/03/15/20180315-cost-burdened-housing/) highlights. Both for-profit and non-profit organizations have become involved in building and managing affordable housing units, but there is clearly more work that needs to be done. During my time at [United Way of the Mid-Willamette Valley](https://www.unitedwaymwv.org/), the grantmaking organization had added a goal of becoming an affordable housing provider, or at minimum become a catalyst for other organizations to take on serious affordable housing efforts. 
+
+I was curious to see if I could find any data on affordable housing projects throughout Oregon. Where are they located? Where is the greatest need? How do the locations and needs overlap? Do the locations and need sufficiently overlap? Of course, the answer to the final question will not be "yes" until homelessness is eradicated. However, I wanted to see if I could get a glimpse at the current state of affairs.
+
+**The Data: RSocrata, tidycensus, and leaflet**
+
+Fortunately, there is a plethora of R packages that make identifying, searching for, analyzing, and visualizing data to answer get at these questions possible! I will principally make use of RSocrata, tidycensus, and leaflet. 
+
+- *RSocrata* allows you to pull data from a socrata open data portal, which is how many entities publish open datasets, directly into R. The State of Oregon published a [dataset with a list of affordable housing properties throughout the State](https://data.oregon.gov/Health-Human-Services/Affordable-Housing-Inventory/bq26-qyg4), including street addresses and its management company. 
+
+- The *tidycensus* package allows you to pull data directly from the US Census Bureau into R. The Census's American Community Survey (ACS) includes a question "Gross Rent as a Percentage of Household Income in the Past 12 Months" (identified as Table B25070). This question could be used to estimate how many people experience housing cost burden, which the US Department of Housing and Urban Development (HUD) defines as [spending at or more than 30% of household income on housing](https://www.huduser.gov/portal/pdredge/pdr_edge_featd_article_092214.html#:~:text=HUD%20defines%20cost%2Dburdened%20families,of%20one's%20income%20on%20rent.). Other entities define this figure at 50%, but I will use the 30% threshold for this analysis. It's important to remember that the ACS does not poll as many people as does the 10-year full census, which makes for higher margins of error in these estimates. With fewer people polled, the estimates have a higher chance of being incorrect. While they probably shouldn't be used for publication in The Quarterly Journal of Economics, they can still be useful for our goal to get a sense of things. 
+
+- The *leaflet* package provides map-building capability in R. We can overlay these two data sources on a single map using leaflet to visualize percent of population who experiences a housing cost burden by county and the location of the listed affordable housing units. 
+
+Of course, I'll use several other R packages to tie these unique features together, including *tidyverse*, *ggmap*, and *tigris* to name a few. 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning = FALSE)
+```
+
+
+```{r message=F}
+# load packages
+library(tidyverse) # for all things data science
+library(RSocrata)  # to access Oregon's Affordable Housing Index via the Socrata API
+library(tidycensus)# to access US Census data via Census API
+library(kableExtra)# for HTML table formatting
+library(scales)    # for formatting percents
+library(widgetframe)
+library(htmlwidgets)
+library(htmltools)
+#library(ggmap)
+
+#  read Housing Index Data from State of Oregon's Socrata data portal
+# https://data.oregon.gov/Health-Human-Services/Affordable-Housing-Inventory/bq26-qyg4
+HousingIndex <- read.socrata("https://data.oregon.gov/resource/bq26-qyg4.csv")
+
+# read and wrangle ACS data (each table and then bind)
+Total <- get_acs(geography = "county", variables = "B25070_001", state = "OR", year = 2018) %>%
+  mutate(v2 = "Total")
+b1 <- get_acs(geography = "county", variables = "B25070_002", state = "OR", year = 2018) %>%
+  mutate(v2 = "e>10%")
+b2 <- get_acs(geography = "county", variables = "B25070_003", state = "OR", year = 2018) %>%
+  mutate(v2 = "e10%-14.9%")
+b3 <- get_acs(geography = "county", variables = "B25070_004", state = "OR", year = 2018) %>%
+  mutate(v2 = "e15%-19.9%")
+b4 <- get_acs(geography = "county", variables = "B25070_005", state = "OR", year = 2018) %>%
+  mutate(v2 = "e20%-24.9%")
+b5 <- get_acs(geography = "county", variables = "B25070_006", state = "OR", year = 2018) %>%
+  mutate(v2 = "e25%-29.9%")
+b6 <- get_acs(geography = "county", variables = "B25070_007", state = "OR", year = 2018) %>%
+  mutate(v2 = "e30%-34.9%")
+b7 <- get_acs(geography = "county", variables = "B25070_008", state = "OR", year = 2018) %>%
+  mutate(v2 = "e35%-39.9%")
+b8 <- get_acs(geography = "county", variables = "B25070_009", state = "OR", year = 2018) %>%
+  mutate(v2 = "e40%-49.9%")
+b9 <- get_acs(geography = "county", variables = "B25070_010", state = "OR", year = 2018) %>%
+  mutate(v2 = "e>=50%")
+RentPercent <- bind_rows(b1, b2, b3, b4, b5, b6, b7, b8, b9) # bind rows of separate ACS tables
+RentBurden <- bind_rows(b6, b7, b8, b9) # bind rows only for rent burden bins (e>= 30%)
+```
+
+
+The ACS organizes each question table into sub-tables by bin ("Less than 10%", "10%-14.9%", etc). Using *tidycensus* to create a single dataframe of the table with each bin present requires pulling each sub-table separately, creating a sub-table identifier (which I called v2), and binding the rows together. Here is a glimpse of how the data looks after all of that.  
+
+```{r}
+head(RentBurden) %>%
+  kable() %>%
+  kable_styling("striped")
+```
+
+We can use the *tidyverse* functions to find the estimated total housing burdened population, total population, and percent of population experiencing housing a cost burden by county. This is similar to creating a pivot table in Excel. 
+
+```{r}
+RentBurdenPercent <- RentBurden %>% # find total number and percent rent burdened
+  group_by(NAME) %>%
+  summarise(TotalRentBurden = sum(estimate)) %>%
+  merge(Total, by = "NAME") %>%
+  select(NAME, GEOID, TotalRentBurden, estimate) %>%
+  rename("Total" = "estimate") %>%
+  mutate("PercentRentBurden" = TotalRentBurden/Total) %>%
+  mutate("PercentBurdenFull" = PercentRentBurden*100) %>%
+  arrange(desc(PercentRentBurden))
+
+RentBurdenPercent %>% # display nicely 
+  select(-GEOID, -PercentBurdenFull) %>%
+  mutate(PercentRentBurden = percent(PercentRentBurden)) %>%
+  rename("County" = "NAME", 
+         "Estimated Housing Burdened Population" = "TotalRentBurden",
+         "Estimated Total Population" = "Total",
+         "Perect Hoousing Burdened" = "PercentRentBurden") %>%
+  kable() %>%
+  kable_styling("striped") %>%
+  scroll_box(width = "100%", height = "300px")
+```
+
+
+The raw percent figures are pretty incredible to look at. Eight of Oregon's 36 counties have an estimated housing-burdened population of over half of their total population! Many other counties' estimates are just below 50% as well. Even Wheeler County's estimated 20.5% seems very high.  
+
+**Map**
+
+The goal is to create a map of the percent housing burdened by county and add each of the affordable housing complexes listed by the State.
+
+
+We first have to find the latitude and longitude coordinates (AKA geocode) the complex's street addresses in order to plot them on a map. 
+
+```{r}
+#detach("package:kableExtra", unload = TRUE)
+#detach("package:RSocrata", unload = TRUE)
+library(leaflet)
+library(tigris)
+#options(tigris_use_cache = TRUE)
+library(widgetframe)
+```
+
+
+```{r, message = F}
+origAddress <- HousingIndex %>%
+  mutate(addresses = paste0(address, city, "Oregon", sep = ", ")) %>%
+  select(addresses) %>%
+  data.frame(stringsAsFactors = FALSE)
+```
+
+```{r}
+###### This geocoding code chunk requires a lot of processing power and took seven minutes per run time. 
+###### To accomodate, I ran it once with the line below, exported to .csv and reloaded it below. 
+
+# geocode Housing Index using ggmap (which requires a Google API as of late 2018)
+#library(ggmap)
+# GeocodedHousingIndex <- geocode(origAddress$addresses, output = "latlona", source = "google")
+```
+
+```{r}
+GeocodedHousingIndex <- read_csv("C:/Users/Lenovo/Desktop/blogdown site bside posts/GeocodedHousingIndex.csv") %>%
+  sf::st_as_sf(coords = c("lon", "lat"), crs = '+proj=longlat +datum=WGS84')
+```
+
+
+Mapping with *leaflet* 
+
+```{r, message=F, warning=F}
+library(sf)
+counties <- counties("Oregon", cb = TRUE, progress_bar = FALSE, class = "sf") # fetch county shapefile from US Census Bureau
+counties_merged_acs <- merge(counties, RentBurdenPercent, by.x = "GEOID", by.y = "GEOID") # geo_join() with RentBurdenPrecent data
+
+PercentBurdenPal <- colorNumeric(palette = "Greens", domain=counties_merged_acs$PercentRentBurden) # create numeric color palet based on the range of PercenRentBurden
+
+# create content for popups to appear each county
+CountyPopupContent <- paste0("<b>", counties_merged_acs$NAME.1, "</b>", "<br>",
+                           "Estimated Percent Rent Burdened: ", percent(counties_merged_acs$PercentRentBurden), "<br>",
+                           "Estimated Count of Rent Burdened: ", counties_merged_acs$TotalRentBurden, "<br>",
+                           "Estimated Total Population: ", counties_merged_acs$Total)
+
+# create content for popups to appear each housing complex
+HousingPopupContent <- paste("<b>", HousingIndex$project_name, "</b>", "<br>",
+                             "Address: ", HousingIndex$address,", ", HousingIndex$city, ", Oregon", "<br>",
+                             "Management: ", HousingIndex$management, "<br>",
+                             "Total Units: ", HousingIndex$total_units)
+
+```
+
+```{r}
+this.map <- counties_merged_acs %>%
+ sf::st_transform(crs = '+proj=longlat +datum=WGS84') %>%
+ leaflet() %>% # create leaflet of counties_merged_acs data defined above
+ addTiles() %>% # add tiles to map
+ addMarkers(data = GeocodedHousingIndex, # add makers for each housing complex
+            popup = HousingPopupContent, # insert HousingPopupContent
+            clusterOptions = markerClusterOptions()) %>% # cluster icons (w/o this feature the map is too crowded to read)
+ addPolygons(fillColor = PercentBurdenPal(counties_merged_acs$PercentRentBurden), # add polygonns (shape of OR's counties)
+             fillOpacity = 0.80, # set opacity
+             highlightOptions = highlightOptions(color = "white", weight = 2, bringToFront = TRUE), # set highlight feature  
+             col = "#302E2D", # set color for county boarder (defaults to a Dodger blue as if to remind you to change it)
+             weight = 1, # set boarder weight
+             popup = ~CountyPopupContent) %>% # insert CountyPopupContent 
+ addLegend(pal = PercentBurdenPal, # define color palet for legand
+           values = counties_merged_acs$PercentRentBurden, # define legend valees
+           title = paste("% Housing", "<br>", "Burdened"), # define legend title
+           position = "bottomright") %>% #define legend positin
+ setView(lat= 44.000000, lng=-120.500000, zoom=6.45) # set lat, long, and zoom to view Oregon
+```
+
+```{r, echo = FALSE}
+htmlwidgets::saveWidget(this.map, file = "C:/Users/Lenovo/Desktop/blogdownsite3/blogdownsite3/static/img/thismap.html", selfcontained = TRUE)
+```
+
+<iframe src="/img/thismap.html" width="100%" height="450"></iframe>
+
+
+The marker points for the housing complexes are clustered so that they are visable. The map would be very difficult to read without this option turned on.
+
+
+**Final Thoughts**
+
+Kind of a neat map. Somewhat unsprisingly, the amount of affordable housing complexes in each area is generally associated with population density. This also highlights the need for and logistical complexity of affordable housing in rural areas as well.
+
+*Useful project resources*
+
+I read a number of useful resources in creating this map. A few of the most useful are listed below. Additionally, a tromedous "thank you" to Prof. Robert Walker for helping me with some unusal debugging issues on this project as well as for introducing me to R in the first place. 
+
+Leaflet Mapping:
+
++ [Leaflet for R documentation](https://rstudio.github.io/leaflet/)
++ [Prof. Aaron Maxwell at West Virginia University](http://www.wvview.org/spatial_analytics/leaflet/_site/index.html#objectives)
++ [Prof. Benjamin Soltoff at the University of Chicago](https://cfss.uchicago.edu/notes/leaflet/)
+
+GIS data wrangling and transforming:
+
++ [Andrew Ba Tran of the Washington Post](https://learn.r-journalism.com/en/mapping/) in his book R-Journalism. 
++ [Aleszu Bajak at StoryBench](https://www.storybench.org/geocode-csv-addresses-r/). 

@@ -1,0 +1,854 @@
+---
+# Documentation: https://sourcethemes.com/academic/docs/managing-content/
+  
+title: "Affordable Housing Map"
+subtitle: ""
+summary: "I created an interactive map displaying housing burden rates and affordable housing complexes in Oregon."
+authors: []
+tags: []
+categories: []
+date: 2020-06-04T13:24:36-07:00
+lastmod: 2020-06-04T13:24:36-07:00
+featured: false
+draft: false
+
+# Featured image
+# To use, add an image named `featured.jpg/png` to your page's folder.
+# Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
+image:
+  caption: ""
+focal_point: ""
+preview_only: false
+
+# Projects (optional).
+#   Associate this post with one or more of your projects.
+#   Simply enter your project's folder or file name without extension.
+#   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
+#   Otherwise, set `projects = []`.
+projects: []
+---
+
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+
+
+<p>The lack of access to affordable housing is one of the biggest social issues throughout the United States. This is also true locally in Oregon, as the <a href="https://www.ocpp.org/2018/03/15/20180315-cost-burdened-housing/">Oregon Center for Public Policy</a> highlights. Both for-profit and non-profit organizations have become involved in building and managing affordable housing units, but there is clearly more work that needs to be done. During my time at <a href="https://www.unitedwaymwv.org/">United Way of the Mid-Willamette Valley</a>, the grantmaking organization had added a goal of becoming an affordable housing provider, or at minimum become a catalyst for other organizations to take on serious affordable housing efforts.</p>
+<p>I was curious to see if I could find any data on affordable housing projects throughout Oregon. Where are they located? Where is the greatest need? How do the locations and needs overlap? Do the locations and need sufficiently overlap? Of course, the answer to the final question will not be “yes” until homelessness is eradicated. However, I wanted to see if I could get a glimpse at the current state of affairs.</p>
+<p><strong>The Data: RSocrata, tidycensus, and leaflet</strong></p>
+<p>Fortunately, there is a plethora of R packages that make identifying, searching for, analyzing, and visualizing data to answer get at these questions possible! I will principally make use of RSocrata, tidycensus, and leaflet.</p>
+<ul>
+<li><p><em>RSocrata</em> allows you to pull data from a socrata open data portal, which is how many entities publish open datasets, directly into R. The State of Oregon published a <a href="https://data.oregon.gov/Health-Human-Services/Affordable-Housing-Inventory/bq26-qyg4">dataset with a list of affordable housing properties throughout the State</a>, including street addresses and its management company.</p></li>
+<li><p>The <em>tidycensus</em> package allows you to pull data directly from the US Census Bureau into R. The Census’s American Community Survey (ACS) includes a question “Gross Rent as a Percentage of Household Income in the Past 12 Months” (identified as Table B25070). This question could be used to estimate how many people experience housing cost burden, which the US Department of Housing and Urban Development (HUD) defines as <a href="https://www.huduser.gov/portal/pdredge/pdr_edge_featd_article_092214.html#:~:text=HUD%20defines%20cost%2Dburdened%20families,of%20one&#39;s%20income%20on%20rent.">spending at or more than 30% of household income on housing</a>. Other entities define this figure at 50%, but I will use the 30% threshold for this analysis. It’s important to remember that the ACS does not poll as many people as does the 10-year full census, which makes for higher margins of error in these estimates. With fewer people polled, the estimates have a higher chance of being incorrect. While they probably shouldn’t be used for publication in The Quarterly Journal of Economics, they can still be useful for our goal to get a sense of things.</p></li>
+<li><p>The <em>leaflet</em> package provides map-building capability in R. We can overlay these two data sources on a single map using leaflet to visualize percent of population who experiences a housing cost burden by county and the location of the listed affordable housing units.</p></li>
+</ul>
+<p>Of course, I’ll use several other R packages to tie these unique features together, including <em>tidyverse</em>, <em>ggmap</em>, and <em>tigris</em> to name a few.</p>
+<pre class="r"><code># load packages
+library(tidyverse) # for all things data science
+library(RSocrata)  # to access Oregon&#39;s Affordable Housing Index via the Socrata API
+library(tidycensus)# to access US Census data via Census API
+library(kableExtra)# for HTML table formatting
+library(scales)    # for formatting percents
+library(widgetframe)
+library(htmlwidgets)
+library(htmltools)
+#library(ggmap)
+
+#  read Housing Index Data from State of Oregon&#39;s Socrata data portal
+# https://data.oregon.gov/Health-Human-Services/Affordable-Housing-Inventory/bq26-qyg4
+HousingIndex &lt;- read.socrata(&quot;https://data.oregon.gov/resource/bq26-qyg4.csv&quot;)
+
+# read and wrangle ACS data (each table and then bind)
+Total &lt;- get_acs(geography = &quot;county&quot;, variables = &quot;B25070_001&quot;, state = &quot;OR&quot;, year = 2018) %&gt;%
+  mutate(v2 = &quot;Total&quot;)
+b1 &lt;- get_acs(geography = &quot;county&quot;, variables = &quot;B25070_002&quot;, state = &quot;OR&quot;, year = 2018) %&gt;%
+  mutate(v2 = &quot;e&gt;10%&quot;)
+b2 &lt;- get_acs(geography = &quot;county&quot;, variables = &quot;B25070_003&quot;, state = &quot;OR&quot;, year = 2018) %&gt;%
+  mutate(v2 = &quot;e10%-14.9%&quot;)
+b3 &lt;- get_acs(geography = &quot;county&quot;, variables = &quot;B25070_004&quot;, state = &quot;OR&quot;, year = 2018) %&gt;%
+  mutate(v2 = &quot;e15%-19.9%&quot;)
+b4 &lt;- get_acs(geography = &quot;county&quot;, variables = &quot;B25070_005&quot;, state = &quot;OR&quot;, year = 2018) %&gt;%
+  mutate(v2 = &quot;e20%-24.9%&quot;)
+b5 &lt;- get_acs(geography = &quot;county&quot;, variables = &quot;B25070_006&quot;, state = &quot;OR&quot;, year = 2018) %&gt;%
+  mutate(v2 = &quot;e25%-29.9%&quot;)
+b6 &lt;- get_acs(geography = &quot;county&quot;, variables = &quot;B25070_007&quot;, state = &quot;OR&quot;, year = 2018) %&gt;%
+  mutate(v2 = &quot;e30%-34.9%&quot;)
+b7 &lt;- get_acs(geography = &quot;county&quot;, variables = &quot;B25070_008&quot;, state = &quot;OR&quot;, year = 2018) %&gt;%
+  mutate(v2 = &quot;e35%-39.9%&quot;)
+b8 &lt;- get_acs(geography = &quot;county&quot;, variables = &quot;B25070_009&quot;, state = &quot;OR&quot;, year = 2018) %&gt;%
+  mutate(v2 = &quot;e40%-49.9%&quot;)
+b9 &lt;- get_acs(geography = &quot;county&quot;, variables = &quot;B25070_010&quot;, state = &quot;OR&quot;, year = 2018) %&gt;%
+  mutate(v2 = &quot;e&gt;=50%&quot;)
+RentPercent &lt;- bind_rows(b1, b2, b3, b4, b5, b6, b7, b8, b9) # bind rows of separate ACS tables
+RentBurden &lt;- bind_rows(b6, b7, b8, b9) # bind rows only for rent burden bins (e&gt;= 30%)</code></pre>
+<p>The ACS organizes each question table into sub-tables by bin (“Less than 10%”, “10%-14.9%”, etc). Using <em>tidycensus</em> to create a single dataframe of the table with each bin present requires pulling each sub-table separately, creating a sub-table identifier (which I called v2), and binding the rows together. Here is a glimpse of how the data looks after all of that.</p>
+<pre class="r"><code>head(RentBurden) %&gt;%
+  kable() %&gt;%
+  kable_styling(&quot;striped&quot;)</code></pre>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+GEOID
+</th>
+<th style="text-align:left;">
+NAME
+</th>
+<th style="text-align:left;">
+variable
+</th>
+<th style="text-align:right;">
+estimate
+</th>
+<th style="text-align:right;">
+moe
+</th>
+<th style="text-align:left;">
+v2
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+41001
+</td>
+<td style="text-align:left;">
+Baker County, Oregon
+</td>
+<td style="text-align:left;">
+B25070_007
+</td>
+<td style="text-align:right;">
+180
+</td>
+<td style="text-align:right;">
+99
+</td>
+<td style="text-align:left;">
+e30%-34.9%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+41003
+</td>
+<td style="text-align:left;">
+Benton County, Oregon
+</td>
+<td style="text-align:left;">
+B25070_007
+</td>
+<td style="text-align:right;">
+994
+</td>
+<td style="text-align:right;">
+246
+</td>
+<td style="text-align:left;">
+e30%-34.9%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+41005
+</td>
+<td style="text-align:left;">
+Clackamas County, Oregon
+</td>
+<td style="text-align:left;">
+B25070_007
+</td>
+<td style="text-align:right;">
+3991
+</td>
+<td style="text-align:right;">
+384
+</td>
+<td style="text-align:left;">
+e30%-34.9%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+41007
+</td>
+<td style="text-align:left;">
+Clatsop County, Oregon
+</td>
+<td style="text-align:left;">
+B25070_007
+</td>
+<td style="text-align:right;">
+566
+</td>
+<td style="text-align:right;">
+161
+</td>
+<td style="text-align:left;">
+e30%-34.9%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+41009
+</td>
+<td style="text-align:left;">
+Columbia County, Oregon
+</td>
+<td style="text-align:left;">
+B25070_007
+</td>
+<td style="text-align:right;">
+642
+</td>
+<td style="text-align:right;">
+174
+</td>
+<td style="text-align:left;">
+e30%-34.9%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+41011
+</td>
+<td style="text-align:left;">
+Coos County, Oregon
+</td>
+<td style="text-align:left;">
+B25070_007
+</td>
+<td style="text-align:right;">
+860
+</td>
+<td style="text-align:right;">
+199
+</td>
+<td style="text-align:left;">
+e30%-34.9%
+</td>
+</tr>
+</tbody>
+</table>
+<p>We can use the <em>tidyverse</em> functions to find the estimated total housing burdened population, total population, and percent of population experiencing housing a cost burden by county. This is similar to creating a pivot table in Excel.</p>
+<pre class="r"><code>RentBurdenPercent &lt;- RentBurden %&gt;% # find total number and percent rent burdened
+  group_by(NAME) %&gt;%
+  summarise(TotalRentBurden = sum(estimate)) %&gt;%
+  merge(Total, by = &quot;NAME&quot;) %&gt;%
+  select(NAME, GEOID, TotalRentBurden, estimate) %&gt;%
+  rename(&quot;Total&quot; = &quot;estimate&quot;) %&gt;%
+  mutate(&quot;PercentRentBurden&quot; = TotalRentBurden/Total) %&gt;%
+  mutate(&quot;PercentBurdenFull&quot; = PercentRentBurden*100) %&gt;%
+  arrange(desc(PercentRentBurden))
+
+RentBurdenPercent %&gt;% # display nicely 
+  select(-GEOID, -PercentBurdenFull) %&gt;%
+  mutate(PercentRentBurden = percent(PercentRentBurden)) %&gt;%
+  rename(&quot;County&quot; = &quot;NAME&quot;, 
+         &quot;Estimated Housing Burdened Population&quot; = &quot;TotalRentBurden&quot;,
+         &quot;Estimated Total Population&quot; = &quot;Total&quot;,
+         &quot;Perect Hoousing Burdened&quot; = &quot;PercentRentBurden&quot;) %&gt;%
+  kable() %&gt;%
+  kable_styling(&quot;striped&quot;) %&gt;%
+  scroll_box(width = &quot;100%&quot;, height = &quot;300px&quot;)</code></pre>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; ">
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+County
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Estimated Housing Burdened Population
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Estimated Total Population
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Perect Hoousing Burdened
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Benton County, Oregon
+</td>
+<td style="text-align:right;">
+8228
+</td>
+<td style="text-align:right;">
+15134
+</td>
+<td style="text-align:left;">
+54.368%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Josephine County, Oregon
+</td>
+<td style="text-align:right;">
+6478
+</td>
+<td style="text-align:right;">
+11957
+</td>
+<td style="text-align:left;">
+54.177%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Curry County, Oregon
+</td>
+<td style="text-align:right;">
+1703
+</td>
+<td style="text-align:right;">
+3147
+</td>
+<td style="text-align:left;">
+54.115%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lane County, Oregon
+</td>
+<td style="text-align:right;">
+33074
+</td>
+<td style="text-align:right;">
+62345
+</td>
+<td style="text-align:left;">
+53.050%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Jackson County, Oregon
+</td>
+<td style="text-align:right;">
+17066
+</td>
+<td style="text-align:right;">
+32301
+</td>
+<td style="text-align:left;">
+52.834%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Yamhill County, Oregon
+</td>
+<td style="text-align:right;">
+5744
+</td>
+<td style="text-align:right;">
+11029
+</td>
+<td style="text-align:left;">
+52.081%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Columbia County, Oregon
+</td>
+<td style="text-align:right;">
+2520
+</td>
+<td style="text-align:right;">
+4983
+</td>
+<td style="text-align:left;">
+50.572%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Multnomah County, Oregon
+</td>
+<td style="text-align:right;">
+74513
+</td>
+<td style="text-align:right;">
+147547
+</td>
+<td style="text-align:left;">
+50.501%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Polk County, Oregon
+</td>
+<td style="text-align:right;">
+5112
+</td>
+<td style="text-align:right;">
+10277
+</td>
+<td style="text-align:left;">
+49.742%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tillamook County, Oregon
+</td>
+<td style="text-align:right;">
+1661
+</td>
+<td style="text-align:right;">
+3344
+</td>
+<td style="text-align:left;">
+49.671%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Deschutes County, Oregon
+</td>
+<td style="text-align:right;">
+12311
+</td>
+<td style="text-align:right;">
+24865
+</td>
+<td style="text-align:left;">
+49.511%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Linn County, Oregon
+</td>
+<td style="text-align:right;">
+8343
+</td>
+<td style="text-align:right;">
+17120
+</td>
+<td style="text-align:left;">
+48.732%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Marion County, Oregon
+</td>
+<td style="text-align:right;">
+22804
+</td>
+<td style="text-align:right;">
+47366
+</td>
+<td style="text-align:left;">
+48.144%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Klamath County, Oregon
+</td>
+<td style="text-align:right;">
+4714
+</td>
+<td style="text-align:right;">
+9918
+</td>
+<td style="text-align:left;">
+47.530%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Clackamas County, Oregon
+</td>
+<td style="text-align:right;">
+21524
+</td>
+<td style="text-align:right;">
+45810
+</td>
+<td style="text-align:left;">
+46.985%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Washington County, Oregon
+</td>
+<td style="text-align:right;">
+38659
+</td>
+<td style="text-align:right;">
+84148
+</td>
+<td style="text-align:left;">
+45.942%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Coos County, Oregon
+</td>
+<td style="text-align:right;">
+4192
+</td>
+<td style="text-align:right;">
+9379
+</td>
+<td style="text-align:left;">
+44.696%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lincoln County, Oregon
+</td>
+<td style="text-align:right;">
+3345
+</td>
+<td style="text-align:right;">
+7496
+</td>
+<td style="text-align:left;">
+44.624%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Douglas County, Oregon
+</td>
+<td style="text-align:right;">
+6200
+</td>
+<td style="text-align:right;">
+14272
+</td>
+<td style="text-align:left;">
+43.442%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Clatsop County, Oregon
+</td>
+<td style="text-align:right;">
+2612
+</td>
+<td style="text-align:right;">
+6092
+</td>
+<td style="text-align:left;">
+42.876%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Malheur County, Oregon
+</td>
+<td style="text-align:right;">
+1729
+</td>
+<td style="text-align:right;">
+4164
+</td>
+<td style="text-align:left;">
+41.523%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wallowa County, Oregon
+</td>
+<td style="text-align:right;">
+443
+</td>
+<td style="text-align:right;">
+1087
+</td>
+<td style="text-align:left;">
+40.754%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Jefferson County, Oregon
+</td>
+<td style="text-align:right;">
+972
+</td>
+<td style="text-align:right;">
+2404
+</td>
+<td style="text-align:left;">
+40.433%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Crook County, Oregon
+</td>
+<td style="text-align:right;">
+1087
+</td>
+<td style="text-align:right;">
+2735
+</td>
+<td style="text-align:left;">
+39.744%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lake County, Oregon
+</td>
+<td style="text-align:right;">
+489
+</td>
+<td style="text-align:right;">
+1266
+</td>
+<td style="text-align:left;">
+38.626%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Union County, Oregon
+</td>
+<td style="text-align:right;">
+1423
+</td>
+<td style="text-align:right;">
+3767
+</td>
+<td style="text-align:left;">
+37.775%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Umatilla County, Oregon
+</td>
+<td style="text-align:right;">
+3672
+</td>
+<td style="text-align:right;">
+9748
+</td>
+<td style="text-align:left;">
+37.669%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Baker County, Oregon
+</td>
+<td style="text-align:right;">
+782
+</td>
+<td style="text-align:right;">
+2077
+</td>
+<td style="text-align:left;">
+37.650%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wasco County, Oregon
+</td>
+<td style="text-align:right;">
+1409
+</td>
+<td style="text-align:right;">
+3866
+</td>
+<td style="text-align:left;">
+36.446%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sherman County, Oregon
+</td>
+<td style="text-align:right;">
+94
+</td>
+<td style="text-align:right;">
+260
+</td>
+<td style="text-align:left;">
+36.154%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hood River County, Oregon
+</td>
+<td style="text-align:right;">
+992
+</td>
+<td style="text-align:right;">
+2901
+</td>
+<td style="text-align:left;">
+34.195%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Grant County, Oregon
+</td>
+<td style="text-align:right;">
+323
+</td>
+<td style="text-align:right;">
+977
+</td>
+<td style="text-align:left;">
+33.060%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Morrow County, Oregon
+</td>
+<td style="text-align:right;">
+380
+</td>
+<td style="text-align:right;">
+1213
+</td>
+<td style="text-align:left;">
+31.327%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Harney County, Oregon
+</td>
+<td style="text-align:right;">
+244
+</td>
+<td style="text-align:right;">
+830
+</td>
+<td style="text-align:left;">
+29.398%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Gilliam County, Oregon
+</td>
+<td style="text-align:right;">
+90
+</td>
+<td style="text-align:right;">
+311
+</td>
+<td style="text-align:left;">
+28.939%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wheeler County, Oregon
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:right;">
+176
+</td>
+<td style="text-align:left;">
+20.455%
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The raw percent figures are pretty incredible to look at. Eight of Oregon’s 36 counties have an estimated housing-burdened population of over half of their total population! Many other counties’ estimates are just below 50% as well. Even Wheeler County’s estimated 20.5% seems very high.</p>
+<p><strong>Map</strong></p>
+<p>The goal is to create a map of the percent housing burdened by county and add each of the affordable housing complexes listed by the State.</p>
+<p>We first have to find the latitude and longitude coordinates (AKA geocode) the complex’s street addresses in order to plot them on a map.</p>
+<pre class="r"><code>#detach(&quot;package:kableExtra&quot;, unload = TRUE)
+#detach(&quot;package:RSocrata&quot;, unload = TRUE)
+library(leaflet)
+library(tigris)
+#options(tigris_use_cache = TRUE)
+library(widgetframe)</code></pre>
+<pre class="r"><code>origAddress &lt;- HousingIndex %&gt;%
+  mutate(addresses = paste0(address, city, &quot;Oregon&quot;, sep = &quot;, &quot;)) %&gt;%
+  select(addresses) %&gt;%
+  data.frame(stringsAsFactors = FALSE)</code></pre>
+<pre class="r"><code>###### This geocoding code chunk requires a lot of processing power and took seven minutes per run time. 
+###### To accomodate, I ran it once with the line below, exported to .csv and reloaded it below. 
+
+# geocode Housing Index using ggmap (which requires a Google API as of late 2018)
+#library(ggmap)
+# GeocodedHousingIndex &lt;- geocode(origAddress$addresses, output = &quot;latlona&quot;, source = &quot;google&quot;)</code></pre>
+<pre class="r"><code>GeocodedHousingIndex &lt;- read_csv(&quot;C:/Users/Lenovo/Desktop/blogdown site bside posts/GeocodedHousingIndex.csv&quot;) %&gt;%
+  sf::st_as_sf(coords = c(&quot;lon&quot;, &quot;lat&quot;), crs = &#39;+proj=longlat +datum=WGS84&#39;)</code></pre>
+<p>Mapping with <em>leaflet</em></p>
+<pre class="r"><code>library(sf)
+counties &lt;- counties(&quot;Oregon&quot;, cb = TRUE, progress_bar = FALSE, class = &quot;sf&quot;) # fetch county shapefile from US Census Bureau
+counties_merged_acs &lt;- merge(counties, RentBurdenPercent, by.x = &quot;GEOID&quot;, by.y = &quot;GEOID&quot;) # geo_join() with RentBurdenPrecent data
+
+PercentBurdenPal &lt;- colorNumeric(palette = &quot;Greens&quot;, domain=counties_merged_acs$PercentRentBurden) # create numeric color palet based on the range of PercenRentBurden
+
+# create content for popups to appear each county
+CountyPopupContent &lt;- paste0(&quot;&lt;b&gt;&quot;, counties_merged_acs$NAME.1, &quot;&lt;/b&gt;&quot;, &quot;&lt;br&gt;&quot;,
+                           &quot;Estimated Percent Rent Burdened: &quot;, percent(counties_merged_acs$PercentRentBurden), &quot;&lt;br&gt;&quot;,
+                           &quot;Estimated Count of Rent Burdened: &quot;, counties_merged_acs$TotalRentBurden, &quot;&lt;br&gt;&quot;,
+                           &quot;Estimated Total Population: &quot;, counties_merged_acs$Total)
+
+# create content for popups to appear each housing complex
+HousingPopupContent &lt;- paste(&quot;&lt;b&gt;&quot;, HousingIndex$project_name, &quot;&lt;/b&gt;&quot;, &quot;&lt;br&gt;&quot;,
+                             &quot;Address: &quot;, HousingIndex$address,&quot;, &quot;, HousingIndex$city, &quot;, Oregon&quot;, &quot;&lt;br&gt;&quot;,
+                             &quot;Management: &quot;, HousingIndex$management, &quot;&lt;br&gt;&quot;,
+                             &quot;Total Units: &quot;, HousingIndex$total_units)</code></pre>
+<pre class="r"><code>this.map &lt;- counties_merged_acs %&gt;%
+ sf::st_transform(crs = &#39;+proj=longlat +datum=WGS84&#39;) %&gt;%
+ leaflet() %&gt;% # create leaflet of counties_merged_acs data defined above
+ addTiles() %&gt;% # add tiles to map
+ addMarkers(data = GeocodedHousingIndex, # add makers for each housing complex
+            popup = HousingPopupContent, # insert HousingPopupContent
+            clusterOptions = markerClusterOptions()) %&gt;% # cluster icons (w/o this feature the map is too crowded to read)
+ addPolygons(fillColor = PercentBurdenPal(counties_merged_acs$PercentRentBurden), # add polygonns (shape of OR&#39;s counties)
+             fillOpacity = 0.80, # set opacity
+             highlightOptions = highlightOptions(color = &quot;white&quot;, weight = 2, bringToFront = TRUE), # set highlight feature  
+             col = &quot;#302E2D&quot;, # set color for county boarder (defaults to a Dodger blue as if to remind you to change it)
+             weight = 1, # set boarder weight
+             popup = ~CountyPopupContent) %&gt;% # insert CountyPopupContent 
+ addLegend(pal = PercentBurdenPal, # define color palet for legand
+           values = counties_merged_acs$PercentRentBurden, # define legend valees
+           title = paste(&quot;% Housing&quot;, &quot;&lt;br&gt;&quot;, &quot;Burdened&quot;), # define legend title
+           position = &quot;bottomright&quot;) %&gt;% #define legend positin
+ setView(lat= 44.000000, lng=-120.500000, zoom=6.45) # set lat, long, and zoom to view Oregon</code></pre>
+<iframe src="/img/thismap.html" width="100%" height="450">
+</iframe>
+<p>The marker points for the housing complexes are clustered so that they are visable. The map would be very difficult to read without this option turned on.</p>
+<p><strong>Final Thoughts</strong></p>
+<p>Kind of a neat map. Somewhat unsprisingly, the amount of affordable housing complexes in each area is generally associated with population density. This also highlights the need for and logistical complexity of affordable housing in rural areas as well.</p>
+<p><em>Useful project resources</em></p>
+<p>I read a number of useful resources in creating this map. A few of the most useful are listed below. Additionally, a tromedous “thank you” to Prof. Robert Walker for helping me with some unusal debugging issues on this project as well as for introducing me to R in the first place.</p>
+<p>Leaflet Mapping:</p>
+<ul>
+<li><a href="https://rstudio.github.io/leaflet/">Leaflet for R documentation</a></li>
+<li><a href="http://www.wvview.org/spatial_analytics/leaflet/_site/index.html#objectives">Prof. Aaron Maxwell at West Virginia University</a></li>
+<li><a href="https://cfss.uchicago.edu/notes/leaflet/">Prof. Benjamin Soltoff at the University of Chicago</a></li>
+</ul>
+<p>GIS data wrangling and transforming:</p>
+<ul>
+<li><a href="https://learn.r-journalism.com/en/mapping/">Andrew Ba Tran of the Washington Post</a> in his book R-Journalism.</li>
+<li><a href="https://www.storybench.org/geocode-csv-addresses-r/">Aleszu Bajak at StoryBench</a>.</li>
+</ul>

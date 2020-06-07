@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Access | Zachary Dyne</title>
-    <link>https://zldyne.netlify.app/tag/access/</link>
-      <atom:link href="https://zldyne.netlify.app/tag/access/index.xml" rel="self" type="application/rss+xml" />
+    <link>/tag/access/</link>
+      <atom:link href="/tag/access/index.xml" rel="self" type="application/rss+xml" />
     <description>Access</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Zachary Dyne</copyright><lastBuildDate>Sat, 23 May 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://zldyne.netlify.app/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Access</title>
-      <link>https://zldyne.netlify.app/tag/access/</link>
+      <link>/tag/access/</link>
     </image>
     
     <item>
       <title>An Overview of the Willamette MBA Community Grant Program SQL Database</title>
-      <link>https://zldyne.netlify.app/post/agsmgrantsql/agsmgrantssql/</link>
+      <link>/post/agsmgrantsql/agsmgrantssql/</link>
       <pubDate>Sat, 23 May 2020 00:00:00 +0000</pubDate>
-      <guid>https://zldyne.netlify.app/post/agsmgrantsql/agsmgrantssql/</guid>
+      <guid>/post/agsmgrantsql/agsmgrantssql/</guid>
       <description>&lt;p&gt;One of my favorite courses I took during my time at Atkinson was &lt;em&gt;GSMDS5003: Data Engineering&lt;/em&gt;, taught by the one and only Prof. Henry Bi. We not only learned how to write SQL code but also about the fundamentals of database design, including entity relational (ER) modeling, standardization, and normalization. Learning the structure of well designed databases made learning to retrieve data via SQL a fairly straitforward extension. The course&amp;rsquo;s final project was to create a database of our own using Microsoft Access, so I decided to use this opportunity to solve a different problem I was dealing with: the information scattered throughout the Google Drive of the Willamette MBA Community Grant Program.&lt;/p&gt;
 &lt;h3 id=&#34;willamette-mba-community-grant-program&#34;&gt;Willamette MBA Community Grant Program&lt;/h3&gt;
 &lt;p&gt;The 
@@ -27,13 +27,13 @@
 &lt;a href=&#34;https://drive.google.com/file/d/1rOdZmnAYQa-UH4V_KDCOjGDaF2aHaYjl/view?usp=sharing&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;full project description&lt;/a&gt; for all of the database requirements.&lt;/p&gt;
 &lt;p&gt;While I can&amp;rsquo;t share the content of many tables due to privacy reasons, I can share the database&amp;rsquo;s relationship diagrams as a proof of concept.&lt;/p&gt;
 &lt;h5 id=&#34;entity-relation-model&#34;&gt;Entity Relation Model&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/ERDModel.PNG&#34; alt=&#34;ERD Model&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/ERDModel.PNG&#34; alt=&#34;ERD Model&#34;&gt;&lt;/p&gt;
 &lt;h4 id=&#34;access-relational-diagram&#34;&gt;Access Relational Diagram&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/AccessRelation.PNG&#34; alt=&#34;Access Relational&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/AccessRelation.PNG&#34; alt=&#34;Access Relational&#34;&gt;&lt;/p&gt;
 &lt;h4 id=&#34;hey-it-works&#34;&gt;Hey, it works!&lt;/h4&gt;
 &lt;p&gt;Sample problem: &lt;em&gt;List the organization name, project name, description, and amount received for each project operated by an organization who has operated more than one project. Provide the list in descending order by amount.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/SampleCode.PNG&#34; alt=&#34;Sample Code&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/SampleQ.PNG&#34; alt=&#34;Sample Q&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/SampleCode.PNG&#34; alt=&#34;Sample Code&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/SampleQ.PNG&#34; alt=&#34;Sample Q&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;final-thoughts&#34;&gt;Final Thoughts&lt;/h3&gt;
 &lt;p&gt;I had a lot of fun working on this project since it combines two of my primary interests: data science and nonprofit management. Thank you to Prof. Henry Bi for your guidance and encouragement along the way! If you&amp;rsquo;re interested to learn more about the Willamette MBA Community Grant Program, check out the recently published 
 &lt;a href=&#34;https://static1.squarespace.com/static/5d96678c577c9008fd68696b/t/5eb30597c5e14117f3481700/1588790698192/WUMBA_PICI_Y4_AnnualReport2020.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;2019-2020 Annual Report&lt;/a&gt;!&lt;/p&gt;

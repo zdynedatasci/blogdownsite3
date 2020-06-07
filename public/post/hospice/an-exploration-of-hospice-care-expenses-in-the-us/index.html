@@ -30,7 +30,7 @@
   <meta name="description" content="This project analyzes hospice care expenses throughout the United States and showcases a variety of R packages, data wrangling approaches, and statistical techniques. This was my final project for the *GSMDS5001: Fundamentals of Data Science with R* course.">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://zldyne.netlify.app/post/hospice/an-exploration-of-hospice-care-expenses-in-the-us/">
+  <link rel="alternate" hreflang="en-us" href="/post/hospice/an-exploration-of-hospice-care-expenses-in-the-us/">
 
   
 
@@ -220,7 +220,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
 
-  <link rel="canonical" href="https://zldyne.netlify.app/post/hospice/an-exploration-of-hospice-care-expenses-in-the-us/">
+  <link rel="canonical" href="/post/hospice/an-exploration-of-hospice-care-expenses-in-the-us/">
 
   
   
@@ -236,10 +236,10 @@
   <meta property="twitter:card" content="summary">
   
   <meta property="og:site_name" content="Zachary Dyne">
-  <meta property="og:url" content="https://zldyne.netlify.app/post/hospice/an-exploration-of-hospice-care-expenses-in-the-us/">
+  <meta property="og:url" content="/post/hospice/an-exploration-of-hospice-care-expenses-in-the-us/">
   <meta property="og:title" content="An Exploration of Hospice Care Expenses in the US | Zachary Dyne">
-  <meta property="og:description" content="This project analyzes hospice care expenses throughout the United States and showcases a variety of R packages, data wrangling approaches, and statistical techniques. This was my final project for the *GSMDS5001: Fundamentals of Data Science with R* course."><meta property="og:image" content="https://zldyne.netlify.app/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
-  <meta property="twitter:image" content="https://zldyne.netlify.app/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
+  <meta property="og:description" content="This project analyzes hospice care expenses throughout the United States and showcases a variety of R packages, data wrangling approaches, and statistical techniques. This was my final project for the *GSMDS5001: Fundamentals of Data Science with R* course."><meta property="og:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
+  <meta property="twitter:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
   
     
       <meta property="article:published_time" content="2019-12-14T00:00:00&#43;00:00">
@@ -268,7 +268,7 @@
   "@type": "BlogPosting",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://zldyne.netlify.app/post/hospice/an-exploration-of-hospice-care-expenses-in-the-us/"
+    "@id": "/post/hospice/an-exploration-of-hospice-care-expenses-in-the-us/"
   },
   "headline": "An Exploration of Hospice Care Expenses in the US",
   
@@ -285,7 +285,7 @@
     "name": "Zachary Dyne",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://zldyne.netlify.app/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
+      "url": "/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
     }
   },
   "description": "This project analyzes hospice care expenses throughout the United States and showcases a variety of R packages, data wrangling approaches, and statistical techniques. This was my final project for the *GSMDS5001: Fundamentals of Data Science with R* course."
@@ -592,7 +592,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    24 min read
+    25 min read
   </span>
   
 
@@ -858,6 +858,11 @@ D %&gt;%
             n = n(),
             missing = count(is.na(`Total Medicare Standard Payment Amount`))) %&gt;%
   arrange(desc(mean))</code></pre>
+<pre><code>## Warning: `data_frame()` is deprecated as of tibble 1.1.0.
+## Please use `tibble()` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <div class="kable-table">
 <table>
 <thead>
@@ -1018,6 +1023,7 @@ D %&gt;%
             n = n(),
             missing = count(is.na(`Total Medicare Standard Payment Amount`))) %&gt;%
   arrange(desc(mean))</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <div class="kable-table">
 <table>
 <thead>
@@ -1139,6 +1145,7 @@ D %&gt;%
         &quot;2015.0&quot; = &quot;2015&quot;, &quot;2015.5&quot; = &quot; &quot;, &quot;2016.0&quot; = &quot;2016&quot;)) +
   scale_y_continuous(label = dollar) +
   scale_color_brewer()</code></pre>
+<pre><code>## `summarise()` regrouping output by &#39;Region&#39; (override with `.groups` argument)</code></pre>
 <p><img src="/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 Payments are growing each year accross each region, except the West with a slight decline.</p>
 <div id="intertion-rregression-with-year-and-region" class="section level5">
@@ -1785,7 +1792,7 @@ get_regression_table(mVisits)</code></pre>
 </tbody>
 </table>
 </div>
-<p>This linear model is quite interesting and suprising to me. Each of the types of hours are statistically significant except Skilled Nursing Visit Hours per day, and Social Service Visit Hous per Day. Suprisingly, the amount of Home Health Visit Hours per Day and Social Service Visit Hours per Day had significant negaitve coefficients. For Home Health Visit Hours per Day, for each increase hour visited, we expect a <em>decrease</em> in standard payment amount by <em>2526305.4</em>. However, this linear model alone has a low explanatory capacity, explaining only 6.62% of the overall variation in Total Medicare Standard Payment Amount. To assess if this is the result of very skewed data among all predictor and outcome variales, I will rerun the model using logged predictor and outcome values.</p>
+<p>This linear model is quite interesting and suprising to me. Each of the types of hours are statistically significant except Skilled Nursing Visit Hours per day, and Social Service Visit Hous per Day. Suprisingly, the amount of Home Health Visit Hours per Day and Social Service Visit Hours per Day had significant negaitve coefficients. For Home Health Visit Hours per Day, for each increase hour visited, we expect a <em>decrease</em> in standard payment amount by <em>2526305.4</em>. However, this linear model alone has a low explanatory capacity, explaining only 7% of the overall variation in Total Medicare Standard Payment Amount. To assess if this is the result of very skewed data among all predictor and outcome variales, I will rerun the model using logged predictor and outcome values.</p>
 <ul>
 <li><strong>Regression with logged values</strong></li>
 </ul>
@@ -1934,7 +1941,7 @@ get_regression_table(mVisitsL)</code></pre>
    ggplot(aes(x=residual)) + geom_density() +
    ggtitle(&quot;Residuals from mVisits Regression Model&quot;) </code></pre>
 <p><img src="/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-28-1.png" width="672" />
-Even the logged model still has a low overall predicitve capacity with an R Squared of only 9.70%. The model as a whole is statistically significant and the residuals do appear to be normal.</p>
+Even the logged model still has a low overall predicitve capacity with an R Squared of only 10%. The model as a whole is statistically significant and the residuals do appear to be normal.</p>
 </div>
 </div>
 <div id="diagnosis-types" class="section level3">
@@ -1961,6 +1968,7 @@ DbyDiagnosis &lt;- D %&gt;%
             sd = sd(Beneficiaries),
             n = n()) %&gt;%
   arrange(desc(mean))</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <div class="kable-table">
 <table>
 <thead>
@@ -2158,6 +2166,7 @@ get_regression_table(DiagMod) </code></pre>
             n = n(),
             missing = count(is.na(Amount))) %&gt;%
   arrange(desc(mean))</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <div class="kable-table">
 <table>
 <thead>
@@ -2281,7 +2290,7 @@ get_regression_table(GMod) </code></pre>
 </tbody>
 </table>
 </div>
-<p>In using log values, we see a 0.88% stronger impact of female beneficiaries on Total Medicare Standard Payment Amount than we do for male beneficiaries. Both factors are statistically significant, though. This model alone, though, has a very strong exlanatory capacity with an R squared at 89.7%. That is by far the strongest model within each category.</p>
+<p>In using log values, we see a 0.88% stronger impact of female beneficiaries on Total Medicare Standard Payment Amount than we do for male beneficiaries. Both factors are statistically significant, though. This model alone, though, has a very strong exlanatory capacity with an R squared at 90%. That is by far the strongest model within each category.</p>
 <p>All told, this indicates that there are noteably more women than men in the US hospice system.</p>
 </div>
 </div>
@@ -2308,6 +2317,7 @@ get_regression_table(GMod) </code></pre>
             n = n(),
             missing = count(is.na(Amount))) %&gt;%
   arrange(desc(mean))</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <div class="kable-table">
 <table>
 <thead>
@@ -2415,6 +2425,7 @@ DbyRace %&gt;%
   group_by(Race) %&gt;%  
   summarise(total = sum(Amount)) %&gt;%
   mutate(percent = percent(total/sum(total)))</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <div class="kable-table">
 <table>
 <thead>
@@ -2428,27 +2439,27 @@ DbyRace %&gt;%
 <tr class="odd">
 <td align="left">Asian hospice beneficiaries</td>
 <td align="right">46079</td>
-<td align="left">1.1%</td>
+<td align="left">1.10%</td>
 </tr>
 <tr class="even">
 <td align="left">Black hospice beneficiaries</td>
 <td align="right">329218</td>
-<td align="left">7.9%</td>
+<td align="left">7.87%</td>
 </tr>
 <tr class="odd">
 <td align="left">Hispanic hospice beneficiaries</td>
 <td align="right">241371</td>
-<td align="left">5.8%</td>
+<td align="left">5.77%</td>
 </tr>
 <tr class="even">
 <td align="left">Other/unknown race hospice beneficiaries</td>
 <td align="right">23223</td>
-<td align="left">0.6%</td>
+<td align="left">0.56%</td>
 </tr>
 <tr class="odd">
 <td align="left">White hospice beneficiaries</td>
 <td align="right">3541698</td>
-<td align="left">84.7%</td>
+<td align="left">84.70%</td>
 </tr>
 </tbody>
 </table>
@@ -2460,6 +2471,7 @@ DbyRace %&gt;%
   group_by(White) %&gt;%  
   summarise(total = sum(Amount)) %&gt;%
   mutate(percent = percent(total/sum(total)))</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <div class="kable-table">
 <table>
 <thead>
@@ -2473,12 +2485,12 @@ DbyRace %&gt;%
 <tr class="odd">
 <td align="left">FALSE</td>
 <td align="right">639891</td>
-<td align="left">15.3%</td>
+<td align="left">15%</td>
 </tr>
 <tr class="even">
 <td align="left">TRUE</td>
 <td align="right">3541698</td>
-<td align="left">84.7%</td>
+<td align="left">85%</td>
 </tr>
 </tbody>
 </table>
@@ -2576,7 +2588,7 @@ get_regression_table(RMod)</code></pre>
 </div>
 <pre class="r"><code>summary(RMod)$r.squared</code></pre>
 <pre><code>## [1] 0.9701032</code></pre>
-<p>This model has a vey high predictive power with an R squared of 97.0% with each coefficient being statistically significant. According to this model, each added white beneficiary contributes an expected $10677.08 in standard medicare payments with a relatively low standard error of $202.11. Each added added Black beneficiary contributes an expected $11347.95 in standard medicare payments, but with a relatively high standard error of $1113.10. This variation is again likely due to the notably more white beneficiares in the dataset.</p>
+<p>This model has a vey high predictive power with an R squared of 97% with each coefficient being statistically significant. According to this model, each added white beneficiary contributes an expected $10677.08 in standard medicare payments with a relatively low standard error of $202.11. Each added added Black beneficiary contributes an expected $11347.95 in standard medicare payments, but with a relatively high standard error of $1113.10. This variation is again likely due to the notably more white beneficiares in the dataset.</p>
 </div>
 </div>
 <div id="final-conclusions-and-takeaways" class="section level2">
@@ -2647,7 +2659,7 @@ get_regression_table(RMod)</code></pre>
       
 
       <div class="media-body">
-        <h5 class="card-title"><a href="https://zldyne.netlify.app/">Zachary Dyne</a></h5>
+        <h5 class="card-title"><a href="/">Zachary Dyne</a></h5>
         <h6 class="card-subtitle">Data Scientist and Project Manager</h6>
         <p class="card-text">Zachary Dyne is a recent MBA graduate and data scientist interested in the intersection of data science, health care, and public &amp; nonprofit management.</p>
         <ul class="network-icon" aria-hidden="true">
@@ -2841,6 +2853,16 @@ get_regression_table(RMod)</code></pre>
   
   <div class="container">
     <footer class="site-footer">
+  
+  <p class="powered-by">
+    
+      <a href="/privacy/">Privacy Policy</a>
+    
+    
+       &middot; 
+      <a href="/terms/">Terms</a>
+    
+  </p>
   
 
   <p class="powered-by">

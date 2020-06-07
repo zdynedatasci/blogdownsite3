@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Forecasting | Zachary Dyne</title>
-    <link>https://zldyne.netlify.app/tag/forecasting/</link>
-      <atom:link href="https://zldyne.netlify.app/tag/forecasting/index.xml" rel="self" type="application/rss+xml" />
+    <link>/tag/forecasting/</link>
+      <atom:link href="/tag/forecasting/index.xml" rel="self" type="application/rss+xml" />
     <description>Forecasting</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Zachary Dyne</copyright><lastBuildDate>Thu, 31 Oct 2019 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://zldyne.netlify.app/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Forecasting</title>
-      <link>https://zldyne.netlify.app/tag/forecasting/</link>
+      <link>/tag/forecasting/</link>
     </image>
     
     <item>
       <title>Forecasting Target Corporation&#39;s Quarterly Revenue</title>
-      <link>https://zldyne.netlify.app/post/target-quarterly-revenue-forecasting/</link>
+      <link>/post/target-quarterly-revenue-forecasting/</link>
       <pubDate>Thu, 31 Oct 2019 00:00:00 +0000</pubDate>
-      <guid>https://zldyne.netlify.app/post/target-quarterly-revenue-forecasting/</guid>
+      <guid>/post/target-quarterly-revenue-forecasting/</guid>
       <description>
-&lt;script src=&#34;https://zldyne.netlify.app/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
 
 &lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
@@ -53,7 +53,7 @@ TargetLabF %&amp;gt;%
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
   ggtitle(&amp;quot;Target Quarterly Sales 1993:Q1 - 2001:Q4&amp;quot;) +
   ylab(&amp;quot;Sales (in millions of US Dollars)&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/2019-10-31-target-quarterly-revenue-forecasting_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-10-31-target-quarterly-revenue-forecasting_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Target’s quarterly sales show a general upward trend with strong seasonality. There is a strong increase in Quarter 4 in each year, which is typical for the retail industry given the surge in holiday shopping. There isn’t a clear cycle, though, meaning that the trend is fairly constnat.&lt;/p&gt;
 &lt;p&gt;Since the seasonal component here is constant from year to year, a classical decomposition method should work nicely here. We will work first through an additive decomposition and then through a multiplicative decomposition process.&lt;/p&gt;
 &lt;div id=&#34;additive-decomposition&#34; class=&#34;section level2&#34;&gt;
@@ -66,7 +66,7 @@ TargetAddDecompm %&amp;gt;%
   ggtitle(&amp;quot;Classical Additive Decomposition of Target Sales&amp;quot;) +
   xlab(&amp;quot;Year&amp;quot;) +
   theme_economist_white() # choose economist theme&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/2019-10-31-target-quarterly-revenue-forecasting_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-10-31-target-quarterly-revenue-forecasting_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;
 This plot is reasonably interesting, as it shows th trend and seasonally adjusted data alonogside each other, along with the error from the decomposition model.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Extract Seasonal and Trend Components
 Seasonal &amp;lt;- TargetAddDecompm$seasonal  # Extract seasonal indecies            
@@ -144,7 +144,7 @@ AddPlot %&amp;gt;%
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
   ggtitle(&amp;quot;Additve Decomposition&amp;quot;, subtitle = &amp;quot;Forecast and Actual Data&amp;quot;) +
   ylab(&amp;quot;Sales (in millions of US Dollars)&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/2019-10-31-target-quarterly-revenue-forecasting_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-10-31-target-quarterly-revenue-forecasting_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Seasonal Indecies (in millions of dollars)&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;Seasonal %&amp;gt;%
   as.tibble() %&amp;gt;%
@@ -290,7 +290,7 @@ TargetMultDecomp %&amp;gt;%
   ggtitle(&amp;quot;Classical Multiplicative Decomposition of Target Sales&amp;quot;) +
   xlab(&amp;quot;Year&amp;quot;) + 
   theme_economist_white()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/2019-10-31-target-quarterly-revenue-forecasting_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-10-31-target-quarterly-revenue-forecasting_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Extract Seasonal and Trend Components
 Seasonal &amp;lt;- TargetMultDecomp$seasonal              
 SeasAdj &amp;lt;- (TargetTS/Seasonal)          
@@ -323,7 +323,7 @@ MultPlot %&amp;gt;%
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
   ggtitle(&amp;quot;Multiplicative Decomposition&amp;quot;) +
   ylab(&amp;quot;Sales (in millions of US Dollars)&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/2019-10-31-target-quarterly-revenue-forecasting_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-10-31-target-quarterly-revenue-forecasting_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;Seasonal %&amp;gt;%
   as.tibble() %&amp;gt;%
   rowid_to_column() %&amp;gt;%
@@ -463,7 +463,7 @@ MAPE
   ggtitle(&amp;quot;Target Sales Forecast Using Multiplicative Decomposition&amp;quot;) + 
   ylab(&amp;quot;Sales &amp;amp; Forecast (in millions of US dollars&amp;quot;) +
   theme_economist_white()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/2019-10-31-target-quarterly-revenue-forecasting_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-10-31-target-quarterly-revenue-forecasting_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;TargetTS %&amp;gt;% 
   forecast() %&amp;gt;%
   as.data.frame() %&amp;gt;% 

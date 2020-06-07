@@ -3,257 +3,272 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://zldyne.netlify.app/courses/example/example1/</loc>
+    <loc>/courses/example/example1/</loc>
     <lastmod>2019-05-05T00:00:00+01:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/courses/example/</loc>
+    <loc>/courses/example/</loc>
     <lastmod>2018-09-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/courses/example/example2/</loc>
+    <loc>/courses/example/example2/</loc>
     <lastmod>2019-05-05T00:00:00+01:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/talk/example/</loc>
+    <loc>/talk/example/</loc>
     <lastmod>2030-06-01T13:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/talk/</loc>
+    <loc>/talk/</loc>
     <lastmod>2030-06-01T13:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/</loc>
-    <lastmod>2030-06-01T13:00:00+00:00</lastmod>
+    <loc>/post/2020-06-04-affordable-housing-map/</loc>
+    <lastmod>2020-06-04T13:24:36-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/tag/access/</loc>
+    <loc>/post/</loc>
+    <lastmod>2020-06-04T13:24:36-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/access/</loc>
     <lastmod>2020-05-23T10:28:44-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/post/agsmgrantsql/agsmgrantssql/</loc>
+    <loc>/post/agsmgrantsql/agsmgrantssql/</loc>
     <lastmod>2020-05-23T10:28:44-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/categories/</loc>
+    <loc>/categories/</loc>
     <lastmod>2020-05-28T15:10:22-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/category/data-engineering/</loc>
+    <loc>/category/data-engineering/</loc>
     <lastmod>2020-05-23T10:28:44-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/tag/mba/</loc>
+    <loc>/tag/mba/</loc>
     <lastmod>2020-05-23T10:28:44-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/category/mba/</loc>
+    <loc>/category/mba/</loc>
     <lastmod>2020-05-28T15:10:22-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/post/</loc>
+    <loc>/tag/sql/</loc>
+    <lastmod>2020-05-23T10:28:44-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/category/sql/</loc>
+    <lastmod>2020-05-23T10:28:44-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
     <lastmod>2020-05-28T15:10:22-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/tag/sql/</loc>
+    <loc>/tag/willamette-mba-community-grant-program/</loc>
     <lastmod>2020-05-23T10:28:44-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/category/sql/</loc>
-    <lastmod>2020-05-23T10:28:44-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zldyne.netlify.app/tags/</loc>
-    <lastmod>2020-05-28T15:10:22-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zldyne.netlify.app/tag/willamette-mba-community-grant-program/</loc>
-    <lastmod>2020-05-23T10:28:44-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zldyne.netlify.app/tag/education/</loc>
+    <loc>/tag/education/</loc>
     <lastmod>2020-05-27T11:41:00-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/tag/public-policy/</loc>
+    <loc>/tag/public-policy/</loc>
     <lastmod>2020-05-27T11:41:00-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/tag/real-estate/</loc>
+    <loc>/tag/real-estate/</loc>
     <lastmod>2020-05-27T11:41:00-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/post/zoninglawskcmo/kcmo-impact-zoning-laws-on-education/</loc>
+    <loc>/post/zoninglawskcmo/kcmo-impact-zoning-laws-on-education/</loc>
     <lastmod>2020-05-27T11:41:00-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/post/hospice/an-exploration-of-hospice-care-expenses-in-the-us/</loc>
+    <loc>/post/hospice/an-exploration-of-hospice-care-expenses-in-the-us/</loc>
     <lastmod>2019-12-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/tag/healthcare/</loc>
+    <loc>/tag/healthcare/</loc>
     <lastmod>2019-12-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/category/healthcare/</loc>
+    <loc>/category/healthcare/</loc>
     <lastmod>2019-12-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/category/medicaid/</loc>
+    <loc>/category/medicaid/</loc>
     <lastmod>2019-12-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/category/medicare/</loc>
+    <loc>/category/medicare/</loc>
     <lastmod>2019-12-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/category/r/</loc>
+    <loc>/category/r/</loc>
     <lastmod>2019-12-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/tag/finance/</loc>
+    <loc>/tag/finance/</loc>
     <lastmod>2020-05-28T15:10:22-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/tag/forecasting/</loc>
+    <loc>/tag/forecasting/</loc>
     <lastmod>2020-05-28T15:10:22-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/post/target-quarterly-revenue-forecasting/</loc>
+    <loc>/post/target-quarterly-revenue-forecasting/</loc>
     <lastmod>2020-05-28T15:10:22-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/courses/</loc>
+    <loc>/courses/</loc>
     <lastmod>2019-05-05T00:00:00+01:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/publication-type/3/</loc>
+    <loc>/publication-type/3/</loc>
     <lastmod>2019-04-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/publication/preprint/</loc>
+    <loc>/publication/preprint/</loc>
     <lastmod>2019-04-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/authors/</loc>
+    <loc>/authors/</loc>
     <lastmod>2019-04-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/publication_types/</loc>
+    <loc>/publication_types/</loc>
     <lastmod>2019-04-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/publication/</loc>
+    <loc>/publication/</loc>
     <lastmod>2019-04-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/tag/source-themes/</loc>
+    <loc>/tag/source-themes/</loc>
     <lastmod>2019-04-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/author/zachary-dyne/</loc>
+    <loc>/author/zachary-dyne/</loc>
     <lastmod>2019-04-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/slides/</loc>
+    <loc>/slides/</loc>
     <lastmod>2019-02-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/slides/example/</loc>
+    <loc>/slides/example/</loc>
     <lastmod>2019-02-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/tag/deep-learning/</loc>
+    <loc>/privacy/</loc>
+    <lastmod>2018-06-28T00:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/terms/</loc>
+    <lastmod>2018-06-28T00:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2018-06-28T00:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tag/deep-learning/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/tag/demo/</loc>
+    <loc>/tag/demo/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/project/external-project/</loc>
+    <loc>/project/external-project/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/project/internal-project/</loc>
+    <loc>/project/internal-project/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/project/</loc>
+    <loc>/project/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/publication-type/2/</loc>
+    <loc>/publication-type/2/</loc>
     <lastmod>2015-09-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/publication/journal-article/</loc>
+    <loc>/publication/journal-article/</loc>
     <lastmod>2015-09-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/author/robert-ford/</loc>
+    <loc>/author/robert-ford/</loc>
     <lastmod>2015-09-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/publication-type/1/</loc>
+    <loc>/publication-type/1/</loc>
     <lastmod>2013-07-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/publication/conference-paper/</loc>
+    <loc>/publication/conference-paper/</loc>
     <lastmod>2013-07-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zldyne.netlify.app/author/zachary-dyne/</loc>
+    <loc>/author/zachary-dyne/</loc>
   </url>
   
 </urlset>

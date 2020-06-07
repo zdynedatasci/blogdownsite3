@@ -2,27 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Education | Zachary Dyne</title>
-    <link>https://zldyne.netlify.app/tag/education/</link>
-      <atom:link href="https://zldyne.netlify.app/tag/education/index.xml" rel="self" type="application/rss+xml" />
+    <link>/tag/education/</link>
+      <atom:link href="/tag/education/index.xml" rel="self" type="application/rss+xml" />
     <description>Education</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Zachary Dyne</copyright><lastBuildDate>Mon, 13 Jan 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://zldyne.netlify.app/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Education</title>
-      <link>https://zldyne.netlify.app/tag/education/</link>
+      <link>/tag/education/</link>
     </image>
     
     <item>
       <title>Relocation, Education, and Incentivization: Adjusting residential zoning laws to improve economic mobility in Kansas City, Missouri</title>
-      <link>https://zldyne.netlify.app/post/zoninglawskcmo/kcmo-impact-zoning-laws-on-education/</link>
+      <link>/post/zoninglawskcmo/kcmo-impact-zoning-laws-on-education/</link>
       <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>https://zldyne.netlify.app/post/zoninglawskcmo/kcmo-impact-zoning-laws-on-education/</guid>
+      <guid>/post/zoninglawskcmo/kcmo-impact-zoning-laws-on-education/</guid>
       <description>&lt;p&gt;Economic mobility, the ability for individuals to economically fare better than their parents did, is an essential component for the continued livelihood of a city. This is especially true for Kansas City in its efforts to revitalize what was once a lively economic hub based on manufacturing and transportation to a modern metropolis fueled by technology and innovation. Recent efforts in economic development from city and state administered programs, such as the Opportunity Zone Program, the KC Rise co-investment fund, and the BioNexus KC life science development initiative, have contributed to a 
 &lt;a href=&#34;http://www.kcrisingmetrics.org/gdp.htm&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;5.7% growth in real GDP&lt;/a&gt; and a 
 &lt;a href=&#34;http://www.kcrisingmetrics.org/MHI.htm&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;7.8% growth in median household income from 2013 to 2017&lt;/a&gt;. While these metrics are certainly a positive indication for the city’s future, Kansas City continues to lag behind its self-identified peer cities on both metrics. Additionally, not all the development has benefited all Kansas City residents equally. Several neighborhoods, particularly those on the east side of the city, continue to experience the effects of decades of disinvestment, including underfunded public schools 
 &lt;a href=&#34;https://www.kcur.org/show/up-to-date/2015-02-23/why-kansas-citys-east-side-lags-in-economic-development&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;resulting from uneven property taxes&lt;/a&gt;. According to the Stanford Education Opportunity Monitoring Project, non-poor students in the Kansas City School District perform at an average of 0.12 grades above grade level, whereas poor students perform at an average of 1.85 grades below grade level (Exhibit 1).&lt;/p&gt;
 &lt;h4 id=&#34;exhibit-1&#34;&gt;Exhibit 1&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/ZoningLawsKCMO/2020-05-27-relocation-education-and-incentivization-adjusting-residential-zoning-laws-to-improve-economic-mobility-in-kansas-city-missouri_files/EDUscreenshot.PNG&#34; alt=&#34;Exhibit 1&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;/post/ZoningLawsKCMO/2020-05-27-relocation-education-and-incentivization-adjusting-residential-zoning-laws-to-improve-economic-mobility-in-kansas-city-missouri_files/EDUscreenshot.PNG&#34; alt=&#34;Exhibit 1&#34;&gt;
 &lt;em&gt;The red dot represents data for the Kansas City School District&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Access to quality K-12 education is known to have a 
 &lt;a href=&#34;https://www.thebalance.com/economic-mobility-4163493&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;strong relationship with earnings later in life&lt;/a&gt;. Research by Harvard economist Raj Chetty found this to be true even after controlling for intergenerational wealth. 

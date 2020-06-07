@@ -2,14 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Zachary Dyne</title>
-    <link>https://zldyne.netlify.app/author/zachary-dyne/</link>
-      <atom:link href="https://zldyne.netlify.app/author/zachary-dyne/index.xml" rel="self" type="application/rss+xml" />
+    <link>/author/zachary-dyne/</link>
+      <atom:link href="/author/zachary-dyne/index.xml" rel="self" type="application/rss+xml" />
     <description>Zachary Dyne</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Zachary Dyne</copyright>
     <image>
-      <url>https://zldyne.netlify.app/author/zachary-dyne/avatar_hu52a603635ecebd45650b162dadabb4e5_12861_270x270_fill_q90_lanczos_center.jpg</url>
+      <url>/author/zachary-dyne/avatar_hu52a603635ecebd45650b162dadabb4e5_12861_270x270_fill_q90_lanczos_center.jpg</url>
       <title>Zachary Dyne</title>
-      <link>https://zldyne.netlify.app/author/zachary-dyne/</link>
+      <link>/author/zachary-dyne/</link>
     </image>
     
   </channel>

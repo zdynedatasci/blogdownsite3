@@ -2,21 +2,854 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts | Zachary Dyne</title>
-    <link>https://zldyne.netlify.app/post/</link>
-      <atom:link href="https://zldyne.netlify.app/post/index.xml" rel="self" type="application/rss+xml" />
+    <link>/post/</link>
+      <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Zachary Dyne</copyright><lastBuildDate>Sat, 23 May 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Zachary Dyne</copyright><lastBuildDate>Thu, 04 Jun 2020 13:24:36 -0700</lastBuildDate>
     <image>
-      <url>https://zldyne.netlify.app/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Posts</title>
-      <link>https://zldyne.netlify.app/post/</link>
+      <link>/post/</link>
     </image>
     
     <item>
+      <title>Affordable Housing Map</title>
+      <link>/post/2020-06-04-affordable-housing-map/</link>
+      <pubDate>Thu, 04 Jun 2020 13:24:36 -0700</pubDate>
+      <guid>/post/2020-06-04-affordable-housing-map/</guid>
+      <description>
+&lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;The lack of access to affordable housing is one of the biggest social issues throughout the United States. This is also true locally in Oregon, as the &lt;a href=&#34;https://www.ocpp.org/2018/03/15/20180315-cost-burdened-housing/&#34;&gt;Oregon Center for Public Policy&lt;/a&gt; highlights. Both for-profit and non-profit organizations have become involved in building and managing affordable housing units, but there is clearly more work that needs to be done. During my time at &lt;a href=&#34;https://www.unitedwaymwv.org/&#34;&gt;United Way of the Mid-Willamette Valley&lt;/a&gt;, the grantmaking organization had added a goal of becoming an affordable housing provider, or at minimum become a catalyst for other organizations to take on serious affordable housing efforts.&lt;/p&gt;
+&lt;p&gt;I was curious to see if I could find any data on affordable housing projects throughout Oregon. Where are they located? Where is the greatest need? How do the locations and needs overlap? Do the locations and need sufficiently overlap? Of course, the answer to the final question will not be “yes” until homelessness is eradicated. However, I wanted to see if I could get a glimpse at the current state of affairs.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The Data: RSocrata, tidycensus, and leaflet&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Fortunately, there is a plethora of R packages that make identifying, searching for, analyzing, and visualizing data to answer get at these questions possible! I will principally make use of RSocrata, tidycensus, and leaflet.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;RSocrata&lt;/em&gt; allows you to pull data from a socrata open data portal, which is how many entities publish open datasets, directly into R. The State of Oregon published a &lt;a href=&#34;https://data.oregon.gov/Health-Human-Services/Affordable-Housing-Inventory/bq26-qyg4&#34;&gt;dataset with a list of affordable housing properties throughout the State&lt;/a&gt;, including street addresses and its management company.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The &lt;em&gt;tidycensus&lt;/em&gt; package allows you to pull data directly from the US Census Bureau into R. The Census’s American Community Survey (ACS) includes a question “Gross Rent as a Percentage of Household Income in the Past 12 Months” (identified as Table B25070). This question could be used to estimate how many people experience housing cost burden, which the US Department of Housing and Urban Development (HUD) defines as &lt;a href=&#34;https://www.huduser.gov/portal/pdredge/pdr_edge_featd_article_092214.html#:~:text=HUD%20defines%20cost%2Dburdened%20families,of%20one&amp;#39;s%20income%20on%20rent.&#34;&gt;spending at or more than 30% of household income on housing&lt;/a&gt;. Other entities define this figure at 50%, but I will use the 30% threshold for this analysis. It’s important to remember that the ACS does not poll as many people as does the 10-year full census, which makes for higher margins of error in these estimates. With fewer people polled, the estimates have a higher chance of being incorrect. While they probably shouldn’t be used for publication in The Quarterly Journal of Economics, they can still be useful for our goal to get a sense of things.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The &lt;em&gt;leaflet&lt;/em&gt; package provides map-building capability in R. We can overlay these two data sources on a single map using leaflet to visualize percent of population who experiences a housing cost burden by county and the location of the listed affordable housing units.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Of course, I’ll use several other R packages to tie these unique features together, including &lt;em&gt;tidyverse&lt;/em&gt;, &lt;em&gt;ggmap&lt;/em&gt;, and &lt;em&gt;tigris&lt;/em&gt; to name a few.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# load packages
+library(tidyverse) # for all things data science
+library(RSocrata)  # to access Oregon&amp;#39;s Affordable Housing Index via the Socrata API
+library(tidycensus)# to access US Census data via Census API
+library(kableExtra)# for HTML table formatting
+library(scales)    # for formatting percents
+library(widgetframe)
+library(htmlwidgets)
+library(htmltools)
+#library(ggmap)
+
+#  read Housing Index Data from State of Oregon&amp;#39;s Socrata data portal
+# https://data.oregon.gov/Health-Human-Services/Affordable-Housing-Inventory/bq26-qyg4
+HousingIndex &amp;lt;- read.socrata(&amp;quot;https://data.oregon.gov/resource/bq26-qyg4.csv&amp;quot;)
+
+# read and wrangle ACS data (each table and then bind)
+Total &amp;lt;- get_acs(geography = &amp;quot;county&amp;quot;, variables = &amp;quot;B25070_001&amp;quot;, state = &amp;quot;OR&amp;quot;, year = 2018) %&amp;gt;%
+  mutate(v2 = &amp;quot;Total&amp;quot;)
+b1 &amp;lt;- get_acs(geography = &amp;quot;county&amp;quot;, variables = &amp;quot;B25070_002&amp;quot;, state = &amp;quot;OR&amp;quot;, year = 2018) %&amp;gt;%
+  mutate(v2 = &amp;quot;e&amp;gt;10%&amp;quot;)
+b2 &amp;lt;- get_acs(geography = &amp;quot;county&amp;quot;, variables = &amp;quot;B25070_003&amp;quot;, state = &amp;quot;OR&amp;quot;, year = 2018) %&amp;gt;%
+  mutate(v2 = &amp;quot;e10%-14.9%&amp;quot;)
+b3 &amp;lt;- get_acs(geography = &amp;quot;county&amp;quot;, variables = &amp;quot;B25070_004&amp;quot;, state = &amp;quot;OR&amp;quot;, year = 2018) %&amp;gt;%
+  mutate(v2 = &amp;quot;e15%-19.9%&amp;quot;)
+b4 &amp;lt;- get_acs(geography = &amp;quot;county&amp;quot;, variables = &amp;quot;B25070_005&amp;quot;, state = &amp;quot;OR&amp;quot;, year = 2018) %&amp;gt;%
+  mutate(v2 = &amp;quot;e20%-24.9%&amp;quot;)
+b5 &amp;lt;- get_acs(geography = &amp;quot;county&amp;quot;, variables = &amp;quot;B25070_006&amp;quot;, state = &amp;quot;OR&amp;quot;, year = 2018) %&amp;gt;%
+  mutate(v2 = &amp;quot;e25%-29.9%&amp;quot;)
+b6 &amp;lt;- get_acs(geography = &amp;quot;county&amp;quot;, variables = &amp;quot;B25070_007&amp;quot;, state = &amp;quot;OR&amp;quot;, year = 2018) %&amp;gt;%
+  mutate(v2 = &amp;quot;e30%-34.9%&amp;quot;)
+b7 &amp;lt;- get_acs(geography = &amp;quot;county&amp;quot;, variables = &amp;quot;B25070_008&amp;quot;, state = &amp;quot;OR&amp;quot;, year = 2018) %&amp;gt;%
+  mutate(v2 = &amp;quot;e35%-39.9%&amp;quot;)
+b8 &amp;lt;- get_acs(geography = &amp;quot;county&amp;quot;, variables = &amp;quot;B25070_009&amp;quot;, state = &amp;quot;OR&amp;quot;, year = 2018) %&amp;gt;%
+  mutate(v2 = &amp;quot;e40%-49.9%&amp;quot;)
+b9 &amp;lt;- get_acs(geography = &amp;quot;county&amp;quot;, variables = &amp;quot;B25070_010&amp;quot;, state = &amp;quot;OR&amp;quot;, year = 2018) %&amp;gt;%
+  mutate(v2 = &amp;quot;e&amp;gt;=50%&amp;quot;)
+RentPercent &amp;lt;- bind_rows(b1, b2, b3, b4, b5, b6, b7, b8, b9) # bind rows of separate ACS tables
+RentBurden &amp;lt;- bind_rows(b6, b7, b8, b9) # bind rows only for rent burden bins (e&amp;gt;= 30%)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The ACS organizes each question table into sub-tables by bin (“Less than 10%”, “10%-14.9%”, etc). Using &lt;em&gt;tidycensus&lt;/em&gt; to create a single dataframe of the table with each bin present requires pulling each sub-table separately, creating a sub-table identifier (which I called v2), and binding the rows together. Here is a glimpse of how the data looks after all of that.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(RentBurden) %&amp;gt;%
+  kable() %&amp;gt;%
+  kable_styling(&amp;quot;striped&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;table class=&#34;table table-striped&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+GEOID
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+NAME
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+variable
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+estimate
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+moe
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+v2
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+41001
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Baker County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+B25070_007
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+180
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+99
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+e30%-34.9%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+41003
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Benton County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+B25070_007
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+994
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+246
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+e30%-34.9%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+41005
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Clackamas County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+B25070_007
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+3991
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+384
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+e30%-34.9%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+41007
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Clatsop County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+B25070_007
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+566
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+161
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+e30%-34.9%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+41009
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Columbia County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+B25070_007
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+642
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+174
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+e30%-34.9%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+41011
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Coos County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+B25070_007
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+860
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+199
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+e30%-34.9%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;We can use the &lt;em&gt;tidyverse&lt;/em&gt; functions to find the estimated total housing burdened population, total population, and percent of population experiencing housing a cost burden by county. This is similar to creating a pivot table in Excel.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;RentBurdenPercent &amp;lt;- RentBurden %&amp;gt;% # find total number and percent rent burdened
+  group_by(NAME) %&amp;gt;%
+  summarise(TotalRentBurden = sum(estimate)) %&amp;gt;%
+  merge(Total, by = &amp;quot;NAME&amp;quot;) %&amp;gt;%
+  select(NAME, GEOID, TotalRentBurden, estimate) %&amp;gt;%
+  rename(&amp;quot;Total&amp;quot; = &amp;quot;estimate&amp;quot;) %&amp;gt;%
+  mutate(&amp;quot;PercentRentBurden&amp;quot; = TotalRentBurden/Total) %&amp;gt;%
+  mutate(&amp;quot;PercentBurdenFull&amp;quot; = PercentRentBurden*100) %&amp;gt;%
+  arrange(desc(PercentRentBurden))
+
+RentBurdenPercent %&amp;gt;% # display nicely 
+  select(-GEOID, -PercentBurdenFull) %&amp;gt;%
+  mutate(PercentRentBurden = percent(PercentRentBurden)) %&amp;gt;%
+  rename(&amp;quot;County&amp;quot; = &amp;quot;NAME&amp;quot;, 
+         &amp;quot;Estimated Housing Burdened Population&amp;quot; = &amp;quot;TotalRentBurden&amp;quot;,
+         &amp;quot;Estimated Total Population&amp;quot; = &amp;quot;Total&amp;quot;,
+         &amp;quot;Perect Hoousing Burdened&amp;quot; = &amp;quot;PercentRentBurden&amp;quot;) %&amp;gt;%
+  kable() %&amp;gt;%
+  kable_styling(&amp;quot;striped&amp;quot;) %&amp;gt;%
+  scroll_box(width = &amp;quot;100%&amp;quot;, height = &amp;quot;300px&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;div style=&#34;border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; &#34;&gt;
+&lt;table class=&#34;table table-striped&#34; style=&#34;margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;position: sticky; top:0; background-color: #FFFFFF;&#34;&gt;
+County
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;position: sticky; top:0; background-color: #FFFFFF;&#34;&gt;
+Estimated Housing Burdened Population
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;position: sticky; top:0; background-color: #FFFFFF;&#34;&gt;
+Estimated Total Population
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;position: sticky; top:0; background-color: #FFFFFF;&#34;&gt;
+Perect Hoousing Burdened
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Benton County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+8228
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+15134
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+54.368%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Josephine County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+6478
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+11957
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+54.177%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Curry County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1703
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+3147
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+54.115%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Lane County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+33074
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+62345
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+53.050%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Jackson County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+17066
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+32301
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+52.834%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Yamhill County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+5744
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+11029
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+52.081%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Columbia County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2520
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+4983
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+50.572%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Multnomah County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+74513
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+147547
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+50.501%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Polk County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+5112
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+10277
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+49.742%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Tillamook County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1661
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+3344
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+49.671%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Deschutes County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+12311
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+24865
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+49.511%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Linn County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+8343
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+17120
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+48.732%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Marion County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+22804
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+47366
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+48.144%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Klamath County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+4714
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+9918
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+47.530%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Clackamas County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+21524
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+45810
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+46.985%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Washington County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+38659
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+84148
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+45.942%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Coos County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+4192
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+9379
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+44.696%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Lincoln County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+3345
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+7496
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+44.624%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Douglas County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+6200
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+14272
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+43.442%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Clatsop County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2612
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+6092
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+42.876%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Malheur County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1729
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+4164
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+41.523%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Wallowa County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+443
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1087
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+40.754%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Jefferson County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+972
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2404
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+40.433%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Crook County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1087
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2735
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+39.744%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Lake County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+489
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1266
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+38.626%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Union County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1423
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+3767
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+37.775%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Umatilla County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+3672
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+9748
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+37.669%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Baker County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+782
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2077
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+37.650%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Wasco County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1409
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+3866
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+36.446%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Sherman County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+94
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+260
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+36.154%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Hood River County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+992
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2901
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+34.195%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Grant County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+323
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+977
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+33.060%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Morrow County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+380
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1213
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+31.327%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Harney County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+244
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+830
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+29.398%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Gilliam County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+90
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+311
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+28.939%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Wheeler County, Oregon
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+36
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+176
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+20.455%
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;p&gt;The raw percent figures are pretty incredible to look at. Eight of Oregon’s 36 counties have an estimated housing-burdened population of over half of their total population! Many other counties’ estimates are just below 50% as well. Even Wheeler County’s estimated 20.5% seems very high.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Map&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The goal is to create a map of the percent housing burdened by county and add each of the affordable housing complexes listed by the State.&lt;/p&gt;
+&lt;p&gt;We first have to find the latitude and longitude coordinates (AKA geocode) the complex’s street addresses in order to plot them on a map.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#detach(&amp;quot;package:kableExtra&amp;quot;, unload = TRUE)
+#detach(&amp;quot;package:RSocrata&amp;quot;, unload = TRUE)
+library(leaflet)
+library(tigris)
+#options(tigris_use_cache = TRUE)
+library(widgetframe)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;origAddress &amp;lt;- HousingIndex %&amp;gt;%
+  mutate(addresses = paste0(address, city, &amp;quot;Oregon&amp;quot;, sep = &amp;quot;, &amp;quot;)) %&amp;gt;%
+  select(addresses) %&amp;gt;%
+  data.frame(stringsAsFactors = FALSE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;###### This geocoding code chunk requires a lot of processing power and took seven minutes per run time. 
+###### To accomodate, I ran it once with the line below, exported to .csv and reloaded it below. 
+
+# geocode Housing Index using ggmap (which requires a Google API as of late 2018)
+#library(ggmap)
+# GeocodedHousingIndex &amp;lt;- geocode(origAddress$addresses, output = &amp;quot;latlona&amp;quot;, source = &amp;quot;google&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;GeocodedHousingIndex &amp;lt;- read_csv(&amp;quot;C:/Users/Lenovo/Desktop/blogdown site bside posts/GeocodedHousingIndex.csv&amp;quot;) %&amp;gt;%
+  sf::st_as_sf(coords = c(&amp;quot;lon&amp;quot;, &amp;quot;lat&amp;quot;), crs = &amp;#39;+proj=longlat +datum=WGS84&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Mapping with &lt;em&gt;leaflet&lt;/em&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(sf)
+counties &amp;lt;- counties(&amp;quot;Oregon&amp;quot;, cb = TRUE, progress_bar = FALSE, class = &amp;quot;sf&amp;quot;) # fetch county shapefile from US Census Bureau
+counties_merged_acs &amp;lt;- merge(counties, RentBurdenPercent, by.x = &amp;quot;GEOID&amp;quot;, by.y = &amp;quot;GEOID&amp;quot;) # geo_join() with RentBurdenPrecent data
+
+PercentBurdenPal &amp;lt;- colorNumeric(palette = &amp;quot;Greens&amp;quot;, domain=counties_merged_acs$PercentRentBurden) # create numeric color palet based on the range of PercenRentBurden
+
+# create content for popups to appear each county
+CountyPopupContent &amp;lt;- paste0(&amp;quot;&amp;lt;b&amp;gt;&amp;quot;, counties_merged_acs$NAME.1, &amp;quot;&amp;lt;/b&amp;gt;&amp;quot;, &amp;quot;&amp;lt;br&amp;gt;&amp;quot;,
+                           &amp;quot;Estimated Percent Rent Burdened: &amp;quot;, percent(counties_merged_acs$PercentRentBurden), &amp;quot;&amp;lt;br&amp;gt;&amp;quot;,
+                           &amp;quot;Estimated Count of Rent Burdened: &amp;quot;, counties_merged_acs$TotalRentBurden, &amp;quot;&amp;lt;br&amp;gt;&amp;quot;,
+                           &amp;quot;Estimated Total Population: &amp;quot;, counties_merged_acs$Total)
+
+# create content for popups to appear each housing complex
+HousingPopupContent &amp;lt;- paste(&amp;quot;&amp;lt;b&amp;gt;&amp;quot;, HousingIndex$project_name, &amp;quot;&amp;lt;/b&amp;gt;&amp;quot;, &amp;quot;&amp;lt;br&amp;gt;&amp;quot;,
+                             &amp;quot;Address: &amp;quot;, HousingIndex$address,&amp;quot;, &amp;quot;, HousingIndex$city, &amp;quot;, Oregon&amp;quot;, &amp;quot;&amp;lt;br&amp;gt;&amp;quot;,
+                             &amp;quot;Management: &amp;quot;, HousingIndex$management, &amp;quot;&amp;lt;br&amp;gt;&amp;quot;,
+                             &amp;quot;Total Units: &amp;quot;, HousingIndex$total_units)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;this.map &amp;lt;- counties_merged_acs %&amp;gt;%
+ sf::st_transform(crs = &amp;#39;+proj=longlat +datum=WGS84&amp;#39;) %&amp;gt;%
+ leaflet() %&amp;gt;% # create leaflet of counties_merged_acs data defined above
+ addTiles() %&amp;gt;% # add tiles to map
+ addMarkers(data = GeocodedHousingIndex, # add makers for each housing complex
+            popup = HousingPopupContent, # insert HousingPopupContent
+            clusterOptions = markerClusterOptions()) %&amp;gt;% # cluster icons (w/o this feature the map is too crowded to read)
+ addPolygons(fillColor = PercentBurdenPal(counties_merged_acs$PercentRentBurden), # add polygonns (shape of OR&amp;#39;s counties)
+             fillOpacity = 0.80, # set opacity
+             highlightOptions = highlightOptions(color = &amp;quot;white&amp;quot;, weight = 2, bringToFront = TRUE), # set highlight feature  
+             col = &amp;quot;#302E2D&amp;quot;, # set color for county boarder (defaults to a Dodger blue as if to remind you to change it)
+             weight = 1, # set boarder weight
+             popup = ~CountyPopupContent) %&amp;gt;% # insert CountyPopupContent 
+ addLegend(pal = PercentBurdenPal, # define color palet for legand
+           values = counties_merged_acs$PercentRentBurden, # define legend valees
+           title = paste(&amp;quot;% Housing&amp;quot;, &amp;quot;&amp;lt;br&amp;gt;&amp;quot;, &amp;quot;Burdened&amp;quot;), # define legend title
+           position = &amp;quot;bottomright&amp;quot;) %&amp;gt;% #define legend positin
+ setView(lat= 44.000000, lng=-120.500000, zoom=6.45) # set lat, long, and zoom to view Oregon&lt;/code&gt;&lt;/pre&gt;
+&lt;iframe src=&#34;/img/thismap.html&#34; width=&#34;100%&#34; height=&#34;450&#34;&gt;
+&lt;/iframe&gt;
+&lt;p&gt;The marker points for the housing complexes are clustered so that they are visable. The map would be very difficult to read without this option turned on.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Final Thoughts&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Kind of a neat map. Somewhat unsprisingly, the amount of affordable housing complexes in each area is generally associated with population density. This also highlights the need for and logistical complexity of affordable housing in rural areas as well.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Useful project resources&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;I read a number of useful resources in creating this map. A few of the most useful are listed below. Additionally, a tromedous “thank you” to Prof. Robert Walker for helping me with some unusal debugging issues on this project as well as for introducing me to R in the first place.&lt;/p&gt;
+&lt;p&gt;Leaflet Mapping:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://rstudio.github.io/leaflet/&#34;&gt;Leaflet for R documentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.wvview.org/spatial_analytics/leaflet/_site/index.html#objectives&#34;&gt;Prof. Aaron Maxwell at West Virginia University&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://cfss.uchicago.edu/notes/leaflet/&#34;&gt;Prof. Benjamin Soltoff at the University of Chicago&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;GIS data wrangling and transforming:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://learn.r-journalism.com/en/mapping/&#34;&gt;Andrew Ba Tran of the Washington Post&lt;/a&gt; in his book R-Journalism.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.storybench.org/geocode-csv-addresses-r/&#34;&gt;Aleszu Bajak at StoryBench&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>An Overview of the Willamette MBA Community Grant Program SQL Database</title>
-      <link>https://zldyne.netlify.app/post/agsmgrantsql/agsmgrantssql/</link>
+      <link>/post/agsmgrantsql/agsmgrantssql/</link>
       <pubDate>Sat, 23 May 2020 00:00:00 +0000</pubDate>
-      <guid>https://zldyne.netlify.app/post/agsmgrantsql/agsmgrantssql/</guid>
+      <guid>/post/agsmgrantsql/agsmgrantssql/</guid>
       <description>&lt;p&gt;One of my favorite courses I took during my time at Atkinson was &lt;em&gt;GSMDS5003: Data Engineering&lt;/em&gt;, taught by the one and only Prof. Henry Bi. We not only learned how to write SQL code but also about the fundamentals of database design, including entity relational (ER) modeling, standardization, and normalization. Learning the structure of well designed databases made learning to retrieve data via SQL a fairly straitforward extension. The course&amp;rsquo;s final project was to create a database of our own using Microsoft Access, so I decided to use this opportunity to solve a different problem I was dealing with: the information scattered throughout the Google Drive of the Willamette MBA Community Grant Program.&lt;/p&gt;
 &lt;h3 id=&#34;willamette-mba-community-grant-program&#34;&gt;Willamette MBA Community Grant Program&lt;/h3&gt;
 &lt;p&gt;The 
@@ -27,13 +860,13 @@
 &lt;a href=&#34;https://drive.google.com/file/d/1rOdZmnAYQa-UH4V_KDCOjGDaF2aHaYjl/view?usp=sharing&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;full project description&lt;/a&gt; for all of the database requirements.&lt;/p&gt;
 &lt;p&gt;While I can&amp;rsquo;t share the content of many tables due to privacy reasons, I can share the database&amp;rsquo;s relationship diagrams as a proof of concept.&lt;/p&gt;
 &lt;h5 id=&#34;entity-relation-model&#34;&gt;Entity Relation Model&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/ERDModel.PNG&#34; alt=&#34;ERD Model&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/ERDModel.PNG&#34; alt=&#34;ERD Model&#34;&gt;&lt;/p&gt;
 &lt;h4 id=&#34;access-relational-diagram&#34;&gt;Access Relational Diagram&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/AccessRelation.PNG&#34; alt=&#34;Access Relational&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/AccessRelation.PNG&#34; alt=&#34;Access Relational&#34;&gt;&lt;/p&gt;
 &lt;h4 id=&#34;hey-it-works&#34;&gt;Hey, it works!&lt;/h4&gt;
 &lt;p&gt;Sample problem: &lt;em&gt;List the organization name, project name, description, and amount received for each project operated by an organization who has operated more than one project. Provide the list in descending order by amount.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/SampleCode.PNG&#34; alt=&#34;Sample Code&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/SampleQ.PNG&#34; alt=&#34;Sample Q&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/SampleCode.PNG&#34; alt=&#34;Sample Code&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/AGSMGrantSQL/2020-05-23-an-overview-of-the-willamette-mba-community-grant-program-sql-database_files/SampleQ.PNG&#34; alt=&#34;Sample Q&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;final-thoughts&#34;&gt;Final Thoughts&lt;/h3&gt;
 &lt;p&gt;I had a lot of fun working on this project since it combines two of my primary interests: data science and nonprofit management. Thank you to Prof. Henry Bi for your guidance and encouragement along the way! If you&amp;rsquo;re interested to learn more about the Willamette MBA Community Grant Program, check out the recently published 
 &lt;a href=&#34;https://static1.squarespace.com/static/5d96678c577c9008fd68696b/t/5eb30597c5e14117f3481700/1588790698192/WUMBA_PICI_Y4_AnnualReport2020.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;2019-2020 Annual Report&lt;/a&gt;!&lt;/p&gt;
@@ -42,15 +875,15 @@
     
     <item>
       <title>Relocation, Education, and Incentivization: Adjusting residential zoning laws to improve economic mobility in Kansas City, Missouri</title>
-      <link>https://zldyne.netlify.app/post/zoninglawskcmo/kcmo-impact-zoning-laws-on-education/</link>
+      <link>/post/zoninglawskcmo/kcmo-impact-zoning-laws-on-education/</link>
       <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>https://zldyne.netlify.app/post/zoninglawskcmo/kcmo-impact-zoning-laws-on-education/</guid>
+      <guid>/post/zoninglawskcmo/kcmo-impact-zoning-laws-on-education/</guid>
       <description>&lt;p&gt;Economic mobility, the ability for individuals to economically fare better than their parents did, is an essential component for the continued livelihood of a city. This is especially true for Kansas City in its efforts to revitalize what was once a lively economic hub based on manufacturing and transportation to a modern metropolis fueled by technology and innovation. Recent efforts in economic development from city and state administered programs, such as the Opportunity Zone Program, the KC Rise co-investment fund, and the BioNexus KC life science development initiative, have contributed to a 
 &lt;a href=&#34;http://www.kcrisingmetrics.org/gdp.htm&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;5.7% growth in real GDP&lt;/a&gt; and a 
 &lt;a href=&#34;http://www.kcrisingmetrics.org/MHI.htm&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;7.8% growth in median household income from 2013 to 2017&lt;/a&gt;. While these metrics are certainly a positive indication for the city’s future, Kansas City continues to lag behind its self-identified peer cities on both metrics. Additionally, not all the development has benefited all Kansas City residents equally. Several neighborhoods, particularly those on the east side of the city, continue to experience the effects of decades of disinvestment, including underfunded public schools 
 &lt;a href=&#34;https://www.kcur.org/show/up-to-date/2015-02-23/why-kansas-citys-east-side-lags-in-economic-development&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;resulting from uneven property taxes&lt;/a&gt;. According to the Stanford Education Opportunity Monitoring Project, non-poor students in the Kansas City School District perform at an average of 0.12 grades above grade level, whereas poor students perform at an average of 1.85 grades below grade level (Exhibit 1).&lt;/p&gt;
 &lt;h4 id=&#34;exhibit-1&#34;&gt;Exhibit 1&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/ZoningLawsKCMO/2020-05-27-relocation-education-and-incentivization-adjusting-residential-zoning-laws-to-improve-economic-mobility-in-kansas-city-missouri_files/EDUscreenshot.PNG&#34; alt=&#34;Exhibit 1&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;/post/ZoningLawsKCMO/2020-05-27-relocation-education-and-incentivization-adjusting-residential-zoning-laws-to-improve-economic-mobility-in-kansas-city-missouri_files/EDUscreenshot.PNG&#34; alt=&#34;Exhibit 1&#34;&gt;
 &lt;em&gt;The red dot represents data for the Kansas City School District&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Access to quality K-12 education is known to have a 
 &lt;a href=&#34;https://www.thebalance.com/economic-mobility-4163493&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;strong relationship with earnings later in life&lt;/a&gt;. Research by Harvard economist Raj Chetty found this to be true even after controlling for intergenerational wealth. 
@@ -66,9 +899,9 @@
     
     <item>
       <title>An Exploration of Hospice Care Expenses in the US</title>
-      <link>https://zldyne.netlify.app/post/hospice/an-exploration-of-hospice-care-expenses-in-the-us/</link>
+      <link>/post/hospice/an-exploration-of-hospice-care-expenses-in-the-us/</link>
       <pubDate>Sat, 14 Dec 2019 00:00:00 +0000</pubDate>
-      <guid>https://zldyne.netlify.app/post/hospice/an-exploration-of-hospice-care-expenses-in-the-us/</guid>
+      <guid>/post/hospice/an-exploration-of-hospice-care-expenses-in-the-us/</guid>
       <description>
 
 &lt;div id=&#34;TOC&#34;&gt;
@@ -220,7 +1053,7 @@ plt2 &amp;lt;- D %&amp;gt;%
      scale_y_continuous(label = dollar) + scale_fill_brewer()
 #plot each boxplot series side-by-side using cowplot
 plot_grid(plt1, plt2, align = &amp;quot;h&amp;quot;, rel_widths = c(1, 1.3), axis = &amp;quot;t&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;If we remove all outliers, though, Total Medicare Standard Payment Amout mostly resembles a normal distriution.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plt3 &amp;lt;- D %&amp;gt;%
     mutate(rank = rank(desc(`Total Medicare Standard Payment Amount`))) %&amp;gt;%
@@ -246,7 +1079,7 @@ plt4 &amp;lt;- D %&amp;gt;%
 
 plot_grid(plt3, plt4, align = &amp;quot;h&amp;quot;, rel_widths = c(1, 1.3), axis = &amp;quot;t&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Warning: Removed 1508 rows containing non-finite values (stat_boxplot).&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;After removing these extreme estreme outliers, Standard Medicare Payment Amount is still skewed.With a normal distribution, log transformed values may be a more useful predictor. It is It is worth noting that the distributions appear to remain farily consistant over the three years in our dataset.&lt;/p&gt;
 &lt;p&gt;Let’s see a correlation between our outcome variable and a variables that I would hypothesize would be positively correlated with Total Medicare Standard Payment.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;D &amp;lt;- D %&amp;gt;%
@@ -260,7 +1093,7 @@ D %&amp;gt;%
          `Hospice beneficiaries with a primary diagnosis of cancer`) %&amp;gt;% 
   ggpairs(title = &amp;quot;Correlation Matrix with Standard Payment&amp;quot;, 
           columnLabels = CorVarLabs)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;How do these correlations with the Standard Payment Amount compare with correlations with Logged Standard Payment Amount?&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;D %&amp;gt;%
   select(`logStandardPaymentAmount`, 
@@ -270,7 +1103,7 @@ D %&amp;gt;%
          `Hospice beneficiaries with a primary diagnosis of cancer`) %&amp;gt;% 
   ggpairs(title = &amp;quot;Correlation Matrix with Logged Standard Payment&amp;quot;, 
           columnLabels = CorVarLabs)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Logging Standard Payment Amount decreases the correlation these selected predictor variables. It still may be useful in regressoin analyses&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;predictor-variables-data-exploration-and-liner-models-by-variable-type&#34; class=&#34;section level2&#34;&gt;
@@ -295,6 +1128,11 @@ D %&amp;gt;%
             n = n(),
             missing = count(is.na(`Total Medicare Standard Payment Amount`))) %&amp;gt;%
   arrange(desc(mean))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: `data_frame()` is deprecated as of tibble 1.1.0.
+## Please use `tibble()` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_warnings()` to see where this warning was generated.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` ungrouping output (override with `.groups` argument)&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;kable-table&#34;&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -455,6 +1293,7 @@ D %&amp;gt;%
             n = n(),
             missing = count(is.na(`Total Medicare Standard Payment Amount`))) %&amp;gt;%
   arrange(desc(mean))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` ungrouping output (override with `.groups` argument)&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;kable-table&#34;&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -576,7 +1415,8 @@ D %&amp;gt;%
         &amp;quot;2015.0&amp;quot; = &amp;quot;2015&amp;quot;, &amp;quot;2015.5&amp;quot; = &amp;quot; &amp;quot;, &amp;quot;2016.0&amp;quot; = &amp;quot;2016&amp;quot;)) +
   scale_y_continuous(label = dollar) +
   scale_color_brewer()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` regrouping output by &amp;#39;Region&amp;#39; (override with `.groups` argument)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;672&#34; /&gt;
 Payments are growing each year accross each region, except the West with a slight decline.&lt;/p&gt;
 &lt;div id=&#34;intertion-rregression-with-year-and-region&#34; class=&#34;section level5&#34;&gt;
 &lt;h5&gt;Intertion Rregression with Year and Region&lt;/h5&gt;
@@ -787,7 +1627,7 @@ Payments are growing each year accross each region, except the West with a sligh
        subtitle = &amp;quot;Total number of hospice care physician services provided&amp;quot;) +
   ylab(&amp;quot;Physician Service Hours&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Warning: Removed 1246 rows containing non-finite values (stat_boxplot).&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-15-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-15-1.png&#34; width=&#34;672&#34; /&gt;
 Indeed, there are several outliers present.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;care-hours-spent&#34; class=&#34;section level3&#34;&gt;
@@ -911,7 +1751,7 @@ Lets see if there is a greter increase in other types of care hours in the week 
   geom_density() +
   ggtitle(&amp;quot;Home Health Visit Hours per Day&amp;quot;) +
   theme(legend.position=&amp;quot;bottom&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-19-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-19-1.png&#34; width=&#34;672&#34; /&gt;
 The density plot of their logged values show that there is only a slight increase in hours per week in the week prior to death. This is likely due to a few outliers as well.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Skilled Nursing Visit Hours per Day&lt;/li&gt;
@@ -1222,7 +2062,7 @@ get_regression_table(mVisits)&lt;/code&gt;&lt;/pre&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/div&gt;
-&lt;p&gt;This linear model is quite interesting and suprising to me. Each of the types of hours are statistically significant except Skilled Nursing Visit Hours per day, and Social Service Visit Hous per Day. Suprisingly, the amount of Home Health Visit Hours per Day and Social Service Visit Hours per Day had significant negaitve coefficients. For Home Health Visit Hours per Day, for each increase hour visited, we expect a &lt;em&gt;decrease&lt;/em&gt; in standard payment amount by &lt;em&gt;2526305.4&lt;/em&gt;. However, this linear model alone has a low explanatory capacity, explaining only 6.62% of the overall variation in Total Medicare Standard Payment Amount. To assess if this is the result of very skewed data among all predictor and outcome variales, I will rerun the model using logged predictor and outcome values.&lt;/p&gt;
+&lt;p&gt;This linear model is quite interesting and suprising to me. Each of the types of hours are statistically significant except Skilled Nursing Visit Hours per day, and Social Service Visit Hous per Day. Suprisingly, the amount of Home Health Visit Hours per Day and Social Service Visit Hours per Day had significant negaitve coefficients. For Home Health Visit Hours per Day, for each increase hour visited, we expect a &lt;em&gt;decrease&lt;/em&gt; in standard payment amount by &lt;em&gt;2526305.4&lt;/em&gt;. However, this linear model alone has a low explanatory capacity, explaining only 7% of the overall variation in Total Medicare Standard Payment Amount. To assess if this is the result of very skewed data among all predictor and outcome variales, I will rerun the model using logged predictor and outcome values.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Regression with logged values&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -1370,8 +2210,8 @@ get_regression_table(mVisitsL)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;get_regression_points(mVisitsL) %&amp;gt;%
    ggplot(aes(x=residual)) + geom_density() +
    ggtitle(&amp;quot;Residuals from mVisits Regression Model&amp;quot;) &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-28-1.png&#34; width=&#34;672&#34; /&gt;
-Even the logged model still has a low overall predicitve capacity with an R Squared of only 9.70%. The model as a whole is statistically significant and the residuals do appear to be normal.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-28-1.png&#34; width=&#34;672&#34; /&gt;
+Even the logged model still has a low overall predicitve capacity with an R Squared of only 10%. The model as a whole is statistically significant and the residuals do appear to be normal.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;diagnosis-types&#34; class=&#34;section level3&#34;&gt;
@@ -1398,6 +2238,7 @@ DbyDiagnosis &amp;lt;- D %&amp;gt;%
             sd = sd(Beneficiaries),
             n = n()) %&amp;gt;%
   arrange(desc(mean))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` ungrouping output (override with `.groups` argument)&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;kable-table&#34;&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -1480,7 +2321,7 @@ DbyDiagnosis &amp;lt;- D %&amp;gt;%
   labs(title = &amp;quot;Number of Benificiaries by Primary Diagnosis&amp;quot;) +
   ylab(&amp;quot;Number of Distinct Beneficiaries&amp;quot;) +
   scale_color_brewer()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-31-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-31-1.png&#34; width=&#34;672&#34; /&gt;
 There are some extreme outliers, especially in Cancer, Dementia, and Respiratory&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;DbyDiagnosis %&amp;gt;%
   ggplot(aes(x = Type, y = log(Beneficiaries), fill = Type)) + 
@@ -1491,7 +2332,7 @@ There are some extreme outliers, especially in Cancer, Dementia, and Respiratory
   ylab(&amp;quot;Number of Distinct Beneficiaries&amp;quot;) + 
   theme(legend.position = &amp;quot;none&amp;quot;) +
   scale_color_brewer()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-32-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-32-1.png&#34; width=&#34;672&#34; /&gt;
 After logging, the distribution acorss primary diagnosis type is both consistant and normal between diagnosies.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;regression-by-diagnosis&#34; class=&#34;section level3&#34;&gt;
@@ -1595,6 +2436,7 @@ get_regression_table(DiagMod) &lt;/code&gt;&lt;/pre&gt;
             n = n(),
             missing = count(is.na(Amount))) %&amp;gt;%
   arrange(desc(mean))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` ungrouping output (override with `.groups` argument)&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;kable-table&#34;&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -1645,7 +2487,7 @@ get_regression_table(DiagMod) &lt;/code&gt;&lt;/pre&gt;
   labs(title = &amp;quot;Number of Hospice Benificiaries by Gender&amp;quot;) +
   theme(legend.position=&amp;quot;none&amp;quot;) +
   scale_color_brewer()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-36-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-36-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# count outliers by gender
 library(grDevices)
 F &amp;lt;- DbyGender %&amp;gt;% 
@@ -1664,7 +2506,7 @@ ML &amp;lt;- length(M$Amount[which(M$Amount %in% boxplot.stats(M$Amount)$out)])&
   theme(legend.position=&amp;quot;none&amp;quot;) +
   scale_fill_brewer()&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Warning: Removed 2471 rows containing non-finite values (stat_boxplot).&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-38-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-38-1.png&#34; width=&#34;672&#34; /&gt;
 Distribution is still somewhat skewed, but resembles closer to a normal distribution.&lt;/p&gt;
 &lt;div id=&#34;regression-model-by-gender&#34; class=&#34;section level4&#34;&gt;
 &lt;h4&gt;Regression model by Gender&lt;/h4&gt;
@@ -1718,7 +2560,7 @@ get_regression_table(GMod) &lt;/code&gt;&lt;/pre&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/div&gt;
-&lt;p&gt;In using log values, we see a 0.88% stronger impact of female beneficiaries on Total Medicare Standard Payment Amount than we do for male beneficiaries. Both factors are statistically significant, though. This model alone, though, has a very strong exlanatory capacity with an R squared at 89.7%. That is by far the strongest model within each category.&lt;/p&gt;
+&lt;p&gt;In using log values, we see a 0.88% stronger impact of female beneficiaries on Total Medicare Standard Payment Amount than we do for male beneficiaries. Both factors are statistically significant, though. This model alone, though, has a very strong exlanatory capacity with an R squared at 90%. That is by far the strongest model within each category.&lt;/p&gt;
 &lt;p&gt;All told, this indicates that there are noteably more women than men in the US hospice system.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1745,6 +2587,7 @@ get_regression_table(GMod) &lt;/code&gt;&lt;/pre&gt;
             n = n(),
             missing = count(is.na(Amount))) %&amp;gt;%
   arrange(desc(mean))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` ungrouping output (override with `.groups` argument)&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;kable-table&#34;&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -1835,7 +2678,7 @@ DbyRace %&amp;gt;%
   theme(legend.position=&amp;quot;none&amp;quot;) + 
   xlab(&amp;quot;Race&amp;quot;) + ylab(&amp;quot;Amount of Beifiareis&amp;quot;) +
   scale_color_brewer()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-42-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-42-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;DbyRace %&amp;gt;%  
   ggplot(aes(x=RaceLabel, y = Amount, fill = Race)) +
   geom_boxplot(outlier.shape = NA) + 
@@ -1846,12 +2689,13 @@ DbyRace %&amp;gt;%
   xlab(&amp;quot;Race&amp;quot;) + ylab(&amp;quot;Amount of Beifiareis&amp;quot;) +
   scale_fill_brewer()&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Warning: Removed 1766 rows containing non-finite values (stat_boxplot).&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-43-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-43-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;It is difficult to see the distribution of amount of benificiaries by race, particularly considering the range for amount of White identifying benificiaries is so much higher than it is for the each of the other Race categories.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;DbyRace %&amp;gt;%
   group_by(Race) %&amp;gt;%  
   summarise(total = sum(Amount)) %&amp;gt;%
   mutate(percent = percent(total/sum(total)))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` ungrouping output (override with `.groups` argument)&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;kable-table&#34;&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -1865,27 +2709,27 @@ DbyRace %&amp;gt;%
 &lt;tr class=&#34;odd&#34;&gt;
 &lt;td align=&#34;left&#34;&gt;Asian hospice beneficiaries&lt;/td&gt;
 &lt;td align=&#34;right&#34;&gt;46079&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;1.1%&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;1.10%&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
 &lt;td align=&#34;left&#34;&gt;Black hospice beneficiaries&lt;/td&gt;
 &lt;td align=&#34;right&#34;&gt;329218&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;7.9%&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;7.87%&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;odd&#34;&gt;
 &lt;td align=&#34;left&#34;&gt;Hispanic hospice beneficiaries&lt;/td&gt;
 &lt;td align=&#34;right&#34;&gt;241371&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;5.8%&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;5.77%&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
 &lt;td align=&#34;left&#34;&gt;Other/unknown race hospice beneficiaries&lt;/td&gt;
 &lt;td align=&#34;right&#34;&gt;23223&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;0.6%&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;0.56%&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;odd&#34;&gt;
 &lt;td align=&#34;left&#34;&gt;White hospice beneficiaries&lt;/td&gt;
 &lt;td align=&#34;right&#34;&gt;3541698&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;84.7%&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;84.70%&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -1897,6 +2741,7 @@ DbyRace %&amp;gt;%
   group_by(White) %&amp;gt;%  
   summarise(total = sum(Amount)) %&amp;gt;%
   mutate(percent = percent(total/sum(total)))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## `summarise()` ungrouping output (override with `.groups` argument)&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;kable-table&#34;&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -1910,12 +2755,12 @@ DbyRace %&amp;gt;%
 &lt;tr class=&#34;odd&#34;&gt;
 &lt;td align=&#34;left&#34;&gt;FALSE&lt;/td&gt;
 &lt;td align=&#34;right&#34;&gt;639891&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;15.3%&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;15%&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class=&#34;even&#34;&gt;
 &lt;td align=&#34;left&#34;&gt;TRUE&lt;/td&gt;
 &lt;td align=&#34;right&#34;&gt;3541698&lt;/td&gt;
-&lt;td align=&#34;left&#34;&gt;84.7%&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;85%&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -1930,7 +2775,7 @@ DbyRace %&amp;gt;%
   xlab(&amp;quot;White&amp;quot;) + ylab(&amp;quot;Amount of Beifiareis&amp;quot;) +
   scale_fill_brewer()&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Warning: Removed 1766 rows containing non-finite values (stat_boxplot).&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-46-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/hospice/2020-05-22-an-exploration-of-hospice-care-expenses-in-the-us_files/figure-html/unnamed-chunk-46-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;It is interesting to note that 84.7% of the beneficiaries in the dataset are identified as white. This could be an anomolie or the result of several intersecting socioeconoimc and historical factors pertaining to access to healh care, especially end-of-life care. This is consistant &lt;a href=&#34;https://www.ncbi.nlm.nih.gov/pubmed/18588409&#34;&gt;Cohen’s 2008 systematic review&lt;/a&gt; of racial disparities in hospice care system.&lt;/p&gt;
 &lt;p&gt;Let’s see how this logic holds up in a regression model on Total Medicare Standard Payment Amount.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;RMod &amp;lt;- lm(`Total Medicare Standard Payment Amount` ~ 
@@ -2013,7 +2858,7 @@ get_regression_table(RMod)&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(RMod)$r.squared&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## [1] 0.9701032&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This model has a vey high predictive power with an R squared of 97.0% with each coefficient being statistically significant. According to this model, each added white beneficiary contributes an expected $10677.08 in standard medicare payments with a relatively low standard error of $202.11. Each added added Black beneficiary contributes an expected $11347.95 in standard medicare payments, but with a relatively high standard error of $1113.10. This variation is again likely due to the notably more white beneficiares in the dataset.&lt;/p&gt;
+&lt;p&gt;This model has a vey high predictive power with an R squared of 97% with each coefficient being statistically significant. According to this model, each added white beneficiary contributes an expected $10677.08 in standard medicare payments with a relatively low standard error of $202.11. Each added added Black beneficiary contributes an expected $11347.95 in standard medicare payments, but with a relatively high standard error of $1113.10. This variation is again likely due to the notably more white beneficiares in the dataset.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;final-conclusions-and-takeaways&#34; class=&#34;section level2&#34;&gt;
@@ -2039,11 +2884,11 @@ get_regression_table(RMod)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Forecasting Target Corporation&#39;s Quarterly Revenue</title>
-      <link>https://zldyne.netlify.app/post/target-quarterly-revenue-forecasting/</link>
+      <link>/post/target-quarterly-revenue-forecasting/</link>
       <pubDate>Thu, 31 Oct 2019 00:00:00 +0000</pubDate>
-      <guid>https://zldyne.netlify.app/post/target-quarterly-revenue-forecasting/</guid>
+      <guid>/post/target-quarterly-revenue-forecasting/</guid>
       <description>
-&lt;script src=&#34;https://zldyne.netlify.app/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
 
 &lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
@@ -2078,7 +2923,7 @@ TargetLabF %&amp;gt;%
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
   ggtitle(&amp;quot;Target Quarterly Sales 1993:Q1 - 2001:Q4&amp;quot;) +
   ylab(&amp;quot;Sales (in millions of US Dollars)&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/2019-10-31-target-quarterly-revenue-forecasting_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-10-31-target-quarterly-revenue-forecasting_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Target’s quarterly sales show a general upward trend with strong seasonality. There is a strong increase in Quarter 4 in each year, which is typical for the retail industry given the surge in holiday shopping. There isn’t a clear cycle, though, meaning that the trend is fairly constnat.&lt;/p&gt;
 &lt;p&gt;Since the seasonal component here is constant from year to year, a classical decomposition method should work nicely here. We will work first through an additive decomposition and then through a multiplicative decomposition process.&lt;/p&gt;
 &lt;div id=&#34;additive-decomposition&#34; class=&#34;section level2&#34;&gt;
@@ -2091,7 +2936,7 @@ TargetAddDecompm %&amp;gt;%
   ggtitle(&amp;quot;Classical Additive Decomposition of Target Sales&amp;quot;) +
   xlab(&amp;quot;Year&amp;quot;) +
   theme_economist_white() # choose economist theme&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/2019-10-31-target-quarterly-revenue-forecasting_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-10-31-target-quarterly-revenue-forecasting_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;
 This plot is reasonably interesting, as it shows th trend and seasonally adjusted data alonogside each other, along with the error from the decomposition model.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Extract Seasonal and Trend Components
 Seasonal &amp;lt;- TargetAddDecompm$seasonal  # Extract seasonal indecies            
@@ -2169,7 +3014,7 @@ AddPlot %&amp;gt;%
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
   ggtitle(&amp;quot;Additve Decomposition&amp;quot;, subtitle = &amp;quot;Forecast and Actual Data&amp;quot;) +
   ylab(&amp;quot;Sales (in millions of US Dollars)&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/2019-10-31-target-quarterly-revenue-forecasting_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-10-31-target-quarterly-revenue-forecasting_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Seasonal Indecies (in millions of dollars)&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;Seasonal %&amp;gt;%
   as.tibble() %&amp;gt;%
@@ -2315,7 +3160,7 @@ TargetMultDecomp %&amp;gt;%
   ggtitle(&amp;quot;Classical Multiplicative Decomposition of Target Sales&amp;quot;) +
   xlab(&amp;quot;Year&amp;quot;) + 
   theme_economist_white()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/2019-10-31-target-quarterly-revenue-forecasting_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-10-31-target-quarterly-revenue-forecasting_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Extract Seasonal and Trend Components
 Seasonal &amp;lt;- TargetMultDecomp$seasonal              
 SeasAdj &amp;lt;- (TargetTS/Seasonal)          
@@ -2348,7 +3193,7 @@ MultPlot %&amp;gt;%
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
   ggtitle(&amp;quot;Multiplicative Decomposition&amp;quot;) +
   ylab(&amp;quot;Sales (in millions of US Dollars)&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/2019-10-31-target-quarterly-revenue-forecasting_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-10-31-target-quarterly-revenue-forecasting_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;Seasonal %&amp;gt;%
   as.tibble() %&amp;gt;%
   rowid_to_column() %&amp;gt;%
@@ -2488,7 +3333,7 @@ MAPE
   ggtitle(&amp;quot;Target Sales Forecast Using Multiplicative Decomposition&amp;quot;) + 
   ylab(&amp;quot;Sales &amp;amp; Forecast (in millions of US dollars&amp;quot;) +
   theme_economist_white()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://zldyne.netlify.app/post/2019-10-31-target-quarterly-revenue-forecasting_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-10-31-target-quarterly-revenue-forecasting_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;TargetTS %&amp;gt;% 
   forecast() %&amp;gt;%
   as.data.frame() %&amp;gt;% 
