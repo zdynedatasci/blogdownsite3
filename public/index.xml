@@ -860,7 +860,7 @@ counties_merged_acs &amp;lt;- merge(counties, RentBurdenPercent, by.x = &amp;quo
 PercentBurdenPal &amp;lt;- colorNumeric(palette = &amp;quot;Greens&amp;quot;, domain=counties_merged_acs$PercentRentBurden) # create numeric color palet based on the range of PercenRentBurden
 
 # create content for popups to appear each county
-CountyPopupContent &amp;lt;- paste0(&amp;quot;&amp;lt;b&amp;gt;&amp;quot;, counties_merged_acs$NAME.1, &amp;quot;&amp;lt;/b&amp;gt;&amp;quot;, &amp;quot;&amp;lt;br&amp;gt;&amp;quot;,
+CountyPopupContent &amp;lt;- paste0(&amp;quot;&amp;lt;b&amp;gt;&amp;quot;, counties_merged_acs$NAME.y, &amp;quot;&amp;lt;/b&amp;gt;&amp;quot;, &amp;quot;&amp;lt;br&amp;gt;&amp;quot;,
                            &amp;quot;Estimated Percent Rent Burdened: &amp;quot;, percent(counties_merged_acs$PercentRentBurden), &amp;quot;&amp;lt;br&amp;gt;&amp;quot;,
                            &amp;quot;Estimated Count of Rent Burdened: &amp;quot;, counties_merged_acs$TotalRentBurden, &amp;quot;&amp;lt;br&amp;gt;&amp;quot;,
                            &amp;quot;Estimated Total Population: &amp;quot;, counties_merged_acs$Total)
@@ -894,7 +894,7 @@ HousingPopupContent &amp;lt;- paste(&amp;quot;&amp;lt;b&amp;gt;&amp;quot;, Housi
 &lt;p&gt;&lt;strong&gt;Final Thoughts&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Kind of a neat map. Somewhat unsprisingly, the amount of affordable housing complexes in each area is generally associated with population density. This also highlights the need for and logistical complexity of affordable housing in rural areas as well.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Useful project resources&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;I read a number of useful resources in creating this map. A few of the most useful are listed below. Additionally, a tromedous “thank you” to Prof. Robert Walker for helping me with some unusal debugging issues on this project as well as for introducing me to R in the first place.&lt;/p&gt;
+&lt;p&gt;I read a number of useful resources in creating this map. A few of the most useful are listed below. Additionally, a tremedous “thank you” to Prof. Robert Walker for helping me with some unusal debugging issues on this project as well as for introducing me to R in the first place.&lt;/p&gt;
 &lt;p&gt;Leaflet Mapping:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://rstudio.github.io/leaflet/&#34;&gt;Leaflet for R documentation&lt;/a&gt;&lt;/li&gt;

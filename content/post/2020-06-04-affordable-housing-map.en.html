@@ -806,7 +806,7 @@ counties_merged_acs &lt;- merge(counties, RentBurdenPercent, by.x = &quot;GEOID&
 PercentBurdenPal &lt;- colorNumeric(palette = &quot;Greens&quot;, domain=counties_merged_acs$PercentRentBurden) # create numeric color palet based on the range of PercenRentBurden
 
 # create content for popups to appear each county
-CountyPopupContent &lt;- paste0(&quot;&lt;b&gt;&quot;, counties_merged_acs$NAME.1, &quot;&lt;/b&gt;&quot;, &quot;&lt;br&gt;&quot;,
+CountyPopupContent &lt;- paste0(&quot;&lt;b&gt;&quot;, counties_merged_acs$NAME.y, &quot;&lt;/b&gt;&quot;, &quot;&lt;br&gt;&quot;,
                            &quot;Estimated Percent Rent Burdened: &quot;, percent(counties_merged_acs$PercentRentBurden), &quot;&lt;br&gt;&quot;,
                            &quot;Estimated Count of Rent Burdened: &quot;, counties_merged_acs$TotalRentBurden, &quot;&lt;br&gt;&quot;,
                            &quot;Estimated Total Population: &quot;, counties_merged_acs$Total)
@@ -840,7 +840,7 @@ HousingPopupContent &lt;- paste(&quot;&lt;b&gt;&quot;, HousingIndex$project_name
 <p><strong>Final Thoughts</strong></p>
 <p>Kind of a neat map. Somewhat unsprisingly, the amount of affordable housing complexes in each area is generally associated with population density. This also highlights the need for and logistical complexity of affordable housing in rural areas as well.</p>
 <p><em>Useful project resources</em></p>
-<p>I read a number of useful resources in creating this map. A few of the most useful are listed below. Additionally, a tromedous “thank you” to Prof. Robert Walker for helping me with some unusal debugging issues on this project as well as for introducing me to R in the first place.</p>
+<p>I read a number of useful resources in creating this map. A few of the most useful are listed below. Additionally, a tremedous “thank you” to Prof. Robert Walker for helping me with some unusal debugging issues on this project as well as for introducing me to R in the first place.</p>
 <p>Leaflet Mapping:</p>
 <ul>
 <li><a href="https://rstudio.github.io/leaflet/">Leaflet for R documentation</a></li>

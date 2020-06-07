@@ -176,7 +176,7 @@ counties_merged_acs <- merge(counties, RentBurdenPercent, by.x = "GEOID", by.y =
 PercentBurdenPal <- colorNumeric(palette = "Greens", domain=counties_merged_acs$PercentRentBurden) # create numeric color palet based on the range of PercenRentBurden
 
 # create content for popups to appear each county
-CountyPopupContent <- paste0("<b>", counties_merged_acs$NAME.1, "</b>", "<br>",
+CountyPopupContent <- paste0("<b>", counties_merged_acs$NAME.y, "</b>", "<br>",
                            "Estimated Percent Rent Burdened: ", percent(counties_merged_acs$PercentRentBurden), "<br>",
                            "Estimated Count of Rent Burdened: ", counties_merged_acs$TotalRentBurden, "<br>",
                            "Estimated Total Population: ", counties_merged_acs$Total)
@@ -226,7 +226,7 @@ Kind of a neat map. Somewhat unsprisingly, the amount of affordable housing comp
 
 *Useful project resources*
 
-I read a number of useful resources in creating this map. A few of the most useful are listed below. Additionally, a tromedous "thank you" to Prof. Robert Walker for helping me with some unusal debugging issues on this project as well as for introducing me to R in the first place. 
+I read a number of useful resources in creating this map. A few of the most useful are listed below. Additionally, a tremedous "thank you" to Prof. Robert Walker for helping me with some unusal debugging issues on this project as well as for introducing me to R in the first place. 
 
 Leaflet Mapping:
 
