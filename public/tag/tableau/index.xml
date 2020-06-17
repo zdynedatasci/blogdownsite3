@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tableau | Zachary Dyne</title>
+    <link>/tag/tableau/</link>
+      <atom:link href="/tag/tableau/index.xml" rel="self" type="application/rss+xml" />
+    <description>Tableau</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Zachary Dyne</copyright><lastBuildDate>Wed, 17 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>Tableau</title>
+      <link>/tag/tableau/</link>
+    </image>
+    
+    <item>
+      <title>My Interactive Tableau Resume</title>
+      <link>/post/2020-06-17-my-interactive-tableau-resume/</link>
+      <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>/post/2020-06-17-my-interactive-tableau-resume/</guid>
+      <description>&lt;iframe src=&#34;https://public.tableau.com/views/DyneResumeDashboard/Resume?:showVizHome=no&amp;:embed=true&#34; width=&#34;140%&#34; height=&#34;900&#34;&gt; &lt;/iframe&gt;
+&lt;p&gt;Note: The Tableau dashboard embedded in this webpage does not always appear when viewed in Google Chrome. It does appear on this webpage when viewed in Mozilla Firefox, Microsoft Edge, and Apple Safari. You can also view the interactive resume directly at my 
+&lt;a href=&#34;https://public.tableau.com/profile/zachary.dyne7147#!/vizhome/DyneResumeDashboard/Resume?publish=yes&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Tableau Public site&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
