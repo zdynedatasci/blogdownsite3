@@ -1,7 +1,6 @@
 ---
 title: "My Interactive Tableau Resume"
-categories:
--Tableau
+categories[]
 date: '2020-06-17'
 draft: no
 featured: no
@@ -13,8 +12,7 @@ preview_only: no
 projects: []
 subtitle: ''
 summary: Check out my interactive Tableau resume! 
-tags:
-- Tableau
+tags[]
 authors: []
 ---
 
