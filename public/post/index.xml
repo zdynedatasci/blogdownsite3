@@ -5,12 +5,21 @@
     <link>/post/</link>
       <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Zachary Dyne</copyright><lastBuildDate>Thu, 04 Jun 2020 13:24:36 -0700</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2020 Zachary Dyne</copyright><lastBuildDate>Wed, 17 Jun 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Posts</title>
       <link>/post/</link>
     </image>
+    
+    <item>
+      <title>My Interactive Tableau Resume</title>
+      <link>/post/2020-06-17-my-interactive-tableau-resume/</link>
+      <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>/post/2020-06-17-my-interactive-tableau-resume/</guid>
+      <description>&lt;iframe src=&#34;https://public.tableau.com/views/DyneResumeDashboard/Resume?:showVizHome=no&amp;:embed=true&#34; width=&#34;140%&#34; height=&#34;900&#34;&gt; &lt;/iframe&gt;
+</description>
+    </item>
     
     <item>
       <title>Oregon Affordable Housing Map: Visualizing Needs and Current Solutions</title>
