@@ -38,16 +38,6 @@
   </url>
   
   <url>
-    <loc>/tag/tableau/</loc>
-    <lastmod>2020-06-17T08:29:53-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <lastmod>2020-06-17T08:29:53-07:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/post/2020-06-04-affordable-housing-map/</loc>
     <lastmod>2020-06-04T13:24:36-07:00</lastmod>
   </url>
@@ -90,6 +80,11 @@
   <url>
     <loc>/category/sql/</loc>
     <lastmod>2020-05-23T10:28:44-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-05-28T15:10:22-07:00</lastmod>
   </url>
   
   <url>
