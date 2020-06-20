@@ -7,7 +7,7 @@ slug: austin-waste
 categories: []
 tags: []
 subtitle: ''
-summary: 'Have you ever wondered how much waste is produced in a large US city? This post uses Tableau and R to explore the Austin, Texas Waste Collection & Diversion Daily Report to answer that question from several angles and compares the impact of population growth on garbage and recycling usage.'
+summary: 'Have you ever wondered how much waste is produced in a large US city? This post uses Tableau and R to explore the Austin, Texas Waste Collection & Diversion Daily Report to answer that question from several angles and compares the impact of population growth on garbage and recycling usage. Part of this post does not reliably appear in Google Chrome. Please use a different borwser.'
 authors: []
 lastmod: '2020-06-20T08:35:48-07:00'
 featured: no
@@ -22,13 +22,14 @@ projects: []
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+*Note: The Tableau dashboard embedded below in this webpage does not always appear when viewed in Google Chrome. It does appear on this webpage when viewed in Mozilla Firefox, Microsoft Edge, and Apple Safari. You can also view the interactive resume directly at my [Tableau Public site](https://public.tableau.com/profile/zachary.dyne7147#!/vizhome/AustinTexasWasteCollectionDiversionReportDashboard/LoadTypeoverTime).*
+
 <iframe src="https://public.tableau.com/views/AustinTexasWasteCollectionDiversionReportDashboard/LoadTypeoverTime?:showVizHome=no&:embed=true" width="115%" height="645" align="center" frameborder="no"> <param name='device' value='desktop'/> </iframe>
 
-*Note: The Tableau dashboard embedded in this webpage does not always appear when viewed in Google Chrome. It does appear on this webpage when viewed in Mozilla Firefox, Microsoft Edge, and Apple Safari. You can also view the interactive resume directly at my [Tableau Public site](https://public.tableau.com/profile/zachary.dyne7147#!/vizhome/AustinTexasWasteCollectionDiversionReportDashboard/LoadTypeoverTime).*
 
 ## Deep Dive into Garbage Collection
 
-The above dashboard aims to provide an overview of volume and weight of Austin, Texas's Waste Collection & Diversion Daily report. I was curious to see whether any variation in pickup weight and/or volume could be explained by population changes in the region. To simplify things for now, let's only focus on the Garbage Collection and Recycling - Single Stream route types, which have the highest volume and weight of any other type of pickup.
+The above dashboard aims to provide an overview of volume and weight of [Austin, Texas's Waste Collection & Diversion Daily report](https://data.austintexas.gov/Utilities-and-City-Services/Waste-Collection-Diversion-Report-daily-/mbnu-4wq9). I was curious to see whether any variation in pickup weight and/or volume could be explained by population changes in the region. To do so, I found US Census annual [population estimates for the city of Austin](https://www.census.gov/data/tables/time-series/demo/popest/2010s-total-cities-and-towns.html#tables) and merged those figures with the original waste collection and diversion report. To simplify things for now, let's only focus on the Garbage Collection and Recycling - Single Stream route types, which have the highest volume and weight of any other type of pickup.
 
 
 ```{r, message=F, warning=F}

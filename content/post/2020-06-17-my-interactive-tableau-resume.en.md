@@ -11,7 +11,7 @@ lastmod: '2020-06-17T08:29:53-07:00'
 preview_only: no
 projects: []
 subtitle: ''
-summary: Check out my interactive Tableau resume! 
+summary: Check out my interactive Tableau resume! Note that the embedded Tableau visualization does not render in Google Chrome. Please use a different browser.  
 tags: []
 authors: []
 ---
