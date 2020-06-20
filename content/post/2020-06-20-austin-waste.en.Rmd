@@ -29,7 +29,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Deep Dive into Garbage Collection
 
-The above dashboard aims to provide an overview of volume and weight of [Austin, Texas's Waste Collection & Diversion Daily report](https://data.austintexas.gov/Utilities-and-City-Services/Waste-Collection-Diversion-Report-daily-/mbnu-4wq9). I was curious to see whether any variation in pickup weight and/or volume could be explained by population changes in the region. To do so, I found US Census annual [population estimates for the city of Austin](https://www.census.gov/data/tables/time-series/demo/popest/2010s-total-cities-and-towns.html#tables) and merged those figures with the original waste collection and diversion report. To simplify things for now, let's only focus on the Garbage Collection and Recycling - Single Stream route types, which have the highest volume and weight of any other type of pickup.
+The above dashboard aims to provide an overview of number of loads and weight of [Austin, Texas's Waste Collection & Diversion Daily report](https://data.austintexas.gov/Utilities-and-City-Services/Waste-Collection-Diversion-Report-daily-/mbnu-4wq9). I was curious to see whether any variation in pickup weight and/or number of loads could be explained by population changes in the region. To do so, I found US Census annual [population estimates for the city of Austin](https://www.census.gov/data/tables/time-series/demo/popest/2010s-total-cities-and-towns.html#tables) and merged those figures with the original waste collection and diversion report. To simplify things for now, let's only focus on the Garbage Collection and Recycling - Single Stream route types, which have the highest number of loads and weight of any other type of pickup.
 
 
 ```{r, message=F, warning=F}
