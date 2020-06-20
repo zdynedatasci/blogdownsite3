@@ -1,0 +1,198 @@
+---
+title: Using Tableau and R to Analyze the Austin, Texas Waste Collection & Diversion
+  Report
+author: Zachary Dyne
+date: '2020-06-20'
+slug: austin-waste
+categories: []
+tags: []
+subtitle: ''
+summary: 'Have you ever wondered how much waste is produced in a large US city? This post uses Tableau and R to explore the Austin, Texas Waste Collection & Diversion Daily Report to answer that question from several angles and compares the impact of population growth on garbage and recycling usage.'
+authors: []
+lastmod: '2020-06-20T08:35:48-07:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<iframe src="https://public.tableau.com/views/AustinTexasWasteCollectionDiversionReportDashboard/LoadTypeoverTime?:showVizHome=no&:embed=true" width="115%" height="645" align="center" frameborder="no"> <param name='device' value='desktop'/> </iframe>
+
+*Note: The Tableau dashboard embedded in this webpage does not always appear when viewed in Google Chrome. It does appear on this webpage when viewed in Mozilla Firefox, Microsoft Edge, and Apple Safari. You can also view the interactive resume directly at my [Tableau Public site](https://public.tableau.com/profile/zachary.dyne7147#!/vizhome/AustinTexasWasteCollectionDiversionReportDashboard/LoadTypeoverTime).*
+
+## Deep Dive into Garbage Collection
+
+The above dashboard aims to provide an overview of volume and weight of Austin, Texas's Waste Collection & Diversion Daily report. I was curious to see whether any variation in pickup weight and/or volume could be explained by population changes in the region. To simplify things for now, let's only focus on the Garbage Collection and Recycling - Single Stream route types, which have the highest volume and weight of any other type of pickup.
+
+
+```{r, message=F, warning=F}
+library(tidyverse)
+library(ggthemes)
+library(forcats)
+library(stringr)
+library(kableExtra)
+options(scipen=999)
+
+## read in same dataset visaulized in the Tableau dashboard above.
+# https://data.austintexas.gov/Utilities-and-City-Services/Waste-Collection-Diversion-Report-daily-/mbnu-4wq9
+
+AustinWaste <- read_csv("AustinWasteFiles/Waste_Collection___Diversion_Report__daily_.csv")
+
+Waste <- AustinWaste %>%
+  mutate(LOAD_DATE = as.Date(str_sub(LOAD_TIME, 1, 10), format = "%m/%d/%Y")) 
+
+Waste$Year <- format(as.Date(Waste$LOAD_DATE, format="%d/%m/%Y"),"%Y")
+
+## Read in annual US Census population estimates for Austin, Texas. 
+# https://www.census.gov/data/tables/time-series/demo/popest/2010s-total-cities-and-towns.html#tables
+Austin_Population <- read_csv("AustinWasteFiles/Austin Population.csv")
+
+#### here we only have census population data from 2010-2019
+#### so we will limit our analyses to those years too.
+
+## Filter by Garbage Collection or Recycling, sum load weight by year, and merge with population dataset
+WasteSumLoadCensus <- Waste %>%
+  filter(ROUTE_TYPE == "GARBAGE COLLECTION" | ROUTE_TYPE == "RECYCLING - SINGLE STREAM") %>%
+  filter(!(is.na(LOAD_WEIGHT))) %>%
+  mutate(YearFact = as.factor(Year)) %>%
+  group_by(YearFact) %>%
+  summarise(Sum_Load = sum(LOAD_WEIGHT)) %>%
+  mutate(Year = c(2004:2020)) %>%
+  filter(Year >= 2010) %>% 
+  left_join(., Austin_Population, by = "Year")
+```
+
+View dataset we'll be working with after all the filtering, calculating, and merging: 
+```{r}
+WasteSumLoadCensus %>%
+  kable() %>%
+  kable_styling("striped") %>%
+  scroll_box(width = "100%", height = "300px")
+```
+
+
+### Has the Austin, Texas population changed much over time to begin with?
+
+```{r, warning=F, message=F}
+ggplot(WasteSumLoadCensus) +
+  aes(x = Year, y = CensusEstmate) +
+  geom_line(size = 1L, colour = "#0c4c8a") +
+  geom_point() +
+  geom_text(aes(label = round(CensusEstmate, 1)),
+           vjust = "inward", hjust = "inward", angle = 45) +
+  labs(y = "Population Estimate", 
+      title = "US Census Population Estimates", 
+      subtitle = "Austin, Texas") +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 1000000)) +
+  theme_igray()
+```
+
+From 2010 - 2019, Austin's population rose by `r (max(Austin_Population$CensusEstmate)) - (min(Austin_Population$CensusEstmate))`, or by `r scales::percent((max(Austin_Population$CensusEstmate) - min(Austin_Population$CensusEstmate))/(min(Austin_Population$CensusEstmate)))`. 
+
+
+### And What Does That Mean for Garbage & Recycling Collection? 
+
+Let's see if that change has any significant impact on the annual weight of garbage collected. We can visualize this using a simple line plot and a linear regression. 
+
+```{r, warning=FALSE, message=FALSE}
+ggplot(WasteSumLoadCensus) +
+  aes(x = CensusEstmate, y = Sum_Load) +
+  geom_line(size = 1.26, colour = "#0c4c8a") +
+  geom_smooth(method = "lm") +
+  labs(x = "City Census Population Estimate", 
+      y = "Yearly Garbage Collection Weight (lbs)", 
+      title = "Yearly Garbage & Recycling Collection Weight by Census Population", 
+      subtitle = "Austin, Texas | 2010 - 2020") + 
+  ggpmisc::stat_poly_eq(formula =  y ~ x, # with ggpmisc you can view the lm equation on the plot!
+      aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")), 
+      parse = TRUE,
+      label.x = "right",
+      label.y = "bottom") +
+  theme_igray() +
+  scale_color_tableau()
+```
+
+```{r}
+library(moderndive) # the moderdive package has several great regression analysis tools!
+
+lm(Sum_Load ~ CensusEstmate, data = WasteSumLoadCensus) %>%
+  get_regression_summaries() %>% 
+  kable() %>% 
+  kable_styling()
+```
+
+Wow! According to this model, roughly 68% of the variation in garbage and recycling weight can be explained by the population increase. At a 0.05 alpha level, this model is statistically significant according to the p-value. This regression included both garbage and recycling. Let's see if there is a difference in model significance if we run separate models for garbage and recycle. 
+
+### Garbage vs. Recycling Models
+
+Let's create seaprate regression models for using population to predict annual garbage and recycling weight. 
+
+```{r, message=F, warning=F}
+library(broom)
+
+x <- Waste %>%
+  filter(ROUTE_TYPE == "GARBAGE COLLECTION" | ROUTE_TYPE == "RECYCLING - SINGLE STREAM") %>%
+  filter(!(is.na(LOAD_WEIGHT))) %>%
+  mutate(YearFact = as.factor(Year)) %>%
+  group_by(YearFact, ROUTE_TYPE) %>%
+  summarise(Sum_Load = sum(LOAD_WEIGHT))
+
+y <- rep(2004:2020, each = 2) %>% 
+  as.data.frame() %>%
+  rename("Year" = ".")
+ 
+WastebyType <- cbind(x, y) %>%
+  filter(Year >= 2010) %>% 
+  left_join(., Austin_Population, by = "Year")
+
+WasteModels <- WastebyType %>%  
+  group_by(ROUTE_TYPE) %>%
+  do(model = lm(Sum_Load ~ CensusEstmate, data = .))
+
+WasteModels %>%
+  tidy(model) %>%
+  kable() %>%
+  kable_styling()
+```
+
+```{r}
+glance(WasteModels, model) %>%
+  kable() %>%
+  kable_styling()
+```
+
+How interesting! The relationship between population and annual weight of waste is not significant for garbage collection, and the model indicates that only about 28% of the variance in weight can be explained by the city's population. However, the relationship between annual weight of waste and population is highly significant for recycling, with about 90% of the variation in weight being explained by the population.
+
+To me, this indicates that the amount of trash stays constant with increases in population while the amount of recycling increases alongside increases in population. In context, this has a few possible implications. This data doesn't distinguish between residential and commercial pickup. It is possible that Austin residents recycle, but several businesses don't. That wouldn't necessarily be a bad thing. Some businesses produce and consume things that can't be easily recycled. Lastly, I would assume that after a certain point, the amount of commercial activity in a city doesn't increase linearly with the population.
+
+```{r, message=FALSE}
+WastebyType %>%
+  filter(Year >= 2010L & Year <= 2019L) %>%
+  ggplot() +
+  aes(x = Year, y = Sum_Load, colour = ROUTE_TYPE) +
+  geom_line(linetype = 2, size = 1) +
+  geom_smooth(method = "lm", se = FALSE) +
+  ggpmisc::stat_poly_eq(formula = y ~ x, 
+       aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")), 
+       parse = TRUE,
+       show.legend = TRUE,
+       label.x = "right",
+       label.y = "middle") +   
+  labs(y = "Annual Weight (lbs)", 
+       title = "Garbage and Recycling Collection Services", 
+       subtitle = "Austin, Texas",
+       color = "Route Type") +
+  scale_color_hue() +
+  theme_igray() +
+  theme(legend.position="bottom")
+```
+
+
+These insights could be useful for policy makers or management analysts for the City of Austin (I'm sure they already do it themselves!). Generally speaking, though, if your population is expected to increase, your recycling services can expect a stronger gain than will your regular garbage collection services.  
+

@@ -1,0 +1,628 @@
+---
+title: Using Tableau and R to Analyze the Austin, Texas Waste Collection & Diversion
+  Report
+author: Zachary Dyne
+date: '2020-06-20'
+slug: austin-waste
+categories: []
+tags: []
+subtitle: ''
+summary: 'Have you ever wondered how much waste is produced in a large US city? This post uses Tableau and R to explore the Austin, Texas Waste Collection & Diversion Daily Report to answer that question from several angles and compares the impact of population growth on garbage and recycling usage.'
+authors: []
+lastmod: '2020-06-20T08:35:48-07:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+
+
+<iframe src="https://public.tableau.com/views/AustinTexasWasteCollectionDiversionReportDashboard/LoadTypeoverTime?:showVizHome=no&amp;:embed=true" width="115%" height="645" align="center" frameborder="no">
+<param name='device' value='desktop'/>
+</iframe>
+<p><em>Note: The Tableau dashboard embedded in this webpage does not always appear when viewed in Google Chrome. It does appear on this webpage when viewed in Mozilla Firefox, Microsoft Edge, and Apple Safari. You can also view the interactive resume directly at my <a href="https://public.tableau.com/profile/zachary.dyne7147#!/vizhome/AustinTexasWasteCollectionDiversionReportDashboard/LoadTypeoverTime">Tableau Public site</a>.</em></p>
+<div id="deep-dive-into-garbage-collection" class="section level2">
+<h2>Deep Dive into Garbage Collection</h2>
+<p>The above dashboard aims to provide an overview of volume and weight of Austin, Texas’s Waste Collection &amp; Diversion Daily report. I was curious to see whether any variation in pickup weight and/or volume could be explained by population changes in the region. To simplify things for now, let’s only focus on the Garbage Collection and Recycling - Single Stream route types, which have the highest volume and weight of any other type of pickup.</p>
+<pre class="r"><code>library(tidyverse)
+library(ggthemes)
+library(forcats)
+library(stringr)
+library(kableExtra)
+options(scipen=999)
+
+## read in same dataset visaulized in the Tableau dashboard above.
+# https://data.austintexas.gov/Utilities-and-City-Services/Waste-Collection-Diversion-Report-daily-/mbnu-4wq9
+
+AustinWaste &lt;- read_csv(&quot;AustinWasteFiles/Waste_Collection___Diversion_Report__daily_.csv&quot;)
+
+Waste &lt;- AustinWaste %&gt;%
+  mutate(LOAD_DATE = as.Date(str_sub(LOAD_TIME, 1, 10), format = &quot;%m/%d/%Y&quot;)) 
+
+Waste$Year &lt;- format(as.Date(Waste$LOAD_DATE, format=&quot;%d/%m/%Y&quot;),&quot;%Y&quot;)
+
+## Read in annual US Census population estimates for Austin, Texas. 
+# https://www.census.gov/data/tables/time-series/demo/popest/2010s-total-cities-and-towns.html#tables
+Austin_Population &lt;- read_csv(&quot;AustinWasteFiles/Austin Population.csv&quot;)
+
+#### here we only have census population data from 2010-2019
+#### so we will limit our analyses to those years too.
+
+## Filter by Garbage Collection or Recycling, sum load weight by year, and merge with population dataset
+WasteSumLoadCensus &lt;- Waste %&gt;%
+  filter(ROUTE_TYPE == &quot;GARBAGE COLLECTION&quot; | ROUTE_TYPE == &quot;RECYCLING - SINGLE STREAM&quot;) %&gt;%
+  filter(!(is.na(LOAD_WEIGHT))) %&gt;%
+  mutate(YearFact = as.factor(Year)) %&gt;%
+  group_by(YearFact) %&gt;%
+  summarise(Sum_Load = sum(LOAD_WEIGHT)) %&gt;%
+  mutate(Year = c(2004:2020)) %&gt;%
+  filter(Year &gt;= 2010) %&gt;% 
+  left_join(., Austin_Population, by = &quot;Year&quot;)</code></pre>
+<p>View dataset we’ll be working with after all the filtering, calculating, and merging:</p>
+<pre class="r"><code>WasteSumLoadCensus %&gt;%
+  kable() %&gt;%
+  kable_styling(&quot;striped&quot;) %&gt;%
+  scroll_box(width = &quot;100%&quot;, height = &quot;300px&quot;)</code></pre>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; ">
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+YearFact
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Sum_Load
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Year
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+CensusEstmate
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+2010
+</td>
+<td style="text-align:right;">
+363604590
+</td>
+<td style="text-align:right;">
+2010
+</td>
+<td style="text-align:right;">
+806164
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2011
+</td>
+<td style="text-align:right;">
+353170238
+</td>
+<td style="text-align:right;">
+2011
+</td>
+<td style="text-align:right;">
+828459
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2012
+</td>
+<td style="text-align:right;">
+362613631
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:right;">
+854482
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2013
+</td>
+<td style="text-align:right;">
+359080759
+</td>
+<td style="text-align:right;">
+2013
+</td>
+<td style="text-align:right;">
+875003
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2014
+</td>
+<td style="text-align:right;">
+368831846
+</td>
+<td style="text-align:right;">
+2014
+</td>
+<td style="text-align:right;">
+901170
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2015
+</td>
+<td style="text-align:right;">
+379646864
+</td>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+921114
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2016
+</td>
+<td style="text-align:right;">
+378507607
+</td>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:right;">
+939447
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2017
+</td>
+<td style="text-align:right;">
+380559996
+</td>
+<td style="text-align:right;">
+2017
+</td>
+<td style="text-align:right;">
+951553
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2018
+</td>
+<td style="text-align:right;">
+376789055
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:right;">
+962469
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2019
+</td>
+<td style="text-align:right;">
+373504571
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:right;">
+978908
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2020
+</td>
+<td style="text-align:right;">
+184163116
+</td>
+<td style="text-align:right;">
+2020
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="has-the-austin-texas-population-changed-much-over-time-to-begin-with" class="section level3">
+<h3>Has the Austin, Texas population changed much over time to begin with?</h3>
+<pre class="r"><code>ggplot(WasteSumLoadCensus) +
+  aes(x = Year, y = CensusEstmate) +
+  geom_line(size = 1L, colour = &quot;#0c4c8a&quot;) +
+  geom_point() +
+  geom_text(aes(label = round(CensusEstmate, 1)),
+           vjust = &quot;inward&quot;, hjust = &quot;inward&quot;, angle = 45) +
+  labs(y = &quot;Population Estimate&quot;, 
+      title = &quot;US Census Population Estimates&quot;, 
+      subtitle = &quot;Austin, Texas&quot;) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 1000000)) +
+  theme_igray()</code></pre>
+<p><img src="/post/2020-06-20-austin-waste.en_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>From 2010 - 2019, Austin’s population rose by 172744, or by 21%.</p>
+</div>
+<div id="and-what-does-that-mean-for-garbage-recycling-collection" class="section level3">
+<h3>And What Does That Mean for Garbage &amp; Recycling Collection?</h3>
+<p>Let’s see if that change has any significant impact on the annual weight of garbage collected. We can visualize this using a simple line plot and a linear regression.</p>
+<pre class="r"><code>ggplot(WasteSumLoadCensus) +
+  aes(x = CensusEstmate, y = Sum_Load) +
+  geom_line(size = 1.26, colour = &quot;#0c4c8a&quot;) +
+  geom_smooth(method = &quot;lm&quot;) +
+  labs(x = &quot;City Census Population Estimate&quot;, 
+      y = &quot;Yearly Garbage Collection Weight (lbs)&quot;, 
+      title = &quot;Yearly Garbage &amp; Recycling Collection Weight by Census Population&quot;, 
+      subtitle = &quot;Austin, Texas | 2010 - 2020&quot;) + 
+  ggpmisc::stat_poly_eq(formula =  y ~ x, # with ggpmisc you can view the lm equation on the plot!
+      aes(label = paste(..eq.label.., ..rr.label.., sep = &quot;~~~&quot;)), 
+      parse = TRUE,
+      label.x = &quot;right&quot;,
+      label.y = &quot;bottom&quot;) +
+  theme_igray() +
+  scale_color_tableau()</code></pre>
+<p><img src="/post/2020-06-20-austin-waste.en_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>library(moderndive) # the moderdive package has several great regression analysis tools!
+
+lm(Sum_Load ~ CensusEstmate, data = WasteSumLoadCensus) %&gt;%
+  get_regression_summaries() %&gt;% 
+  kable() %&gt;% 
+  kable_styling()</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+r_squared
+</th>
+<th style="text-align:right;">
+adj_r_squared
+</th>
+<th style="text-align:right;">
+mse
+</th>
+<th style="text-align:right;">
+rmse
+</th>
+<th style="text-align:right;">
+sigma
+</th>
+<th style="text-align:right;">
+statistic
+</th>
+<th style="text-align:right;">
+p_value
+</th>
+<th style="text-align:right;">
+df
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0.676
+</td>
+<td style="text-align:right;">
+0.635
+</td>
+<td style="text-align:right;">
+27016956389215
+</td>
+<td style="text-align:right;">
+5197784
+</td>
+<td style="text-align:right;">
+5811299
+</td>
+<td style="text-align:right;">
+16.674
+</td>
+<td style="text-align:right;">
+0.004
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+</tbody>
+</table>
+<p>Wow! According to this model, roughly 68% of the variation in garbage and recycling weight can be explained by the population increase. At a 0.05 alpha level, this model is statistically significant according to the p-value. This regression included both garbage and recycling. Let’s see if there is a difference in model significance if we run separate models for garbage and recycle.</p>
+</div>
+<div id="garbage-vs.-recycling-models" class="section level3">
+<h3>Garbage vs. Recycling Models</h3>
+<p>Let’s create seaprate regression models for using population to predict annual garbage and recycling weight.</p>
+<pre class="r"><code>library(broom)
+
+x &lt;- Waste %&gt;%
+  filter(ROUTE_TYPE == &quot;GARBAGE COLLECTION&quot; | ROUTE_TYPE == &quot;RECYCLING - SINGLE STREAM&quot;) %&gt;%
+  filter(!(is.na(LOAD_WEIGHT))) %&gt;%
+  mutate(YearFact = as.factor(Year)) %&gt;%
+  group_by(YearFact, ROUTE_TYPE) %&gt;%
+  summarise(Sum_Load = sum(LOAD_WEIGHT))
+
+y &lt;- rep(2004:2020, each = 2) %&gt;% 
+  as.data.frame() %&gt;%
+  rename(&quot;Year&quot; = &quot;.&quot;)
+ 
+WastebyType &lt;- cbind(x, y) %&gt;%
+  filter(Year &gt;= 2010) %&gt;% 
+  left_join(., Austin_Population, by = &quot;Year&quot;)
+
+WasteModels &lt;- WastebyType %&gt;%  
+  group_by(ROUTE_TYPE) %&gt;%
+  do(model = lm(Sum_Load ~ CensusEstmate, data = .))
+
+WasteModels %&gt;%
+  tidy(model) %&gt;%
+  kable() %&gt;%
+  kable_styling()</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+ROUTE_TYPE
+</th>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:right;">
+estimate
+</th>
+<th style="text-align:right;">
+std.error
+</th>
+<th style="text-align:right;">
+statistic
+</th>
+<th style="text-align:right;">
+p.value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+GARBAGE COLLECTION
+</td>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+216688324.77227
+</td>
+<td style="text-align:right;">
+23217068.18439
+</td>
+<td style="text-align:right;">
+9.333148
+</td>
+<td style="text-align:right;">
+0.0000142
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GARBAGE COLLECTION
+</td>
+<td style="text-align:left;">
+CensusEstmate
+</td>
+<td style="text-align:right;">
+45.89266
+</td>
+<td style="text-align:right;">
+25.69355
+</td>
+<td style="text-align:right;">
+1.786155
+</td>
+<td style="text-align:right;">
+0.1118945
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RECYCLING - SINGLE STREAM
+</td>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+32120181.78093
+</td>
+<td style="text-align:right;">
+8038971.64344
+</td>
+<td style="text-align:right;">
+3.995559
+</td>
+<td style="text-align:right;">
+0.0039743
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RECYCLING - SINGLE STREAM
+</td>
+<td style="text-align:left;">
+CensusEstmate
+</td>
+<td style="text-align:right;">
+88.07508
+</td>
+<td style="text-align:right;">
+8.89646
+</td>
+<td style="text-align:right;">
+9.900014
+</td>
+<td style="text-align:right;">
+0.0000091
+</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>glance(WasteModels, model) %&gt;%
+  kable() %&gt;%
+  kable_styling()</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+ROUTE_TYPE
+</th>
+<th style="text-align:right;">
+r.squared
+</th>
+<th style="text-align:right;">
+adj.r.squared
+</th>
+<th style="text-align:right;">
+sigma
+</th>
+<th style="text-align:right;">
+statistic
+</th>
+<th style="text-align:right;">
+p.value
+</th>
+<th style="text-align:right;">
+df
+</th>
+<th style="text-align:right;">
+logLik
+</th>
+<th style="text-align:right;">
+AIC
+</th>
+<th style="text-align:right;">
+BIC
+</th>
+<th style="text-align:right;">
+deviance
+</th>
+<th style="text-align:right;">
+df.residual
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+GARBAGE COLLECTION
+</td>
+<td style="text-align:right;">
+0.2850982
+</td>
+<td style="text-align:right;">
+0.1957355
+</td>
+<td style="text-align:right;">
+4551068
+</td>
+<td style="text-align:right;">
+3.190349
+</td>
+<td style="text-align:right;">
+0.1118945
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-166.3824
+</td>
+<td style="text-align:right;">
+338.7648
+</td>
+<td style="text-align:right;">
+339.6725
+</td>
+<td style="text-align:right;">
+165697766324242
+</td>
+<td style="text-align:right;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RECYCLING - SINGLE STREAM
+</td>
+<td style="text-align:right;">
+0.9245356
+</td>
+<td style="text-align:right;">
+0.9151026
+</td>
+<td style="text-align:right;">
+1575819
+</td>
+<td style="text-align:right;">
+98.010279
+</td>
+<td style="text-align:right;">
+0.0000091
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-155.7765
+</td>
+<td style="text-align:right;">
+317.5531
+</td>
+<td style="text-align:right;">
+318.4608
+</td>
+<td style="text-align:right;">
+19865655222082
+</td>
+<td style="text-align:right;">
+8
+</td>
+</tr>
+</tbody>
+</table>
+<p>How interesting! The relationship between population and annual weight of waste is not significant for garbage collection, and the model indicates that only about 28% of the variance in weight can be explained by the city’s population. However, the relationship between annual weight of waste and population is highly significant for recycling, with about 90% of the variation in weight being explained by the population.</p>
+<p>To me, this indicates that the amount of trash stays constant with increases in population while the amount of recycling increases alongside increases in population. In context, this has a few possible implications. This data doesn’t distinguish between residential and commercial pickup. It is possible that Austin residents recycle, but several businesses don’t. That wouldn’t necessarily be a bad thing. Some businesses produce and consume things that can’t be easily recycled. Lastly, I would assume that after a certain point, the amount of commercial activity in a city doesn’t increase linearly with the population.</p>
+<pre class="r"><code>WastebyType %&gt;%
+  filter(Year &gt;= 2010L &amp; Year &lt;= 2019L) %&gt;%
+  ggplot() +
+  aes(x = Year, y = Sum_Load, colour = ROUTE_TYPE) +
+  geom_line(linetype = 2, size = 1) +
+  geom_smooth(method = &quot;lm&quot;, se = FALSE) +
+  ggpmisc::stat_poly_eq(formula = y ~ x, 
+       aes(label = paste(..eq.label.., ..rr.label.., sep = &quot;~~~&quot;)), 
+       parse = TRUE,
+       show.legend = TRUE,
+       label.x = &quot;right&quot;,
+       label.y = &quot;middle&quot;) +   
+  labs(y = &quot;Annual Weight (lbs)&quot;, 
+       title = &quot;Garbage and Recycling Collection Services&quot;, 
+       subtitle = &quot;Austin, Texas&quot;,
+       color = &quot;Route Type&quot;) +
+  scale_color_hue() +
+  theme_igray() +
+  theme(legend.position=&quot;bottom&quot;)</code></pre>
+<p><img src="/post/2020-06-20-austin-waste.en_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>These insights could be useful for policy makers or management analysts for the City of Austin (I’m sure they already do it themselves!). Generally speaking, though, if your population is expected to increase, your recycling services can expect a stronger gain than will your regular garbage collection services.</p>
+</div>
+</div>
