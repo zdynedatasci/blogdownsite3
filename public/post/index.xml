@@ -21,7 +21,7 @@
 &lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
 
 
-&lt;p&gt;&lt;em&gt;Note: The Tableau dashboard embedded below in this webpage does not always appear when viewed in Google Chrome. It does appear on this webpage when viewed in Mozilla Firefox, Microsoft Edge, and Apple Safari. You can also view the interactive resume directly at my &lt;a href=&#34;https://public.tableau.com/profile/zachary.dyne7147#!/vizhome/AustinTexasWasteCollectionDiversionReportDashboard/LoadTypeoverTime&#34;&gt;Tableau Public site&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Note: The Tableau dashboard embedded below in this webpage does not always appear when viewed in Google Chrome. It does appear on this webpage when viewed in Mozilla Firefox, Microsoft Edge, and Apple Safari. You can also view the interactive dashboard directly at my &lt;a href=&#34;https://public.tableau.com/profile/zachary.dyne7147#!/vizhome/AustinTexasWasteCollectionDiversionReportDashboard/LoadTypeoverTime&#34;&gt;Tableau Public site&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 &lt;iframe src=&#34;https://public.tableau.com/views/AustinTexasWasteCollectionDiversionReportDashboard/LoadTypeoverTime?:showVizHome=no&amp;amp;:embed=true&#34; width=&#34;115%&#34; height=&#34;645&#34; align=&#34;center&#34; frameborder=&#34;no&#34;&gt;
 &lt;param name=&#39;device&#39; value=&#39;desktop&#39;/&gt;
 &lt;/iframe&gt;
