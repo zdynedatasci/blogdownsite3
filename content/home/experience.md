@@ -19,6 +19,17 @@ date_format = "Jan 2006"
 #   Begin/end multi-line descriptions with 3 quotes `"""`.
 
 [[experience]]
+  title = "Grant Analyst"
+  company = "Oregon Department of Education"
+  company_url = "https://www.oregon.gov/ode/Pages/default.aspx"
+  location = "Salem, Oregon"
+  date_start = "2020-07-13"
+  date_end = ""
+  description = """
+ I am excited to join a team of talented and experienced professionals tasked with analyzing and facilitating grants supporting education accross Oregon.
+  """
+
+[[experience]]
   title = "Project Manager & Lead Financial Data Analyst"
   company = "Willamette MBA Community Grant Program"
   company_url = "https://www.agsmgrants.com/"

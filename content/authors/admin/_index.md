@@ -10,11 +10,11 @@ authors:
 superuser: true
 
 # Role/position
-role: Data Scientist and Project Manager
+role: Grant Analyst
 
 # Organizations/Affiliations
 organizations:
-- name: Willamette University '19 MBA '20
+- name: Oregon Department of Education
   url: ""
 
 # Short bio (displayed in user profile at end of posts)
@@ -24,7 +24,6 @@ interests:
 - Data Science 
 - Business/Management Analytics
 - Analytical Consulting
-- Public & Nonprofit Management
 - Healthcare & Medical Research
 - Quantitative Research Methods
 - Mixed Methods Research
@@ -76,7 +75,9 @@ user_groups:
 - Visitors
 ---
 
-I am a dedicated and creative May 2020 graduate of Willamette University’s [MBA](https://willamette.edu/mba/) and [Graduate Certificate in Data Science](https://willamette.edu/mba/programs/data-science/index.html) programs. My experience and professional interests, beginning as a 15-year-old volunteer public health research assistant, intersect data science and quantitative research programming with public policy, public administration, and non-profit management. After graduation, I plan to enter a career using data science principles to help solve public administration and policy problems. My experience in data science, project management, and public health research, along with my academic background in mixed-methods social sciences, prepares me well to join a team solving management and policy problems. Through my experience and education, I have developed the following skills:
+I am a dedicated and creative May 2020 graduate of Willamette University’s [MBA](https://willamette.edu/mba/) and [Graduate Certificate in Data Science](https://willamette.edu/mba/programs/data-science/index.html) programs. My experience and professional interests, beginning as a 15-year-old volunteer public health research assistant, intersect data science and quantitative research programming with public policy, public administration, and non-profit management. I am excited to further these interest by joining a team of talented and experienced professionals as a Grant Analyst for the Oregon Department of Education.   
+
+Through my experience and education, I have developed the following skills:
 
 - Data Analysis Tools: R, Tableau, Excel, SQL, SAS, Python, SPSS, jamovi
 - Statistics
