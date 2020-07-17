@@ -75,7 +75,7 @@ user_groups:
 - Visitors
 ---
 
-I am a dedicated and creative May 2020 graduate of Willamette University’s [MBA](https://willamette.edu/mba/) and [Graduate Certificate in Data Science](https://willamette.edu/mba/programs/data-science/index.html) programs. My experience and professional interests, beginning as a 15-year-old volunteer public health research assistant, intersect data science and quantitative research programming with public policy, public administration, and non-profit management. I am excited to further these interest by joining a team of talented and experienced professionals as a Grant Analyst for the Oregon Department of Education.   
+I am a dedicated and creative May 2020 graduate of Willamette University’s [MBA](https://willamette.edu/mba/) and [Graduate Certificate in Data Science](https://willamette.edu/mba/programs/data-science/index.html) programs. My experience and professional interests, beginning as a 15-year-old volunteer public health research assistant, intersect data science and quantitative research programming with public policy, public administration, and non-profit management. I am excited to further these interest by joining a team of talented and experienced professionals as a Fiscal Grant Analyst for the Oregon Department of Education.   
 
 Through my experience and education, I have developed the following skills:
 
