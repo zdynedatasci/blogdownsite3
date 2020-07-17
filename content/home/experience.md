@@ -19,7 +19,7 @@ date_format = "Jan 2006"
 #   Begin/end multi-line descriptions with 3 quotes `"""`.
 
 [[experience]]
-  title = "Grant Analyst"
+  title = "Fiscal Grant Analyst"
   company = "Oregon Department of Education"
   company_url = "https://www.oregon.gov/ode/Pages/default.aspx"
   location = "Salem, Oregon"

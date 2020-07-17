@@ -10,7 +10,7 @@ authors:
 superuser: true
 
 # Role/position
-role: Grant Analyst
+role: Fiscal Grant Analyst
 
 # Organizations/Affiliations
 organizations:
