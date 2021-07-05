@@ -79,7 +79,7 @@ I am a dedicated and creative May 2020 graduate of Willamette University’s [MB
 
 Through my experience and education, I have developed the following skills:
 
-- Data Analysis Tools: R, Tableau, Excel, SQL, SAS, Python, SPSS, jamovi
+- Data Analysis Tools: R, Tableau, Excel, SQL, Microsoft Access, SAS, Python, SPSS, jamovi
 - Statistics
 - Financial and Managerial Accounting
 - Project Management and Program Facilitation
