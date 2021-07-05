@@ -26,11 +26,11 @@ date_format = "Jan 2006"
   date_start = "2020-07-13"
   date_end = ""
   description = """
- I am excited to join a team of talented and experienced professionals tasked with analyzing and facilitating grants supporting education accross Oregon.
+ I help ODE's internal grant managers with all things fiscal analysis, reporting, and accounting data management. This involves using SQL (Oracle Hyperion/Brio) to prepare fiscal data reports, using Excel (including VBA) to automate and streamline fiscal reporting and analysis, maintaining grant statuses in the State Financial Management System (SFMS) database, and constant cross-functional communication. 
   """
 
 [[experience]]
-  title = "Project Manager & Lead Financial Data Analyst"
+  title = "Project Manager & Lead Financial Analyst"
   company = "Willamette MBA Community Grant Program"
   company_url = "https://www.agsmgrants.com/"
   location = "Salem, Oregon"

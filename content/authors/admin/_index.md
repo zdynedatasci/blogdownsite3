@@ -18,13 +18,12 @@ organizations:
   url: ""
 
 # Short bio (displayed in user profile at end of posts)
-bio: Zachary Dyne is a recent MBA graduate and data scientist interested in the intersection of data science, health care, and public & nonprofit management. 
+bio: Zachary Dyne is an MBA graduate and data scientist interested in the intersection of data science, public health, and public & nonprofit management. 
 
 interests:
-- Data Science 
+- Data Science
+- Public Health Resaerch
 - Business/Management Analytics
-- Analytical Consulting
-- Healthcare & Medical Research
 - Quantitative Research Methods
 - Mixed Methods Research
 - Sociology
@@ -75,7 +74,8 @@ user_groups:
 - Visitors
 ---
 
-I am a dedicated and creative May 2020 graduate of Willamette University’s [MBA](https://willamette.edu/mba/) and [Graduate Certificate in Data Science](https://willamette.edu/mba/programs/data-science/index.html) programs. My experience and professional interests, beginning as a 15-year-old volunteer public health research assistant, intersect data science and quantitative research programming with public policy, public administration, and non-profit management. I am excited to further these interest by joining a team of talented and experienced professionals as a Fiscal Grant Analyst for the Oregon Department of Education.   
+I am a dedicated and creative May 2020 graduate of Willamette University’s [MBA](https://willamette.edu/mba/) and [Graduate Certificate in Data Science](https://willamette.edu/mba/programs/data-science/index.html) programs. My experience and professional interests, beginning as a 15-year-old volunteer public health research assistant, intersect data science and quantitative research programming with public policy, public administration, and non-profit management. Since July, 2020 I have served as a Fiscal Grant Analyst for the Oregon Department of Education where I help ODE's internal grant managers with all things fiscal analysis, reporting, and accounting data management.
+  
 
 Through my experience and education, I have developed the following skills:
 
