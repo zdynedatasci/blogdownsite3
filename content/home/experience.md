@@ -30,14 +30,14 @@ date_format = "Jan 2006"
   """
 
 [[experience]]
-  title = "Project Manager & Lead Financial Analyst"
+  title = "Project Manager &  Financial Analyst"
   company = "Willamette MBA Community Grant Program"
   company_url = "https://www.agsmgrants.com/"
   location = "Salem, Oregon"
   date_start = "2019-08-02"
   date_end = "2020-05-01"
   description = """
- I had the privilege of serving as the Project Manager and Lead Financial Data Analyst for the only student-run community grant program in the US. I acted as the communication bridge between upper management and colleagues. I also led a team of financial analysts in conducting financial and operational due diligence on past and prospective grantees to evaluate their impact and sustainability. Simultaneously, I built the program's first SQL database to organize internal data on impact metrics.
+ I had the privilege of serving as the Project Manager and Financial Analyst for the only student-run community grant program in the US. I acted as the communication bridge between upper management and colleagues. I also led a team of financial analysts in conducting financial and operational due diligence on past and prospective grantees to evaluate their impact and sustainability. Simultaneously, I built the program's first SQL database to organize internal data on impact metrics.
   """
 
 [[experience]]
