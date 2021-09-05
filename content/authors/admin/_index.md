@@ -32,17 +32,15 @@ interests:
 education:
   courses:
   - course: MBA - Operations & Systems Analysis, Public & Nonprofit Management
-    institution: Willamette University, Atkinson Graduate School of Management | Salem, Oregon
+    institution: Willamette University
     year: 2020
   - course: Graduate Certificate in Data Science
-    institution: Willamette University, Atkinson Graduate School of Management | Portland, Oregon
+    institution: Willamette University
     year: 2020
   - course: BA - Sociology
-    institution: Willamette University | Salem, Oregon
+    institution: Willamette University
     year: 2019
-  - course: Spanish & Latin American Studies
-    institution: Andean Center for Latin American Studies | Quito, Ecuador
-    year: 2017
+
 
 # Social/Academic Networking
 # For available icons, see: https://sourcethemes.com/academic/docs/page-builder/#icons
