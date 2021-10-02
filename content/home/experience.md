@@ -19,12 +19,23 @@ date_format = "Jan 2006"
 #   Begin/end multi-line descriptions with 3 quotes `"""`.
 
 [[experience]]
+  title = "Research Analyst, Child Nutrition Programs"
+  company = "Oregon Department of Education"
+  company_url = "https://www.oregon.gov/ode/students-and-family/childnutrition/SNP/Pages/default.aspx"
+  location = "Salem, Oregon"
+  date_start = "2020-07-13"
+  date_end = "2021-09-30"
+  description = """
+ I provide research, data analysis, and technical support on a range of nutrition related projects at ODE.
+  """
+
+[[experience]]
   title = "Fiscal Grant Analyst"
   company = "Oregon Department of Education"
   company_url = "https://www.oregon.gov/ode/Pages/default.aspx"
   location = "Salem, Oregon"
   date_start = "2020-07-13"
-  date_end = ""
+  date_end = "2021-09-30"
   description = """
  I help ODE's internal grant managers with all things fiscal analysis, reporting, and accounting data management. This involves using SQL (Oracle Hyperion/Brio) to prepare fiscal data reports, using Excel (including VBA) to automate and streamline fiscal reporting and analysis, maintaining grant statuses in the State Financial Management System (SFMS) database, and constant cross-functional communication. 
   """

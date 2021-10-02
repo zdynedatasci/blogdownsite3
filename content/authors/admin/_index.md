@@ -10,7 +10,7 @@ authors:
 superuser: true
 
 # Role/position
-role: Fiscal Grant Analyst
+role: Research Analyst, Child Nutrition Programs
 
 # Organizations/Affiliations
 organizations:
@@ -72,5 +72,5 @@ user_groups:
 - Visitors
 ---
 
-I am a dedicated and creative May 2020 graduate of Willamette University’s [MBA](https://willamette.edu/mba/) and [Graduate Certificate in Data Science](https://willamette.edu/mba/programs/data-science/index.html) programs. My experience and professional interests, beginning as a 15-year-old volunteer public health research assistant, intersect data science and quantitative research programming with public policy, public administration, and non-profit management. Since July, 2020 I have served as a Fiscal Grant Analyst for the Oregon Department of Education where I help ODE's internal grant managers with all things fiscal analysis, reporting, and accounting data management.
+I am a Research Analyst for the Child Nutrition Programs at the Oregon Department of Education where I provide research, data analysis, and technical support on a range of nutrition related projects at ODE. My professional interests more broadly intersect data science with public management, public policy, and public health. I am an avid user of R, SQL, and Excel and have experience with Python, SAS, Tableau, and Oracle Hyperion. I have an MBA, Graduate Certificate in Data Science, and BA in sociology all from Willamette University. For fun I enjoy hiking around the PNW, reading about history, and watching baseball (go Dodgers!). 
   
