@@ -26,18 +26,18 @@ date_format = "Jan 2006"
   date_start = "2021-10-01"
   date_end = ""
   description = """
- I provide research, data analysis, and technical support on a range of nutrition related projects at ODE.
+ I provide research, data analysis, and business intelligence supporting ODE-CNP's operations.
   """
 
 [[experience]]
-  title = "Fiscal Grant Analyst"
+  title = "Fiscal Analyst"
   company = "Oregon Department of Education"
   company_url = "https://www.oregon.gov/ode/Pages/default.aspx"
   location = "Salem, Oregon"
   date_start = "2020-07-13"
   date_end = "2021-09-30"
   description = """
- I help ODE's internal grant managers with all things fiscal analysis, reporting, and accounting data management. This involves using SQL (Oracle Hyperion/Brio) to prepare fiscal data reports, using Excel (including VBA) to automate and streamline fiscal reporting and analysis, maintaining grant statuses in the State Financial Management System (SFMS) database, and constant cross-functional communication. 
+ I helped ODE's internal grant managers with all things fiscal analysis, reporting, and accounting data management. This involves using SQL (Oracle Hyperion/Brio) to prepare fiscal data reports, using Excel (including VBA) to automate and streamline fiscal reporting and analysis, maintaining grant statuses in the State Financial Management System (SFMS) database, and constant cross-functional communication. 
   """
 
 [[experience]]
