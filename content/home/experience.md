@@ -6,7 +6,7 @@ active = true  # Activate this widget? true/false
 weight = 40  # Order that this section will appear.
 
 title = "Experience"
-subtitle = "Here is a brief overview of the work, project, and internship experience. Check out my [resume](https://zldyne.netlify.app/files/cv.pdf) for specific details on each experience."
+subtitle = "Here is a brief overview of the work, project, and internship experience. Check out my [resume](https://zldyne.netlify.app/files/cv.pdf) for details on each experience."
 
 # Date format for experience
 #   Refer to https://sourcethemes.com/academic/docs/customization/#date-format
