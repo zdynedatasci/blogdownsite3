@@ -1,9 +1,9 @@
 +++
 # Experience widget.
-#widget = "experience"  # See https://sourcethemes.com/academic/docs/page-builder/
-#headless = true  # This file represents a page section.
-#active = true  # Activate this widget? true/false
-#weight = 40  # Order that this section will appear.
+widget = "experience"  # See https://sourcethemes.com/academic/docs/page-builder/
+headless = true  # This file represents a page section.
+active = true  # Activate this widget? true/false
+weight = 40  # Order that this section will appear.
 
 #title = "Experience"
 #subtitle = "Here is a brief overview of the work, project, and internship experience. Check out my [resume](https://zldyne.netlify.app/files/cv.pdf) for details on each experience."
@@ -26,7 +26,7 @@ date_format = "Jan 2006"
   date_start = "2025-01-01"
   date_end = ""
   description = """
- I am the lead research analyst for the Staff Assignment data collection, Teacher Qualification audit, Physical Education program, and McKinney-Vento program to support students experiencing homelessness.
+ I am the lead research analyst for the Staff Assignment data collection, Teacher Qualification data validation, Physical Education program, and McKinney-Vento program to support students experiencing homelessness.
   """
 
 [[experience]]
