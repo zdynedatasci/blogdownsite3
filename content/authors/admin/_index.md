@@ -18,11 +18,11 @@ organizations:
   url: ""
 
 # Short bio (displayed in user profile at end of posts)
-bio: Zachary Dyne is a Research Analyst for the Oregon Department of Education, Child Nutrition Programs. 
+bio: Zachary Dyne is a Senior Research Analyst for the Oregon Department of Education. 
 
 interests:
 - Data Science for Public Management
-- Public Health Resaerch
+- Public Health Research
 - Quantitative Research Methods
 - Mixed Methods Research
 - Sociology
@@ -71,5 +71,5 @@ user_groups:
 - Visitors
 ---
 
-I am a Research Analyst for the Child Nutrition Programs at the Oregon Department of Education where I provide research, data analysis, and business intelligence supporting ODE-CNP's operations. My professional interests more broadly intersect data science with public management, public policy, and public health. I am an avid user of R, SQL, and Power BI and have experience with Python, SAS, Tableau, and Oracle Hyperion. I have an MBA, Graduate Certificate in Data Science, and BA in sociology all from Willamette University. For fun I enjoy hiking around the PNW, reading history and philosophy, and watching baseball. 
+I am a Senior Research Analyst at the Oregon Department of Education where I am the lead research analyst supporting several essential education programs. My professional interests more broadly intersect data science with public management, public policy, and public health. I am an avid user of R, SQL, and Power BI and have experience with Python, SAS, Tableau, and Oracle Hyperion. I have an MBA, Graduate Certificate in Data Science, and BA in sociology all from Willamette University. For fun I enjoy hiking around the PNW, reading history and philosophy, and watching baseball. 
   
