@@ -22,8 +22,6 @@ projects: []
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-*Note: The Tableau dashboard embedded below in this webpage does not always appear when viewed in Google Chrome. It does appear on this webpage when viewed in Mozilla Firefox, Microsoft Edge, and Apple Safari. You can also view the interactive dashboard directly at my [Tableau Public site](https://public.tableau.com/profile/zachary.dyne7147#!/vizhome/AustinTexasWasteCollectionDiversionReportDashboard/LoadTypeoverTime).*
-
 <iframe src="https://public.tableau.com/views/AustinTexasWasteCollectionDiversionReportDashboard/LoadTypeoverTime?:showVizHome=no&:embed=true" width="115%" height="645" align="center" frameborder="no"> <param name='device' value='desktop'/> </iframe>
 
 
