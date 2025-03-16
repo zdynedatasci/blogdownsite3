@@ -6,7 +6,7 @@ active = true  # Activate this widget? true/false
 weight = 40  # Order that this section will appear.
 
 #title = "Experience"
-#subtitle = "Here is a brief overview of the work, project, and internship experience. Check out my [resume](https://zldyne.netlify.app/files/cv.pdf) for details on each experience."
+#subtitle = "Here is a brief overview of the work, project, and internship experience. Check out my [resume](https://zldyne.netlify.app/files/cv.pdf) for more detailed information."
 
 # Date format for experience
 #   Refer to https://sourcethemes.com/academic/docs/customization/#date-format
@@ -26,7 +26,7 @@ date_format = "Jan 2006"
   date_start = "2025-01-01"
   date_end = ""
   description = """
- I am the lead research analyst for the Staff Assignment data collection, Teacher Qualification data validation, Physical Education program, and McKinney-Vento program to support students experiencing homelessness.
+ I am the lead research analyst for Oregon's Staff Assignment data collection, Teacher Qualification data validation, Physical Education program, and McKinney-Vento program to support students experiencing homelessness.
   """
 
 [[experience]]
@@ -37,32 +37,7 @@ date_format = "Jan 2006"
   date_start = "2021-10-01"
   date_end = "2024-12-31"
   description = """
- I provided research, data analysis, and business intelligence supporting ODE-CNP's operations. Sample accomplishments include: 
-  ●  Independently oversaw all aspects of data management, analysis, and reporting for the Child Nutrition 
-Programs and provided support in a timely manner to both internal and external stakeholders 
-  ● Ensured the accuracy of reconciliation of $400M+ in meal claims financial data to validate and identify 
-discrepancies between actual versus calculated payment amounts to each school district by building a 
-one-click automated application in R and SQL 
-  ● Designed and created a suite of interactive, dynamic, real-time dashboards using SQL and Power BI to 
-serve as a one-stop-shop to monitor 100+ metrics to inform decision-making by leadership 
-  ● Innovated a new forecasting model in R to analyze economic and administrative data from ODE, ODHS, 
-and OHA to estimate the cost of nutrition policies to guide senior leadership in budget decision-making 
-  ● Presented at the nationally renowned Child Nutrition Access and Accountability through Technology 
-(CNAAT) conference about forecasting the cost of universal school meals   
-  ● Implemented new automated processes in R and SQL to validate meal claim entry and Direct 
-Verification collections to detect errors, creating audit documentation, and sending email 
-documentation, thereby reducing weekly time spent by executive management by 87.5%  
-  ● Led requirements gathering, design, and implementation of an interactive map in R Shiny to illustrate 
-the geographic distribution of schools to receive accurate RFPs from potential food distributors 
-  ● Directly contributed to a 10-hour weekly increase in productivity and improved data quality through 
-conceptualizing and implementing a centralized R application that automates data collection through 
-ETL, data visualization, and report generation to provide a seamless user experience for USDA Food 
-Distribution Program management 
-  ● Effectively communicated with a group of interdisciplinary academics by facilitating their 
-understanding of CNP data and identifying pertinent data sources for usage in innovative research 
-  ● Served as thought partner for interdepartmental initiatives such as Data Governance Committee, AI 
-Governance Workgroup, Measure of Socioeconomic Status Committee, and Data Visualization Style 
-Guide Workgroup
+ I managed all aspects of data oversight, analysis, and reporting for the Child Nutrition Programs. On the technical side, I led the automation of financial claim reconciliation, cost forecasting for nutrition policy proposals, and the development of software tools to support executive decision-making. As the lead data steward, I was responsible for CNP's complex data systems, representing CNP on various interdepartmental initiatives, facilitating collaboration with academic researchers to enhance program and data understanding, and presenting at a nationally renowned program technology conference. 
   """
 
 [[experience]]
@@ -73,18 +48,18 @@ Guide Workgroup
   date_start = "2020-07-13"
   date_end = "2021-09-30"
   description = """
- I helped ODE's internal grant managers with all things fiscal analysis, reporting, and accounting data management. This involves using SQL (Oracle Hyperion/Brio) to prepare fiscal data reports, using Excel (including VBA) to automate and streamline fiscal reporting and analysis, maintaining grant statuses in the State Financial Management System (SFMS) database, and constant cross-functional communication. 
+ I helped ODE's internal grant managers with all things fiscal analysis, reporting, and accounting data management. I facilitated fiscal monitoring meetings with mangers with differing seniority levels to identify technical and programmatic issues and to ensure reporting compliance. Additionally, I developed a suite of SQL queries and Excel templates to streamline CNP fiscal reporting and internal documentation, which were adopted by the USDA as a standard reporting guide for state agencies.
   """
 
 [[experience]]
-  title = "Project Manager &  Financial Analyst"
+  title = "Project Manager"
   company = "Willamette MBA Community Grant Program"
   company_url = "https://www.agsmgrants.com/"
   location = "Salem, Oregon"
   date_start = "2019-08-02"
   date_end = "2020-05-01"
   description = """
- I had the privilege of serving as the Project Manager and Financial Analyst for the only student-run community grant program in the US. I acted as the communication bridge between upper management and colleagues. I also led a team of financial analysts in conducting financial and operational due diligence on past and prospective grantees to evaluate their impact and sustainability. Simultaneously, I built the program's first SQL database to organize internal data on impact metrics.
+ I had the privilege of serving as the Project Manager for the only student-run community grant program in the US. I acted as the communication bridge between upper management and colleagues. I also led a team of financial analysts in conducting financial and operational due diligence on past and prospective grantees to evaluate their impact and sustainability. Simultaneously, I built the program's first SQL database to organize internal data on impact metrics. 
   """
 
 [[experience]]
@@ -95,7 +70,7 @@ Guide Workgroup
   date_start = "2019-08-01"
   date_end = "2019-12-01"
   description = """
- I created and updated financial statement analysis data templates to be used in an MBA level finance and accounting elective course using Excel. While learning financial accounting, I practiced managing my own data projects in a new subject area.
+ I created and updated financial statement analysis data templates to be used in an MBA-level finance and accounting elective course using Excel. While learning financial accounting, I practiced managing my own data projects in a new subject area.
   """
 
 [[experience]]
@@ -110,7 +85,7 @@ Guide Workgroup
   """
 
 [[experience]]
-  title = "Strategic Management Intern - Data Analytics & Visualization"
+  title = "Data Analytics Intern"
   company = "United Way of the Mid-Willamette Valley"
   company_url = "https://www.unitedwaymwv.org/"
   location = "Salem, Oregon"
